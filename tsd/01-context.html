@@ -214,7 +214,7 @@ div.csl-indent {
 <p>This is a living document and will be updated as the MSE process progresses.</p>
 <section id="mse-framework" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="mse-framework"><span class="header-section-number">1.1</span> MSE Framework</h2>
-<p>The MSE is built on the <a href="https://openmse.com/">openMSE</a> framework (<code>MSEtool</code> v4+). All functions and code for reproducing the operating models, management procedures, and performance indicators are contained in the <a href="https://salb-mse.bluematterscience.com/pkg/"><code>iccatSALB</code></a> R package and its associated <a href="https://github.com/Blue-Matter/iccatSALB">GitHub repository</a>. The analysis itself is carried out through a set of scripts that call on these functions, which are also available in the repository alongside the package.</p>
+<p>The MSE is built on the <a href="https://openmse.com/">openMSE</a> framework (<code>MSEtool</code> v4+). All functions and code for reproducing the operating models, management procedures, and performance indicators are contained in the <a href="https://iccatsalb.bluematterscience.com/pkg/"><code>iccatSALB</code></a> R package and its associated <a href="https://github.com/Blue-Matter/iccatSALB">GitHub repository</a>. The analysis itself is carried out through a set of scripts that call on these functions, which are also available in the repository alongside the package.</p>
 </section>
 <section id="sec-stock-assessment" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="sec-stock-assessment"><span class="header-section-number">1.2</span> Stock Assessment</h2>
@@ -407,7 +407,7 @@ Methot, Richard D., and Chantell R. Wetzel. 2013. <span>“Stock Synthesis: A Bi
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/salb-mse\.bluematterscience\.com\/tsd\/");
+        var filterRegex = new RegExp("https:\/\/iccatsalb\.bluematterscience\.com\/tsd\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

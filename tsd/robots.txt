@@ -1,1 +1,1 @@
-Sitemap: https://salb-mse.bluematterscience.com/tsd/sitemap.xml
+Sitemap: https://iccatsalb.bluematterscience.com/tsd/sitemap.xml

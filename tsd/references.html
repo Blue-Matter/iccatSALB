@@ -282,7 +282,7 @@ Assessment and Fishery Management.”</span> <em>Fisheries Research</em>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/salb-mse\.bluematterscience\.com\/tsd\/");
+        var filterRegex = new RegExp("https:\/\/iccatsalb\.bluematterscience\.com\/tsd\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
