@@ -8,9 +8,9 @@ metrics, and all related data and code used to evaluate the candidate
 management procedures against a range of plausible operating models for
 the stock and fishery.
 
-See the [project homepage](https://salb-mse.bluematterscience.com/) for
+See the [project homepage](https://iccatsalb.bluematterscience.com/) for
 an overview of the MSE materials, and the [Trial Specifications
-Document](https://salb-mse.bluematterscience.com/tsd/) for full details
+Document](https://iccatsalb.bluematterscience.com/tsd/) for full details
 of the operating models, management procedures, and performance metrics
 used in the MSE.
 
