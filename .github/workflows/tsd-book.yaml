@@ -3,6 +3,9 @@ on:
     branches: [main, master]
     paths:
       - "tsd/**"
+      - "analysis/**"
+      - "objects/**"
+      - "DESCRIPTION"
       - ".github/workflows/tsd-book.yaml"
   workflow_dispatch:
 
@@ -17,10 +20,23 @@ jobs:
       group: tsd-book-${{ github.event_name != 'pull_request' || github.run_id }}
     permissions:
       contents: write
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v6
 
       - uses: quarto-dev/quarto-actions/setup@v2
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::knitr
+          needs: book
 
       - name: Render TSD book
         run: quarto render tsd
