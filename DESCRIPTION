@@ -20,8 +20,10 @@ Config/roxygen2/version: 8.0.0
 URL: https://github.com/Blue-Matter/iccatSALB, https://blue-matter.github.io/iccatSALB/
 BugReports: https://github.com/Blue-Matter/iccatSALB/issues
 Imports:
+    dplyr,
     ggplot2,
-    MSEtool (>= 4.0.0)
+    MSEtool (>= 4.0.0),
+    purrr
 Suggests:
     furrr,
     here
