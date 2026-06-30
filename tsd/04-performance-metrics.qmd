@@ -1,0 +1,11 @@
+# Performance Metrics
+
+```{r}
+#| include: false
+library(MSEtool)
+library(ggplot2)
+rnorm(5)
+```
+
+The performance metrics are in development.
+

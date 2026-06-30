@@ -1,0 +1,18 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "ICCAT Southern Atlantic Albacore MSE"
+  site-url: https://salb-mse.bluematterscience.com/
+  navbar:
+    left:
+      - text: "Trial Specifications"
+        href: https://salb-mse.bluematterscience.com/tsd/
+      - text: "R Package"
+        href: https://salb-mse.bluematterscience.com/pkg/
+
+format:
+  html:
+    theme: cosmo
+    page-layout: full

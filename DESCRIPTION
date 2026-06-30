@@ -1,0 +1,29 @@
+Package: iccatSALB
+Type: Package
+Title: South Atlantic Albacore Management Strategy Evaluation
+Version: 0.1.0
+Authors@R: c(
+    person(
+      "Adrian", "Hordyk",
+      email = "adrian@bluematterscience.com",
+      role = c("aut", "cre")
+    )
+  )
+Description: Operating models, management procedures, and analysis tools
+    for the Management Strategy Evaluation (MSE) of South Atlantic albacore
+    tuna, developed for the International Commission for the Conservation
+    of Atlantic Tunas (ICCAT).
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Config/roxygen2/version: 8.0.0
+URL: https://github.com/Blue-Matter/iccatSALB, https://blue-matter.github.io/iccatSALB/
+BugReports: https://github.com/Blue-Matter/iccatSALB/issues
+Imports:
+    ggplot2,
+    MSEtool (>= 4.0.0)
+Suggests:
+    furrr,
+    here
+Remotes:
+    blue-matter/MSEtool

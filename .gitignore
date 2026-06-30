@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.positai
+.httr-oauth
+.DS_Store
+.quarto
+docs
+homepage/_site
+tsd/_book
+data-raw/assessment/*/

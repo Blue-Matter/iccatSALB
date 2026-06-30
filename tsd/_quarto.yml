@@ -1,0 +1,21 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "SALB MSE Trial Specifications Document"
+  site-url: https://salb-mse.bluematterscience.com/tsd/
+  repo-url: https://github.com/Blue-Matter/iccatSALB
+  chapters:
+    - index.qmd
+    - 01-context.qmd
+    - 02-operating-models.qmd
+    - 03-management-procedures.qmd
+    - 04-performance-metrics.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo

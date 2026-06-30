@@ -1,0 +1,13 @@
+---
+title: "ICCAT Southern Atlantic Albacore Management Strategy Evaluation"
+---
+
+This site hosts the materials for the Management Strategy Evaluation (MSE)
+process for Southern Atlantic albacore tuna.
+
+## Materials
+
+- [**Trial Specifications Document**](tsd/): the operating models,
+  management procedures, and performance metrics used in the MSE.
+- [**`iccatSALB` R package**](pkg/): the R package implementing the MSE
+  analysis, with full technical/code documentation.
