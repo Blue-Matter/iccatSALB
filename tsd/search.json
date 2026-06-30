@@ -1,0 +1,92 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SALB MSE Trial Specifications Document",
+    "section": "",
+    "text": "Preface\nThis is the Trial Specifications Document (TSD) for the International Commission for the Conservation of Atlantic Tunas (ICCAT) Southern Atlantic albacore Management Strategy Evaluation (MSE).",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "01-context.html",
+    "href": "01-context.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1 MSE Framework\nThis document describes the trial specifications for the Management Strategy Evaluation (MSE) of South Atlantic albacore tuna (Thunnus alalunga), undertaken for the International Commission for the Conservation of Atlantic Tunas (ICCAT).\nThis is a living document and will be updated as the MSE process progresses.\nThe MSE is built on the openMSE framework (MSEtool v4+). All functions and code for reproducing the operating models, management procedures, and performance indicators are contained in the iccatSALB R package and its associated GitHub repository. The analysis itself is carried out through a set of scripts that call on these functions, which are also available in the repository alongside the package.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "01-context.html#sec-stock-assessment",
+    "href": "01-context.html#sec-stock-assessment",
+    "title": "1  Introduction",
+    "section": "1.2 Stock Assessment",
+    "text": "1.2 Stock Assessment\nThe operating models are conditioned on the ICCAT South Atlantic albacore stock assessment, fitted using Stock Synthesis 3 (SS3) v3.30.23.1 (Methot and Wetzel 2013), referred to here as the S05 model run.\n\nTBD: link the assessment report once published\n\n\n1.2.1 Data\nThe S05 assessment is fit to catch and abundance index data from 1956–2024, comprising:\n\n5 catch fleets (Fleet_01–Fleet_05)\n5 CPUE/abundance indices:\n\nIndx_CTP-LL_TB1 (Chinese Taipei longline, time block 1)\nIndx_CTP-LL_TB2 (Chinese Taipei longline, time block 2)\nIndx_JPN-LL_TB2 (Japan longline)\nIndx_BR_URY-LL (Brazil/Uruguay longline)\nIndx_ZAF-BB (South Africa baitboat)\n\n\n\n\n1.2.2 Model Structure\n\nModel years: 1956–2024 (69 years)\nAreas: 1 (single area, no movement)\nSexes: 1 (combined-sex model)\nAges: 0–15, with age 15 as the plus group\n\n\n\n1.2.3 Fixed Biological Parameters\nThe S05 model uses the following fixed/estimated biological parameter values:\n\n\n\n\n\n\n\nParameter\nValue\n\n\n\n\nNatural mortality (M)\nLorenzen, reference M = 0.36 at reference age 11\n\n\nGrowth model\nvon Bertalanffy\n\n\nL at Amin (age 0)\n23.17 cm\n\n\nL∞ (L at Amax)\n121.24 cm\n\n\nvon Bertalanffy K\n0.238\n\n\nCV (young)\n0.125\n\n\nCV (old)\n0.125\n\n\nWeight-length a\n1.3718e-05\n\n\nWeight-length b\n3.0793\n\n\nMaturity option\nAge logistic\n\n\nAge at 50% maturity\n5\n\n\nFirst mature age\n4\n\n\nStock-recruitment functional form\nBeverton-Holt\n\n\nSteepness\n0.75 (fixed)\n\n\nσR\n0.4 (fixed)\n\n\n\n\n\n\n\nMethot, Richard D., and Chantell R. Wetzel. 2013. “Stock Synthesis: A Biological and Statistical Framework for Fish Stock Assessment and Fishery Management.” Fisheries Research 142 (May): 86–99. https://doi.org/10.1016/j.fishres.2012.10.012.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "02-operating-models.html",
+    "href": "02-operating-models.html",
+    "title": "2  Operating Models",
+    "section": "",
+    "text": "2.1 Reference Set\nThe operating models (OMs) are conditioned using the S05 assessment model (see Section 1.2) as a base case.\nThe S05 assessment model is referred to as the Reference OM.\nThe Reference Set OMs are currently designed as a factorial uncertainty grid with two axes of uncertainty:\nAdditional operating models may be added to the Reference OMs - e.g., uncertainty in the steepness parameter of the Beverton-Holt stock recruit relationship.\nEach axis is represented at three levels, corresponding to the 25th, 50th, and 75th percentiles of the estimated parameter values. The 50th percentile level for each axis matches the S05 reference assessment, so the combination of the two 50th-percentile levels corresponds to the Reference OM.\nThis produces a 3 x 3 uncertainty grid with 9 reference operating models.\nThe von Bertalanffy growth parameters at each percentile level are shown in Table 2.1.\nEach level for natural mortality is defined by a reference Lorenzen M value (at reference age 11), which determines the full age-specific M vector via the Lorenzen relationship.\nBecause this relationship scales with weight-at-age, the resulting M-at-age vector also depends on growth, Table 2.2 shows the vector at the 50th-percentile of the growth parameters (see Table 2.1) only. The vectors for the 25th- and 75th-percentile growth scenarios differ slightly from these values.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Operating Models</span>"
+    ]
+  },
+  {
+    "objectID": "02-operating-models.html#reference-set",
+    "href": "02-operating-models.html#reference-set",
+    "title": "2  Operating Models",
+    "section": "",
+    "text": "Growth: uncertainty in the von Bertalanffy parameters\nNatural mortality: uncertainty in the reference M of the Lorenzen natural mortality curve.\n\n\n\n\n\n\n\n\n\n\nTable 2.1: Von Bertalanffy growth parameters at each level of the growth axis of the OM uncertainty grid.\n\n\n\n\n\nPercentile\n\\(L_\\infty\\)\n\\(K\\)\n\\(t_0\\)\n\n\n\n\n25th\n115.93\n0.235\n-0.561\n\n\n50th (Base Case)\n121.24\n0.238\n-0.891\n\n\n75th\n125.02\n0.237\n-1.217\n\n\n\n\n\n\n\n\n\n\nTable 2.2: Natural mortality-at-age at each level of the natural mortality axis of the OM uncertainty grid, at the 50th-percentile growth level.\n\n\n\n\n\nAge\n25th\n50th (Base Case)\n75th\n\n\n\n\n0\n0.778\n0.966\n1.180\n\n\n1\n0.560\n0.695\n0.849\n\n\n2\n0.459\n0.570\n0.697\n\n\n3\n0.403\n0.500\n0.611\n\n\n4\n0.367\n0.456\n0.557\n\n\n5\n0.343\n0.426\n0.521\n\n\n6\n0.327\n0.405\n0.495\n\n\n7\n0.314\n0.390\n0.477\n\n\n8\n0.306\n0.379\n0.464\n\n\n9\n0.299\n0.371\n0.454\n\n\n10\n0.294\n0.365\n0.446\n\n\n11\n0.290\n0.360\n0.440\n\n\n12\n0.287\n0.356\n0.435\n\n\n13\n0.285\n0.353\n0.432\n\n\n14\n0.283\n0.351\n0.429\n\n\n15\n0.280\n0.348\n0.425\n\n\n\n\n\n\n\n\n\n2.1.1 Overview of Reference OMs\nFigure 2.1 shows the length- and natural mortality-at-age curves for each of the 9 reference grid OMs.\n\n\n\n\n\n\n\n\nFigure 2.1: Length-at-age and natural mortality-at-age, by operating model.\n\n\n\n\n\nFigure 2.2 shows the historical spawning biomass depletion (\\(SB/SB_0\\)) trajectory for each of the 9 reference grid OMs, while Figure 2.3 shows the spawning biomass relative to the MSY level.\n\n\n\n\n\n\n\n\nFigure 2.2: Historical spawning biomass depletion (\\(SB/SB_0\\)), by operating model.\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2.3: Historical spawning biomass relative to MSY level (\\(SB/SB_MSY\\)), by operating model.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Operating Models</span>"
+    ]
+  },
+  {
+    "objectID": "02-operating-models.html#robustness-oms",
+    "href": "02-operating-models.html#robustness-oms",
+    "title": "2  Operating Models",
+    "section": "2.2 Robustness OMs",
+    "text": "2.2 Robustness OMs\nRobustness OMs have not yet been developed for SALB.\nPotential Robustness OMs may include:\n\nuncertainty in TAC implementation (e.g., overages in TAC)\nimpacts of climate change (e.g., time-varying life-history parameters)\nalternative recruitment scenarios.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Operating Models</span>"
+    ]
+  },
+  {
+    "objectID": "03-management-procedures.html",
+    "href": "03-management-procedures.html",
+    "title": "3  Management Procedures",
+    "section": "",
+    "text": "Candidate management procedures are in development.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Management Procedures</span>"
+    ]
+  },
+  {
+    "objectID": "04-performance-metrics.html",
+    "href": "04-performance-metrics.html",
+    "title": "4  Performance Metrics",
+    "section": "",
+    "text": "The performance metrics are in development.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Performance Metrics</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Methot, Richard D., and Chantell R. Wetzel. 2013. “Stock\nSynthesis: A Biological and Statistical Framework for Fish Stock\nAssessment and Fishery Management.” Fisheries Research\n142 (May): 86–99. https://doi.org/10.1016/j.fishres.2012.10.012.",
+    "crumbs": [
+      "References"
+    ]
+  }
+]
