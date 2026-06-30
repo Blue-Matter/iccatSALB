@@ -4,13 +4,13 @@ project:
 
 website:
   title: "ICCAT Southern Atlantic Albacore MSE"
-  site-url: https://salb-mse.bluematterscience.com/
+  site-url: https://iccatsalb.bluematterscience.com/
   navbar:
     left:
       - text: "Trial Specifications"
-        href: https://salb-mse.bluematterscience.com/tsd/
+        href: https://iccatsalb.bluematterscience.com/tsd/
       - text: "R Package"
-        href: https://salb-mse.bluematterscience.com/pkg/
+        href: https://iccatsalb.bluematterscience.com/pkg/
 
 format:
   html:

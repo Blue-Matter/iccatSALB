@@ -16,7 +16,7 @@ This is a living document and will be updated as the MSE process progresses.
 
 ## MSE Framework 
 
-The MSE is built on the [openMSE](https://openmse.com/) framework (`MSEtool` v4+). All functions and code for reproducing the operating models, management procedures, and performance indicators are contained in the [`iccatSALB`](https://salb-mse.bluematterscience.com/pkg/) R package and its associated [GitHub repository](https://github.com/Blue-Matter/iccatSALB). The analysis itself is carried out through a set of scripts that call on these functions, which are also available in the repository alongside the package.
+The MSE is built on the [openMSE](https://openmse.com/) framework (`MSEtool` v4+). All functions and code for reproducing the operating models, management procedures, and performance indicators are contained in the [`iccatSALB`](https://iccatsalb.bluematterscience.com/pkg/) R package and its associated [GitHub repository](https://github.com/Blue-Matter/iccatSALB). The analysis itself is carried out through a set of scripts that call on these functions, which are also available in the repository alongside the package.
 
 ## Stock Assessment {#sec-stock-assessment}
 

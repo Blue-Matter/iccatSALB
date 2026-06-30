@@ -26,7 +26,7 @@ jobs:
         run: quarto render homepage
 
       - name: Add CNAME
-        run: echo "salb-mse.bluematterscience.com" > homepage/_site/CNAME
+        run: echo "iccatsalb.bluematterscience.com" > homepage/_site/CNAME
 
       - name: Add .nojekyll
         run: touch homepage/_site/.nojekyll

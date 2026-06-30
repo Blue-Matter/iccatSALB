@@ -4,7 +4,7 @@ project:
 
 book:
   title: "SALB MSE Trial Specifications Document"
-  site-url: https://salb-mse.bluematterscience.com/tsd/
+  site-url: https://iccatsalb.bluematterscience.com/tsd/
   repo-url: https://github.com/Blue-Matter/iccatSALB
   chapters:
     - index.qmd
