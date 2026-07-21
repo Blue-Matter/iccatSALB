@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-bba5ebae505b5c03f3f0d8040a416a6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c98d9d0b3b0a085d3ddf71e6e91476d8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -93,11 +93,7 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="https://iccatsalb.bluematterscience.com/tsd/"> 
-<span class="menu-text">Trial Specifications</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="https://iccatsalb.bluematterscience.com/pkg/"> 
-<span class="menu-text">R Package</span></a>
+<span class="menu-text">Trial Specifications Document</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -133,13 +129,58 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This site hosts the materials for the Management Strategy Evaluation (MSE) process for Southern Atlantic albacore tuna.</p>
+<p>This site hosts the materials for the Management Strategy Evaluation (MSE) process for South Atlantic albacore tuna (<em>Thunnus alalunga</em>), managed by the <a href="https://www.iccat.int">International Commission for the Conservation of Atlantic Tunas (ICCAT)</a>.</p>
+<p>The MSE tests candidate management procedures against a range of plausible operating models to evaluate their performance against management objectives under uncertainty.</p>
+<p>The MSE analysis uses the <code>iccatSALB</code> R package, developed for this purpose and built on the <a href="https://openmse.com/">openMSE</a> framework.</p>
 <section id="materials" class="level2">
 <h2 class="anchored" data-anchor-id="materials">Materials</h2>
 <ul>
-<li><a href="tsd/"><strong>Trial Specifications Document</strong></a>: the operating models, management procedures, and performance metrics used in the MSE.</li>
-<li><a href="pkg/"><strong><code>iccatSALB</code> R package</strong></a>: the R package implementing the MSE analysis, with full technical/code documentation.</li>
+<li><a href="tsd/">Trial Specifications Document</a>: the operating models, management procedures, and performance metrics used in the MSE.</li>
+<li><a href="pkg/"><code>iccatSALB</code> R package</a>: R package implementing the MSE analysis, with full technical documentation.</li>
 </ul>
+</section>
+<section id="repository-structure" class="level2">
+<h2 class="anchored" data-anchor-id="repository-structure">Repository Structure</h2>
+<p>The <a href="https://github.com/Blue-Matter/iccatSALB"><code>iccatSALB</code> repository</a> is organised as follows:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Directory / File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>R/</code></td>
+<td>Package functions and objects</td>
+</tr>
+<tr class="even">
+<td><code>analysis/</code></td>
+<td>Analysis scripts that run the MSE</td>
+</tr>
+<tr class="odd">
+<td><code>data-raw/</code></td>
+<td>Conditioning output and other raw data used to build the package</td>
+</tr>
+<tr class="even">
+<td><code>objects/</code></td>
+<td>Saved R objects produced by the analysis scripts (<code>OM/</code>, <code>Hist/</code>, etc.)</td>
+</tr>
+<tr class="odd">
+<td><code>tsd/</code></td>
+<td>Quarto source for the Trial Specifications Document</td>
+</tr>
+<tr class="even">
+<td><code>homepage/</code></td>
+<td>Quarto source for this website</td>
+</tr>
+</tbody>
+</table>
+<p>To reproduce the analysis, download the <a href="https://github.com/Blue-Matter/iccatSALB"><code>iccatSALB</code> repository</a>, install and load the <code>iccatSALB</code> package (e.g., <code>pak::pak('blue-matter/iccatSALB; load('iccatSALB')</code>)), and work through the scripts in <code>analysis</code>.</p>
 
 
 </section>
