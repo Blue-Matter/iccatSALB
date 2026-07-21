@@ -8,7 +8,6 @@
 .quarto
 docs
 homepage/_site
-tsd/_book
 data-raw/assessment/*/
 objects/MSE/
 

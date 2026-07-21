@@ -1,0 +1,172 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Trial Specifications Document",
+    "section": "",
+    "text": "1 Introduction\nThis Trial Specifications Document (TSD) describes the design and technical details of the Management Strategy Evaluation (MSE) of South Atlantic albacore tuna (Thunnus alalunga; SALB), including the operating models, candidate management procedures, and performance metrics used to evaluate them.\nThe TSD is a living document that will be updated as the MSE progresses to reflect the current state of the analysis.\nFor more information on the South Atlantic Albacore (SALB) MSE process see the project homepage.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#salb-mse-framework",
+    "href": "index.html#salb-mse-framework",
+    "title": "Trial Specifications Document",
+    "section": "\n1.1 SALB MSE Framework",
+    "text": "1.1 SALB MSE Framework\nThe iccatSALB R package, built on the openMSE platform, has been developed as the SALB MSE framework.\nThe analysis is fully reproducible: all code, functions, and objects used to build the operating models, candidate management procedures, and performance indicators are contained in the iccatSALB R package and its associated GitHub repository.\nThe iccatSALB package can be installed with:\n\n# install.packages('pak')\npak::pak('blue-matter/iccatSALB')\n\nTo reproduce the analysis, download the GitHub repository, install and load the iccatSALB package, and work through the scripts in the analysis directory.\nThe operating models (OMs) were conditioned with Stock Synthesis 3 (SS3; (Methot and Wetzel 2013)) and were based on the 2026 Albacore Stock Assessment (Chapter 2).\n\n\n\n\nMethot, Richard D., and Chantell R. Wetzel. 2013. “Stock Synthesis: A Biological and Statistical Framework for Fish Stock Assessment and Fishery Management.” Fisheries Research 142 (May): 86–99. https://doi.org/10.1016/j.fishres.2012.10.012.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "stock-assessment.html",
+    "href": "stock-assessment.html",
+    "title": "2  Stock Assessment",
+    "section": "",
+    "text": "2.1 Fleet Structure and Fishery Data\nThe first age-structured stock assessment for South Atlantic Albacore was completed in June 2026, using the Stock Synthesis 3 (SS3) framework (Methot and Wetzel 2013). The assessment output was used as the basis for the Reference (Chapter 3) and Robustness (Chapter 4) operating models.\nThis chapter provides a brief overview of the assessment. For full details, see the Report of the 2026 ICCAT Albacore Stock Assessment Meeting and the Report of the 2026 ICCAT Albacore Data Preparatory Meeting.\nThe assessment model integrated total catches, standardized indices of abundance, and length-composition data covering the period 1956 – 2024.\nFive fishing fleets were defined by aggregating catch and length composition data for fishing fleets with similar properties (Table 2.1; Figure 2.1; Figure 2.2).\nFive standardized CPUE indices were used in the Base Case assessment (Table 2.2; Figure 2.1; Figure 2.3).\nThe catch and CPUE data are imported into the Reference (Chapter 3) and Robustness (Chapter 4) operating models, and made available to the candidate management procedures (Chapter 7).\nFigure 2.1: Overview of the data used in the 2026 stock assessment.\nFigure 2.2: Time series plot of the total catch data used in the 2026 assessment.\nFigure 2.3: Time series plot of the five CPUE indices used in the Base Case 2026 assessment.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Stock Assessment</span>"
+    ]
+  },
+  {
+    "objectID": "stock-assessment.html#fleet-structure-and-fishery-data",
+    "href": "stock-assessment.html#fleet-structure-and-fishery-data",
+    "title": "2  Stock Assessment",
+    "section": "",
+    "text": "Table 2.1: Fleet structure, data and time periods to be used in the South Atlantic albacore Stock Synthesis model. Adapted from Table 11 in the Data Preparatory Report.\n\n\n\n\n\n\n\n\n\n\nFleet\nDefinition (FlagName and Gear Group)\nCatch\nSize composition data\n\n\n\n\nFleet 1\nChinese Taipei (LL), Korea (LL)\n1964-2024\nup to 2024\n\n\n\nFleet 2\nJapan (LL), China (LL), EU-Spain (LL), EU-Portugal (LL), USA (LL), Philippines (LL), St Vincent and Grenadines (LL), Vanuatu (LL), Honduras (LL), NEI (LL), Côte D’Ivoire (LL), United Kingdom (LL), Seychelles (LL), UK.Sta Helena (LL), Angola (LL), Senegal (LL), Trinidad and Tobago (LL)\n1956-2024\n1956-2024\n\n\n\nFleet 3\nBrazil (LL, SU), Uruguay (LL), Namibia (LL), Panama (LL), South Africa (LL, UN), Argentina (LL, TW, UN), Belize (LL), Cambodia (LL), Cuba (LL, UN)\n1959-2024\n1969-2024\n\n\n\nFleet 4\nSouth Africa (BB, HL, PS, RR, SP)\n1973-2024\n1980-2024\n\n\n\nFleet 5\nAll others\n1961-2024\n1961-2024\n\n\n\n\n\n\n\n\n\nTable 2.2: CPUE indices and time periods to be used in the South Atlantic albacore Stock Synthesis model. Adapted from Table 11 in the Data Preparatory Report.\n\n\n\nIndex Name\nDefinition\nYears\n\n\n\nIndx_CTP-LL_TB1\nChinese Taipei longline, time block 1\n1970-1980\n\n\nIndx_CTP-LL_TB2\nChinese Taipei longline, time block 2\n1981-2024\n\n\nIndx_JPN-LL_TB2\nJapan longline\n1979-2017\n\n\nIndx_BR_URY-LL\nBrazil/Uruguay longline\n1978-2024\n\n\nIndx_ZAF-BB\nSouth Africa baitboat\n2003-2024",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Stock Assessment</span>"
+    ]
+  },
+  {
+    "objectID": "stock-assessment.html#biological-parameters",
+    "href": "stock-assessment.html#biological-parameters",
+    "title": "2  Stock Assessment",
+    "section": "\n2.2 Biological Parameters",
+    "text": "2.2 Biological Parameters\nThe assessment model assumed age-specific natural mortality modelled with the Lorezen function (Lorenzen et al. 2022), mean length-at-age described by the von Bertalanffy growth model, and the stock-recruitment relationship modelled with the Beverton-Holt equation, parameterized with the ‘steepness’ (h) formulation.\nRecruitment variability \\(\\left(\\sigma_R\\right)\\) was fixed at 0.4 and h at 0.75. Maturity was specified as an at-age schedule with fish reaching 50% maturity at age 5 years and full maturity at 6 years.\nSee Table 5 in the Data Preparatory Report for a full list of the life-history parameters used in the model.\nUncertainty in the biological parameters was focused on alternative mean length-at-age and naturality mortality-at-age schedules. A set of nine models were developed combining three alternative growth parameterizations and three alternative natural mortality estimates corresponding to the 25th, 50th, and 75th percentiles of the distributions agreed at the Data Preparatory Meeting.\nThese nine models are used to create the Reference OM Grid (Chapter 3). The central model of this grid (model 5, referred to as S05) was used considered the Base Case assessment model and is used in the MSE as the Reference OM.\n\n\n\n\nLorenzen, Kai, Edward V. Camp, and Taryn M. Garlock. 2022. “Natural Mortality and Body Size in Fish Populations.” Fisheries Research 252 (August): 106327. https://doi.org/10.1016/j.fishres.2022.106327.\n\n\nMethot, Richard D., and Chantell R. Wetzel. 2013. “Stock Synthesis: A Biological and Statistical Framework for Fish Stock Assessment and Fishery Management.” Fisheries Research 142 (May): 86–99. https://doi.org/10.1016/j.fishres.2012.10.012.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Stock Assessment</span>"
+    ]
+  },
+  {
+    "objectID": "oms-reference.html",
+    "href": "oms-reference.html",
+    "title": "3  Reference Operating Models",
+    "section": "",
+    "text": "3.1 Overview of Population Dynamics\nThe Reference Set OMs are currently designed as a factorial uncertainty grid with the two axes of uncertainty (Growth & Natural Mortality) developed during the 2026 Stock Assessment (see Chapter 2).\nThe Growth and Natural Mortality axes were both represented with three levels, corresponding to the 25th, 50th, and 75th percentiles of the estimated parameter distributions. The 50th percentile level for each axis matches the Base Case stock assessment model (S05).\nThe OM imported from this model is referred to as the Reference OM.\nThe three levels for each axis produces a 3 x 3 uncertainty grid with 9 reference operating models (Table 3.1). The von Bertalanffy growth parameters and the reference Lorenzen M value (at reference age 11) at each percentile level are shown in Table 3.2.\nFigure 3.1 shows the length- and natural mortality-at-age curves for each of the 9 reference grid OMs.\nEach operating model was imported from the maximum likelihood estimates (MLE) of the corresponding SS3 run, so within each OM the historical population dynamics are identical across simulations.\nThe figures below provide an overview of the population dynamics described in the nine Reference OMs:\nTable 3.3 summarises the MSY reference points, along with terminal year \\(F/F_\\text{MSY}\\) and \\(SB/SB_\\text{MSY}\\), for each of the nine Reference OMs.\nFigure 3.2: Historical spawning biomass (\\(SB\\)), coloured by operating model and faceted by the axes of uncertainty\nFigure 3.3: Historical spawning biomass depletion (\\(SB/SB_0\\)), by operating model.\nFigure 3.4: Historical spawning biomass relative to MSY level (\\(SB/SB_{\\text{MSY}}\\)), by operating model.\nFigure 3.5: Historical fishing mortality relative to FMSY level (\\(F/F_{\\text{MSY}}\\)), by operating model.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference Operating Models</span>"
+    ]
+  },
+  {
+    "objectID": "oms-reference.html#overview-of-population-dynamics",
+    "href": "oms-reference.html#overview-of-population-dynamics",
+    "title": "3  Reference Operating Models",
+    "section": "",
+    "text": "Figure 3.2: historical spawning biomass\n\n\nFigure 3.3: historical spawning biomass relative to equilibrium unfished level\n\nFigure 3.4: historical spawning biomass relative to the MSY level\n\n\nFigure 3.5: historical fishing mortality relative to the \\(F_\\text{MSY}\\)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference Operating Models</span>"
+    ]
+  },
+  {
+    "objectID": "oms-reference.html#reference-points",
+    "href": "oms-reference.html#reference-points",
+    "title": "3  Reference Operating Models",
+    "section": "\n3.2 Reference Points",
+    "text": "3.2 Reference Points\n\n\n\nTable 3.3: MSY reference points and terminal year status, by operating model.\n\n\n\n\n\n\n\n\n\n\n\n\n\nOM\nFMSY\n\nSBMSY\n\nSPRMSY\n\nMSY\nF/FMSY\n\nSB/SBMSY\n\n\n\n\nG_25-M_25\n0.465\n36506.58\n0.284\n24162.66\n0.918\n1.032\n\n\nG_25-M_50\n0.760\n25046.72\n0.275\n24677.32\n0.822\n1.107\n\n\nG_25-M_75\n1.317\n17418.30\n0.266\n25578.61\n0.684\n1.259\n\n\nG_50-M_25\n0.318\n36215.84\n0.278\n23965.60\n1.042\n0.904\n\n\nG_50-M_50\n0.420\n24274.44\n0.270\n24333.31\n0.974\n0.943\n\n\nG_50-M_75\n0.576\n16222.00\n0.262\n24755.52\n0.898\n1.008\n\n\nG_75-M_25\n0.277\n35422.99\n0.275\n23973.49\n1.081\n0.861\n\n\nG_75-M_50\n0.333\n23292.29\n0.267\n24336.83\n1.017\n0.907\n\n\nG_75-M_75\n0.414\n15219.33\n0.259\n24727.88\n0.942\n0.972",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Reference Operating Models</span>"
+    ]
+  },
+  {
+    "objectID": "oms-robustness.html",
+    "href": "oms-robustness.html",
+    "title": "4  Robustness Operating Models",
+    "section": "",
+    "text": "Note\n\n\n\nRobustness OMs have not yet been developed for SALB.\nRobustness OMs will be discussed by the SALB MSE Working Group and this chapter will be updated once those models have been defined.\n\n\nAt the 2026 Stock Assessment, the Group identified the following uncertainties that should be evaluated in the MSE:\n\nalternative CPUE configurations\nalternative biological hypotheses\n\nAdditional uncertainties that could be evaluated in robustness OMs include:\n\nuncertainty in TAC implementation (e.g., overages in TAC)\nimpacts of climate change (e.g., time-varying life-history parameters)\nalternative recruitment scenarios.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Robustness Operating Models</span>"
+    ]
+  },
+  {
+    "objectID": "forward-projections.html",
+    "href": "forward-projections.html",
+    "title": "5  Forward Projections",
+    "section": "",
+    "text": "5.1 Management Cycle and Data Lag\nThis chapter describes the assumptions and settings for the projection years.\nEach operating model has 100 independent simulations.\nThe MSE assumed that the first TAC generated by the CMPs will be set in 2028, with a 3-year management cycle and and a 2-year data lag .\nThis means that the TAC that will be implemented for the 2028 fishing year will be calculated in 2027 using data up to 2025, and then from there the TAC is updated every 3 years (Table 5.1).\nTable 5.1: The management interval and data lag used in the SALB MSE.\n\n\n\n\n\n\n\n\n\n\nImplementation Year\nCalculation Year\nManagement Year?\nTAC decision\nDataYear used\n\n\n\n2028\n2027\nYes\nCalculated in 2027, implemented 2028\n2025\n\n\n2029\n2028\nNo\nCarries forward 2028’s TAC\n—\n\n\n2030\n2029\nNo\nCarries forward 2028’s TAC\n—\n\n\n2031\n2030\nYes\nCalculated in 2030, implemented 2031\n2028\n\n\n2032\n2031\nNo\nCarries forward 2031’s TAC\n—\n\n\n2033\n2032\nNo\nCarries forward 2031’s TAC\n—\n\n\n2034\n2033\nYes\nCalculated in 2033, implemented 2034\n2031",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Forward Projections</span>"
+    ]
+  },
+  {
+    "objectID": "forward-projections.html#initial-projection-years",
+    "href": "forward-projections.html#initial-projection-years",
+    "title": "5  Forward Projections",
+    "section": "\n5.2 Initial Projection Years",
+    "text": "5.2 Initial Projection Years\nFollowing the stock assessment, the OMs have a historical period spanning from 1956 to 2024. Given that the TAC advice generated by the CMPs will be implemented in 2028, the first 3 years of the projection period (2025, 2026, 2027) are, in effect, an extension of the historical period rather than years managed by the CMPs.\nWhere real catch data (and, for the indices used by index-based CMPs, real CPUE data) become available for these years, they will be used directly in the OM. Where data are not yet available, fleet-specific catches for these years will instead be simulated by resampling from the mean and standard deviation of each fleet’s catches over the preceding four years.\nThis is necessary primarily because the population dynamics model needs a catch value for every year in order to project the population forward in time. Additionally, the CMPs require a complete data stream up to the data-lag year in order to calculate the first TAC.\nAs shown in Table 5.1, the 2028 TAC is calculated in 2027 using data up to 2025. Because the historical period ends in 2024, 2025 falls within the projection period and will not yet be observed at the time this MSE is conditioned. For now, the simulated 2025 catch and CPUE index values will be used to calculate the 2028 TAC; once real 2025 data become available, these can replace the simulated values without requiring any change to the underlying MSE framework.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Forward Projections</span>"
+    ]
+  },
+  {
+    "objectID": "forward-projections.html#recruitment-deviations",
+    "href": "forward-projections.html#recruitment-deviations",
+    "title": "5  Forward Projections",
+    "section": "\n5.3 Recruitment Deviations",
+    "text": "5.3 Recruitment Deviations\nAnnual recruitment deviations are generated as autocorrelated, bias-corrected log-normal deviates around the stock-recruit relationship. For a given simulation, the (log-scale) deviation in year \\(y\\) is calculated as:\n\\[\n\\varepsilon_y \\sim \\text{TruncNormal}(\\mu, \\sigma_R,\\ \\pm 2\\sigma_R)\n\\]\n\\[\nx_y = \\rho\\, x_{y-1} + \\varepsilon_y \\sqrt{1-\\rho^2}\n\\]\n\\[\n\\text{RecDev}_y = \\exp(x_y)\n\\]\nwhere \\(\\sigma_R\\) is the recruitment deviation standard deviation, \\(\\rho\\) is the lag-1 autocorrelation, and \\(\\mu = -0.5\\sigma_R^2(1-\\rho)/\\sqrt{1-\\rho^2}\\) is a bias-correction term so that \\(E[\\text{RecDev}_y] = 1\\) on the natural scale. Deviations are truncated at \\(\\pm 2\\sigma_R\\) (on the log scale) to avoid unrealistic extremes.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Forward Projections</span>"
+    ]
+  },
+  {
+    "objectID": "forward-projections.html#observation-error-for-simulated-data",
+    "href": "forward-projections.html#observation-error-for-simulated-data",
+    "title": "5  Forward Projections",
+    "section": "\n5.4 Observation Error for Simulated Data",
+    "text": "5.4 Observation Error for Simulated Data\nThe data used by the CMPs (fleet-specific catches and standardised CPUE indices) are simulated from the true OM-generated values with multiplicative observation error.\nFor catch, the observation error is conditioned on the historical fit between the OM’s simulated catch and the actual reported historical catch. In practice, the assessment model is fit to the catch data essentially exactly, so the catch data provided to the CMPs exactly matches the catches in the OM.\nFor the CPUE indices, the same historical-conditioning approach is used, but with a lag-1 autocorrelation additionally estimated from the residuals between the observed and simulated index. Index observation error therefore follows the same truncated, autocorrelated log-normal process described above for recruitment deviations, continuing on from the last estimated historical residual.\nTable 5.2 shows the fitted SD and lag-1 autocorrelation for each index, together with the last historical year in which the index was produced; all five indices are currently assumed to scale proportionally with true abundance (i.e. no hyperstability/hyperdepletion).\nThese values are specific to the Reference OM shown here as an example. The conditioned SD and autocorrelation will vary across the full set of Reference and Robustness OMs, since each is conditioned on its own historical fit.\n\n\n\nTable 5.2: Conditioned CPUE index observation error for the Reference OM (as an example): SD of the log-scale residuals, lag-1 autocorrelation, and the last historical year each index was produced.\n\n\n\n\nIndex\nSD (log-scale)\nLag-1 AC\nLast historical year\n\n\n\nIndx_CTP-LL_TB1\n0.093\n0.334\n1980\n\n\nIndx_CTP-LL_TB2\n0.197\n0.795\n2024\n\n\nIndx_JPN-LL_TB2\n0.350\n0.198\n2007\n\n\nIndx_BR_URY-LL\n0.332\n0.396\n2024\n\n\nIndx_ZAF-BB\n0.187\n0.186\n2024\n\n\n\n\n\n\n\n\nFigure 5.1 shows example realisations of the index observation error multiplier for three simulations, spanning the historical and projection periods, again for the Reference OM only.\nIt illustrates that the autocorrelated observation error applied in the projections has the same statistical properties as estimated from the historical period, with no discontinuity at the start of the projection period. Historical indices that are no longer produced are excluded, since these will not be generated or used in the projection period.\n\n\n\n\n\n\n\nFigure 5.1: Example CPUE index observation error multipliers for three simulations (Reference OM only), spanning the historical and projection periods. The dashed line marks the end of the historical period. Discontinued indices are excluded (see text).",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Forward Projections</span>"
+    ]
+  },
+  {
+    "objectID": "performance-metrics.html",
+    "href": "performance-metrics.html",
+    "title": "6  Performance Metrics",
+    "section": "",
+    "text": "Resolution 24-09 (ICCAT 2024) describes the initial operational management objectives for Southern Atlantic Albacore, organised into four categories: Stock Status, Safety, Yield, and Stability.\nEach performance metric (PM) below is calculated over the full 30-year projection period by default, for a given CMP, and can be summarised at two levels: for an individual OM, or across a set of OMs (e.g. the Reference Set).\nIn the latter case, the simulations from every OM in the set are first combined into a single pooled MSE object and the summary statistic (e.g. a probability or a mean) is then calculated once over that combined set of simulations. This allows CMP performance to be summarised both by individual uncertainty axis (e.g. by growth or natural mortality level) and overall, across the full Reference OM set.\nStock Status. The stock should have a 60% or greater probability of occurring in the green quadrant of the Kobe matrix over a 30-year projection period: i.e. \\(SB &gt; SB_{MSY}\\) and \\(F &lt; F_{MSY}\\) simultaneously.\nSafety. There should be no greater than 15% probability of the stock falling below \\(B_{LIM}\\) at any point during the 30-year projection period, using an interim \\(B_{LIM}\\) of 40% of \\(SB_{MSY}\\) (footnote 1 of the Resolution). So that higher values are better for every PM, this is expressed as the probability of the stock remaining at or above \\(B_{LIM}\\) throughout the projection period, with a target of at least 85%.\nYield. The objective is to maximise overall catch levels. As the Resolution does not specify a particular statistic, the mean annual catch is used.\nStability. Any change in total allowable catch (TAC) between management periods should be 20% or less, noting that asymmetric stability limits (e.g. different thresholds for TAC increases versus decreases) may also be evaluated. This is expressed as the probability that the change in TAC between successive management cycles is less than 20%; i.e. calculated between the TAC values actually set every 3 years.\nTable 6.1 summarises these objectives, the corresponding performance metric used to evaluate CMP performance against each, and the associated target. T\n\n\nTable 6.1: Summary of the Resolution 24-09 (ICCAT 2024) initial operational management objectives and the corresponding performance metrics used to evaluate CMP performance.\n\n\n\n\n\n\n\n\n\nObjective\nPerformance Metric\nFormula\nTarget\n\n\n\nStock Status\nProbability of occurring in the Kobe green quadrant\n\\(\\text{Prob}\\left(SB/SB_{MSY} &gt; 1 \\text{ and } F/F_{MSY} &lt; 1\\right)\\)\n\\(\\geq 60\\%\\)\n\n\nSafety\nProbability of remaining at or above \\(B_{LIM}\\) (40% \\(SB_{MSY}\\)) throughout the projection\n\\(\\text{Prob}\\left(\\min_y(SB_y/SB_{MSY}) \\geq 0.4\\right)\\)\n\\(\\geq 85\\%\\)\n\n\nYield\nMean annual catch\n\\(\\text{mean}_y(C_y)\\)\nMaximise (ranked; no fixed target)\n\n\nStability\nProbability that the change in TAC between management periods is \\(&lt; 20\\%\\)\n\n\\(\\text{Prob}\\left(\\lvert (TAC_c - TAC_{c-1})/TAC_{c-1}\\rvert &lt; 0.2\\right)\\)\nRanked (no fixed probability target)\n\n\n\n\n\n\n\n\n\n\n\n\nNoteProjection Period Used for PM Calculation\n\n\n\nThese PMs are currently calculated over all projection years, starting in 2028 when the CMPs are first used to set a TAC (Chapter 5). The SALB MSE Technical Team may wish to consider excluding some initial number of years from this period, to allow time for a CMP’s TAC advice to actually take effect on the population dynamics before performance is assessed.\n\n\n\n\n\n\nICCAT. 2024. Resolution by ICCAT on Development of Initial Operational Management Objectives for Southern Atlantic Albacore. Nos. 24-09. International Commission for the Conservation of Atlantic Tunas. https://www.iccat.int/documents/recs/compendiopdf-e/2024-09-e.pdf.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Performance Metrics</span>"
+    ]
+  },
+  {
+    "objectID": "management-procedures.html",
+    "href": "management-procedures.html",
+    "title": "7  Candidate Management Procedures",
+    "section": "",
+    "text": "Within the MSE framework, each candidate MP is applied to the historical data simulated by each operating model and then used to set management advice at each management cycle throughout the projection period. The performance of each MP is then compared across the Reference and Robustness OMs (see Chapter 3 and Chapter 4) using the performance metrics described in Chapter 6.\nThe candidate MPs described in this chapter are preliminary and intended to illustrate the range of approaches available to the SALB MSE Technical Team, spanning simple constant catch rules through to methods that respond to trends in an abundance index or to a full stock assessment model.\n\n\n\n\n\n\nNotePreliminary Candidate MPs\n\n\n\nThe MPs described below are preliminary and have been included to test the MSE framework. The final set of candidate MPs will be developed and agreed with the SALB MSE Technical Team, and this chapter will be updated accordingly.\n\n\nTable 7.1 summarises the candidate MPs currently coded in the MSE framework.\n\n\nTable 7.1: Candidate management procedures currently coded in the MSE framework, grouped by general approach.\n\n\n\n\n\n\n\n\nMP\nType\nDescription\n\n\n\nSP_FMSY\nModel-based\nSets the TAC to the catch expected to achieve MSY, based on a surplus production stock assessment model fitted to the simulated catch and index data.\n\n\nSP_75FMSY\nModel-based\nAs SP_FMSY, but sets the TAC to a more precautionary 75% of the level expected to achieve MSY.\n\n\nIRatio\nIndex-based\nAdjusts the TAC up or down depending on whether recent values of the abundance index are higher or lower than a historical reference period.\n\n\nISlope\nIndex-based\nAdjusts the TAC up or down depending on the recent trend (slope) in the abundance index.\n\n\nMCC1\nStepped, index-based\nAdjusts a baseline TAC up or down through a series of pre-agreed steps, depending on the ratio of the recent abundance index to a historical reference period.\n\n\nMCC2\nStepped, index-based\nAs MCC1, but starting from a slightly higher baseline TAC.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Candidate Management Procedures</span>"
+    ]
+  },
+  {
+    "objectID": "presentation-results.html",
+    "href": "presentation-results.html",
+    "title": "\n8  Presentation of Results\n",
+    "section": "",
+    "text": "This chapter is in development.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Presentation of Results</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "ICCAT. 2024. Resolution by ICCAT on Development of\nInitial Operational Management Objectives for Southern Atlantic\nAlbacore. Nos. 24-09. International Commission for the Conservation\nof Atlantic Tunas. https://www.iccat.int/documents/recs/compendiopdf-e/2024-09-e.pdf.\n\n\nLorenzen, Kai, Edward V. Camp, and Taryn M. Garlock. 2022.\n“Natural Mortality and Body Size in Fish Populations.”\nFisheries Research 252 (August): 106327. https://doi.org/10.1016/j.fishres.2022.106327.\n\n\nMethot, Richard D., and Chantell R. Wetzel. 2013. “Stock\nSynthesis: A Biological and Statistical Framework for Fish Stock\nAssessment and Fishery Management.” Fisheries Research\n142 (May): 86–99. https://doi.org/10.1016/j.fishres.2012.10.012.",
+    "crumbs": [
+      "References"
+    ]
+  }
+]
