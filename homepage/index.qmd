@@ -32,6 +32,6 @@ organised as follows:
 | `homepage/` | Quarto source for this website |
 
 To reproduce the analysis, download the [`iccatSALB` repository](https://github.com/Blue-Matter/iccatSALB),
-install and work through the scripts in `analysis`.
+and work through the scripts in `analysis`.
 
 
