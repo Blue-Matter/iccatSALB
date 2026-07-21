@@ -4,19 +4,19 @@
     "href": "index.html",
     "title": "Trial Specifications Document",
     "section": "",
-    "text": "1 Introduction\nThis Trial Specifications Document (TSD) describes the design and technical details of the Management Strategy Evaluation (MSE) of South Atlantic albacore tuna (Thunnus alalunga; SALB), including the operating models, candidate management procedures, and performance metrics used to evaluate them.\nThe TSD is a living document that will be updated as the MSE progresses to reflect the current state of the analysis.\nFor more information on the South Atlantic Albacore (SALB) MSE process see the project homepage.",
+    "text": "1 Introduction\neditor: markdown: wrap: 72 —\nThis Trial Specifications Document (TSD) describes the design and technical details of the Management Strategy Evaluation (MSE) of South Atlantic albacore tuna (Thunnus alalunga; SALB), including the operating models, candidate management procedures, and performance metrics used to evaluate them.\nThe TSD is a living document that will be updated as the MSE progresses to reflect the current state of the analysis.\nFor more information on the South Atlantic Albacore (SALB) MSE process see the project homepage.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>wrap: 72</span>"
     ]
   },
   {
     "objectID": "index.html#salb-mse-framework",
     "href": "index.html#salb-mse-framework",
     "title": "Trial Specifications Document",
-    "section": "\n1.1 SALB MSE Framework",
-    "text": "1.1 SALB MSE Framework\nThe iccatSALB R package, built on the openMSE platform, has been developed as the SALB MSE framework.\nThe analysis is fully reproducible: all code, functions, and objects used to build the operating models, candidate management procedures, and performance indicators are contained in the iccatSALB R package and its associated GitHub repository.\nThe iccatSALB package can be installed with:\n\n# install.packages('pak')\npak::pak('blue-matter/iccatSALB')\n\nTo reproduce the analysis, download the GitHub repository, install and load the iccatSALB package, and work through the scripts in the analysis directory.\nThe operating models (OMs) were conditioned with Stock Synthesis 3 (SS3; (Methot and Wetzel 2013)) and were based on the 2026 Albacore Stock Assessment (Chapter 2).\n\n\n\n\nMethot, Richard D., and Chantell R. Wetzel. 2013. “Stock Synthesis: A Biological and Statistical Framework for Fish Stock Assessment and Fishery Management.” Fisheries Research 142 (May): 86–99. https://doi.org/10.1016/j.fishres.2012.10.012.",
+    "section": "1.1 SALB MSE Framework",
+    "text": "1.1 SALB MSE Framework\nThe SALB MSE is built using the openMSE framework. The analysis is fully reproducible: all code, functions, and objects used to build the operating models, candidate management procedures, and performance indicators are available in associated GitHub repository.\nTo reproduce the analysis, download the GitHub repository, and work through the scripts in the analysis directory.\nThe operating models (OMs) were conditioned with Stock Synthesis 3 (SS3; (Methot and Wetzel 2013)) and were based on the 2026 Albacore Stock Assessment (Chapter 2).\n\n\n\n\nMethot, Richard D., and Chantell R. Wetzel. 2013. “Stock Synthesis: A Biological and Statistical Framework for Fish Stock Assessment and Fishery Management.” Fisheries Research 142 (May): 86–99. https://doi.org/10.1016/j.fishres.2012.10.012.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>wrap: 72</span>"
     ]
   },
   {
