@@ -1,38 +1,22 @@
+---
+
+editor: 
+  markdown: 
+    wrap: 72
+---
+
 # Introduction
 
-This Trial Specifications Document (TSD) describes the design and technical 
-details of the Management Strategy Evaluation (MSE) of South Atlantic albacore
-tuna (*Thunnus alalunga*; SALB), including the operating models, 
-candidate management procedures, and performance metrics used to evaluate them.
+This Trial Specifications Document (TSD) describes the design and technical details of the Management Strategy Evaluation (MSE) of South Atlantic albacore tuna (*Thunnus alalunga*; SALB), including the operating models, candidate management procedures, and performance metrics used to evaluate them.
 
-The TSD is a **living document** that will be updated as the MSE progresses to
-reflect the current state of the analysis.
+The TSD is a **living document** that will be updated as the MSE progresses to reflect the current state of the analysis.
 
-For more information on the South Atlantic Albacore (SALB) MSE process see the 
-project [homepage](https://iccatsalb.bluematterscience.com/).
+For more information on the South Atlantic Albacore (SALB) MSE process see the project [homepage](https://iccatsalb.bluematterscience.com/).
 
 ## SALB MSE Framework
 
-The [`iccatSALB`](https://iccatsalb.bluematterscience.com/pkg/) R package,
-built on the [openMSE](https://openmse.com/) platform, has been developed as the
-SALB MSE framework. 
+The SALB MSE is built using the [openMSE](www.openMSE.com) framework. The analysis is fully reproducible: all code, functions, and objects used to build the operating models, candidate management procedures, and performance indicators are available in associated [GitHub repository](https://github.com/Blue-Matter/iccatSALB).
 
-The analysis is fully reproducible: all code, functions, and objects used to build 
-the operating models, candidate management procedures, and performance indicators
-are contained in the [`iccatSALB`](https://iccatsalb.bluematterscience.com/pkg/) 
-R package and its associated [GitHub repository](https://github.com/Blue-Matter/iccatSALB). 
+To reproduce the analysis, download the [GitHub repository](https://github.com/Blue-Matter/iccatSALB), and work through the scripts in the `analysis` directory.
 
-The `iccatSALB` package can be installed with:
-
-```{r}
-#| eval: false
-
-# install.packages('pak')
-pak::pak('blue-matter/iccatSALB')
-```
-
-To reproduce the analysis, download the [GitHub repository](https://github.com/Blue-Matter/iccatSALB),
-install and load the `iccatSALB` package, and work through the scripts in the `analysis` directory. 
-
-The operating models (OMs) were conditioned with Stock Synthesis 3 (SS3; [@methot2013])
-and were based on the 2026 Albacore Stock Assessment (@sec-stock-assessment).
+The operating models (OMs) were conditioned with Stock Synthesis 3 (SS3; [@methot2013]) and were based on the 2026 Albacore Stock Assessment (@sec-stock-assessment).
