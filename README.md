@@ -23,8 +23,8 @@ used in the MSE.
 
 ## Installation
 
-You can install the development version of iccatSALB from
-[GitHub](https://github.com/) with:
+You can install the `iccatSALB` package from its [GitHub
+repository](https://github.com/Blue-Matter/iccatSALB) with:
 
 ``` r
 # install.packages("pak")

@@ -7,10 +7,8 @@ website:
   site-url: https://iccatsalb.bluematterscience.com/
   navbar:
     left:
-      - text: "Trial Specifications"
+      - text: "Trial Specifications Document"
         href: https://iccatsalb.bluematterscience.com/tsd/
-      - text: "R Package"
-        href: https://iccatsalb.bluematterscience.com/pkg/
 
 format:
   html:

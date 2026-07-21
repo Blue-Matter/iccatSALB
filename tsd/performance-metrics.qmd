@@ -1,0 +1,68 @@
+# Performance Metrics {#sec-performance-metrics}
+
+```{r}
+#| include: false
+library(MSEtool)
+library(ggplot2)
+rnorm(5)
+OM <- readRDS("../objects/OM/Ref.om")
+FirstManagementYear <- 2028
+```
+
+Resolution 24-09 [@ICCAT2024Res2409] describes the initial operational management
+objectives for Southern Atlantic Albacore, organised into four categories: *Stock Status*,
+*Safety*, *Yield*, and *Stability*. 
+
+Each performance metric (PM) below is calculated over the full 30-year projection period
+by default, for a given CMP, and can be summarised at two levels: for an individual OM, or
+across a set of OMs (e.g. the Reference Set). 
+
+In the latter case, the simulations from every OM in the set are first combined into a single pooled
+MSE object and the summary statistic (e.g. a probability or a mean) is then calculated
+once over that combined set of simulations. This allows CMP performance to be summarised
+both by individual uncertainty axis (e.g. by growth or natural mortality level) and
+overall, across the full Reference OM set.
+
+**Stock Status.** The stock should have a 60% or greater probability of occurring in the
+green quadrant of the Kobe matrix over a 30-year projection period: i.e. $SB > SB_{MSY}$
+and $F < F_{MSY}$ simultaneously.
+
+**Safety.** There should be no greater than 15% probability of the stock falling below
+$B_{LIM}$ at any point during the 30-year projection period, using an interim $B_{LIM}$ of
+40% of $SB_{MSY}$ (footnote 1 of the Resolution). So
+that higher values are better for every PM, this is expressed as the probability of the
+stock remaining at or above $B_{LIM}$ throughout the projection period, with a target of
+at least 85%.
+
+**Yield.** The objective is to maximise overall catch levels. As the Resolution does not
+specify a particular statistic, the mean annual catch is used. 
+
+**Stability.** Any change in total allowable catch (TAC) between management periods
+should be 20% or less, noting that asymmetric stability limits (e.g. different thresholds
+for TAC increases versus decreases) may also be evaluated. This is expressed as the
+probability that the change in TAC between successive management cycles is less than
+20%; i.e. calculated between the TAC values actually set every `r Interval(OM)` years.
+
+@tbl-pm-summary summarises these objectives, the corresponding performance metric used to
+evaluate CMP performance against each, and the associated target. T
+
+::: {#tbl-pm-summary}
+| Objective | Performance Metric | Formula | Target |
+|---|---|---|---|
+| Stock Status | Probability of occurring in the Kobe green quadrant | $\text{Prob}\left(SB/SB_{MSY} > 1 \text{ and } F/F_{MSY} < 1\right)$ | $\geq 60\%$ |
+| Safety | Probability of remaining at or above $B_{LIM}$ (40% $SB_{MSY}$) throughout the projection | $\text{Prob}\left(\min_y(SB_y/SB_{MSY}) \geq 0.4\right)$ | $\geq 85\%$ |
+| Yield | Mean annual catch | $\text{mean}_y(C_y)$ | Maximise (ranked; no fixed target) |
+| Stability | Probability that the change in TAC between management periods is $< 20\%$ | $\text{Prob}\left(\lvert (TAC_c - TAC_{c-1})/TAC_{c-1}\rvert < 0.2\right)$ | Ranked (no fixed probability target) |
+
+Summary of the Resolution 24-09 [@ICCAT2024Res2409] initial operational management
+objectives and the corresponding performance metrics used to evaluate CMP performance.
+:::
+
+::: {.callout-note}
+## Projection Period Used for PM Calculation
+These PMs are currently calculated over all projection years, starting in `r FirstManagementYear`
+when the CMPs are first used to set a TAC (@sec-forward-projections). The SALB MSE
+Technical Team may wish to consider excluding some initial number of years from this
+period, to allow time for a CMP's TAC advice to actually take effect on the population
+dynamics before performance is assessed.
+:::

@@ -1,0 +1,40 @@
+# Candidate Management Procedures {#sec-cmps}
+
+```{r}
+#| include: false
+library(MSEtool)
+library(ggplot2)
+rnorm(5)
+```
+
+Within the MSE framework, each candidate MP
+is applied to the historical data simulated by each operating model and then used to set management advice
+at each management cycle throughout the projection period. The performance of each MP is then compared across
+the Reference and Robustness OMs (see @sec-oms-reference and @sec-oms-robustness) using the performance metrics
+described in @sec-performance-metrics.
+
+The candidate MPs described in this chapter are preliminary and intended to illustrate the range of approaches
+available to the SALB MSE Technical Team, spanning simple constant catch rules through to methods that respond
+to trends in an abundance index or to a full stock assessment model.
+
+::: {.callout-note}
+## Preliminary Candidate MPs
+The MPs described below are preliminary and have been included to test the MSE framework. The final set of
+candidate MPs will be developed and agreed with the SALB MSE Technical Team, and this chapter will be
+updated accordingly.
+:::
+
+@tbl-cmps summarises the candidate MPs currently coded in the MSE framework.
+
+::: {#tbl-cmps}
+| MP | Type | Description |
+|---|---|---|
+| `SP_FMSY` | Model-based | Sets the TAC to the catch expected to achieve MSY, based on a surplus production stock assessment model fitted to the simulated catch and index data. |
+| `SP_75FMSY` | Model-based | As `SP_FMSY`, but sets the TAC to a more precautionary 75% of the level expected to achieve MSY. |
+| `IRatio` | Index-based | Adjusts the TAC up or down depending on whether recent values of the abundance index are higher or lower than a historical reference period. |
+| `ISlope` | Index-based | Adjusts the TAC up or down depending on the recent trend (slope) in the abundance index. |
+| `MCC1` | Stepped, index-based | Adjusts a baseline TAC up or down through a series of pre-agreed steps, depending on the ratio of the recent abundance index to a historical reference period. |
+| `MCC2` | Stepped, index-based | As `MCC1`, but starting from a slightly higher baseline TAC. |
+
+Candidate management procedures currently coded in the MSE framework, grouped by general approach.
+:::

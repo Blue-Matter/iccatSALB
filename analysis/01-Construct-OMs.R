@@ -4,19 +4,20 @@ source('analysis/00-Specifications.R')
 
 # ---- Reference Model ----
 
-RefOM <- ImportSS(SSDir      = RefDir,
-                  Name       = OMSpecs$Name,
-                  nSim       = OMSpecs$nSim,
-                  pYear      = OMSpecs$pYear,
-                  Agency     = OMSpecs$Agency,
-                  StockName  = OMSpecs$StockName,
-                  CommonName = OMSpecs$StockName,
-                  Interval   = OMSpecs$Interval,
-                  DataLag    = OMSpecs$DataLag
-                  )
+RefOM <- MSEtool::ImportSS(SSDir         = RefDir,
+                           Name          = OMSpecs$Name,
+                           nSim          = OMSpecs$nSim,
+                           pYear         = OMSpecs$pYear,
+                           Agency        = OMSpecs$Agency,
+                           StockName     = OMSpecs$StockName,
+                           CommonName    = OMSpecs$StockName,
+                           Interval      = OMSpecs$Interval,
+                           DataLag       = OMSpecs$DataLag,
+                           MPStartYear   = OMSpecs$MPStartYear,
+                           InterimAdvice = OMSpecs$InterimAdvice
+)
 
-Save(RefOM, 'objects/OM/Ref.om')
-
+MSEtool::Save(RefOM, 'objects/OM/Ref.om', overwrite = TRUE)
 
 # ---- Reference Grid ----
 source('analysis/00-Specifications.R')
@@ -89,22 +90,27 @@ for (i in seq_len(nrow(OM_grid))) {
   run_dir <- OM_grid$run_dir[i]
   om_name <- OM_grid$om_name[i]
 
-  OM <- ImportSS(SSDir      = run_dir,
-                 Name       = OMSpecs$Name,
-                 nSim       = OMSpecs$nSim,
-                 pYear      = OMSpecs$pYear,
-                 Agency     = OMSpecs$Agency,
-                 StockName  = OMSpecs$StockName,
-                 CommonName = OMSpecs$StockName,
-                 Interval   = OMSpecs$Interval,
-                 DataLag    = OMSpecs$DataLag
+  OM <- MSEtool::ImportSS(SSDir      = run_dir,
+                          Name       = OMSpecs$Name,
+                          nSim       = OMSpecs$nSim,
+                          pYear      = OMSpecs$pYear,
+                          Agency     = OMSpecs$Agency,
+                          StockName  = OMSpecs$StockName,
+                          CommonName = OMSpecs$StockName,
+                          Interval   = OMSpecs$Interval,
+                          DataLag    = OMSpecs$DataLag
   )
 
-  Save(OM, file.path('objects/OM', paste0(om_name, '.om')))
+  if (!dir.exists('objects/OM/Reference'))
+    dir.create('objects/OM/Reference', recursive = TRUE)
+
+  MSEtool::Save(OM, file.path('objects/OM/Reference', paste0(om_name, '.om')),
+                overwrite = TRUE)
 }
 
 
 # ---- Robustness Models ----
 
-
+# TODO
+# Save robustness OMs to 'objects/OM/Robustness'
 

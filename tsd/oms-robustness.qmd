@@ -1,0 +1,32 @@
+# Robustness Operating Models  {#sec-oms-robustness}
+
+```{r}
+#| include: false
+library(MSEtool)
+library(ggplot2)
+rnorm(5)
+```
+
+::: {.callout-note}
+
+Robustness OMs have not yet been developed for SALB.
+
+Robustness OMs will be discussed by the SALB MSE Working Group and this chapter will be updated once those models have been defined.
+
+:::
+
+At the 2026 Stock Assessment, the Group identified the following uncertainties 
+that should be evaluated in the MSE:
+
+- alternative CPUE configurations 
+- alternative biological hypotheses
+
+Additional uncertainties that could be evaluated in robustness OMs include:
+
+- uncertainty in TAC implementation (e.g., overages in TAC)
+- impacts of climate change (e.g., time-varying life-history parameters)
+- alternative recruitment scenarios. 
+
+
+
+ 

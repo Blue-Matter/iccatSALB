@@ -3,19 +3,34 @@ project:
   output-dir: _book
 
 book:
-  title: "SALB MSE Trial Specifications Document"
+  title: "Trial Specifications Document"
+  subtitle: "South Atlantic Albacore MSE"
   site-url: https://iccatsalb.bluematterscience.com/tsd/
   repo-url: https://github.com/Blue-Matter/iccatSALB
+  navbar:
+    left:
+      - text: "Albacore MSE Homepage"
+        href: https://iccatsalb.bluematterscience.com/
+        
   chapters:
-    - index.qmd
-    - 01-context.qmd
-    - 02-operating-models.qmd
-    - 03-management-procedures.qmd
-    - 04-performance-metrics.qmd
+    - index.qmd    
+    - stock-assessment.qmd   
+    - oms-reference.qmd
+    - oms-robustness.qmd
+    - forward-projections.qmd
+    - performance-metrics.qmd
+    - management-procedures.qmd  
+    - presentation-results.qmd
     - references.qmd
 
+  
 bibliography: references.bib
+
+brand: _blue-matter.yml
 
 format:
   html:
-    theme: cosmo
+    theme: 
+    - cosmo
+    code-link: true
+

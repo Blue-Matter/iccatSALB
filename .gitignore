@@ -10,3 +10,7 @@ docs
 homepage/_site
 tsd/_book
 data-raw/assessment/*/
+objects/MSE/
+
+/.quarto/
+**/*.quarto_ipynb

@@ -1,3 +1,15 @@
 url: https://iccatsalb.bluematterscience.com/pkg/
 template:
   bootstrap: 5
+
+navbar:
+  structure:
+    left:  [homepage, tsd, reference, news]
+    right: [search, github]
+  components:
+    homepage:
+      text: Albacore MSE Homepage
+      href: https://iccatsalb.bluematterscience.com/
+    tsd:
+      text: Trial Specifications Document
+      href: https://iccatsalb.bluematterscience.com/tsd/

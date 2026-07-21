@@ -7,24 +7,48 @@ if (packageVersion('MSEtool') < '4.0.0') {
   ))
 }
 
-# OM Specifications
+# ---- Reference Assessment ----
+RefDir <- here::here('data-raw', 'assessment', 'S05')
+
+# ---- InterimAdvice ----
+SSData <- MSEtool::ImportSSData(RefDir, silent = TRUE)
+Hist_Landings <- MSEtool::Landings(SSData) |> MSEtool::Value() |> utils::tail(4)
+
+
+mu <- apply(Hist_Landings, 2, mean)
+sd <- apply(Hist_Landings, 2, sd)
+
+FleetNms <- colnames(Hist_Landings)
+nFleet <- length(mu)
+
+Years <- 2025:2027
+
+InterimAdvice <- data.frame(Year = rep(Years, each = nFleet),
+                            Stock = 'Albacore',
+                            Fleet = rep(FleetNms, times = length(Years)),
+                            Type = 'TAC',
+                            Mean = rep(mu, times = length(Years)),
+                            SD    = rep(sd, times = length(Years))
+                            )
+
+# ---- OM Specifications ----
 OMSpecs <- list(
-  nSim      = 50, # number of simulations. Can increase later
-  pYear     = 30, # number of projection years
-  Interval  = 3,  # management interval
+  nSim      = 100, # number of simulations
+  pYear     = 33,  # number of projection years
+  Interval  = 3,   # management interval
   Name      = 'Southern Atlantic Albacore',
   StockName = "Albacore",
   Species   = "Thunnus alalunga",
   Region    = 'South Atlantic',
   Agency    = 'ICCAT',
-  DataLag   = 2              # TO BE CONFIRMED
+  DataLag   = 2,
+  MPStartYear = 2028,
+  InterimAdvice = InterimAdvice
 )
 
-# Refrence Assessment
-RefDir <- here::here('data-raw', 'assessment', 'S05')
 
 
-# OM Grid Factors and Levels
+# ---- OM Grid Factors and Levels ----
 
 G_25 <- list(Linf = 115.93, K = 0.235, t0 = -0.561)
 G_50 <- list(Linf = 121.24, K = 0.238, t0 = -0.891)

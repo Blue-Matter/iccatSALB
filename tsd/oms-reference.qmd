@@ -1,0 +1,122 @@
+# Reference Operating Models {#sec-oms-reference}
+
+```{r}
+#| include: false
+library(MSEtool)
+library(ggplot2)
+rnorm(5)
+knitr::read_chunk("../analysis/03-OM-Plots.R")
+```
+
+```{r load_files}
+#| include: false
+```
+
+The Reference Set OMs are currently designed as a factorial uncertainty grid with
+the two axes of uncertainty (*Growth* & *Natural Mortality*) developed during the 
+2026 Stock Assessment (see @sec-stock-assessment).
+
+The *Growth* and *Natural Mortality* axes were both represented with three levels, 
+corresponding to the 25th, 50th, and 75th percentiles of the estimated parameter distributions.
+The 50th percentile level for each axis matches the Base Case stock assessment model (`S05`).  
+The OM imported from this model is referred to as the *Reference OM*.
+
+The three levels for each axis produces a 3 x 3 uncertainty grid with 9 reference operating models (@tbl-reference-oms). 
+The von Bertalanffy growth parameters and the reference Lorenzen *M* value (at reference age 11)
+at each percentile level are shown in @tbl-percentile-grid.
+
+@fig-lifehistory shows the length- and natural mortality-at-age curves for each of the 9 reference grid OMs.
+
+::: {.callout-note}
+## Additional Reference Uncertainties
+Additional operating models can be added to the Reference OMs, e.g., uncertainty 
+in the steepness parameter of the Beverton-Holt stock recruit relationship or age/size of maturity.
+
+This will be discussed by the SALB MSE Technical Team.
+:::
+
+
+::: {#tbl-reference-oms}
+| # | OM | Growth | Natural Mortality |
+|-- | ---|---|---|
+| 1| G_25-M_25 | 25th  | 25th  |
+| 2 | G_25-M_50 | 25th  | 50th  |
+| 3 | G_25-M_75 | 25th  | 75th  |
+| 4 | G_50-M_25 | 50th  | 25th  |
+| 5 | G_50-M_50 | 50th  | 50th  |
+| 6 | G_50-M_75 | 50th  | 75th  |
+| 7 | G_75-M_25 | 75th  | 25th  |
+| 8 | G_75-M_50 | 75th  | 50th  |
+| 9 | G_75-M_75 | 75th  | 75th  |
+
+Grid of nine reference operating models (OMs) spanning two axes of uncertainty, each with three levels.
+:::
+
+::: {#tbl-percentile-grid}
+| Percentile | $L_\infty$ | $K$ | $t_0$  | $M$ |
+|---|---|---|---| --- |
+| 25th | 115.93 | 0.235 | -0.561 | 0.29 | 
+| 50th (Base Case) | 121.24 | 0.238 | -0.891 | 0.36 |
+| 75th | 125.02 | 0.237 | -1.217 | 0.44 |
+von Bertalanffy growth parameters and reference natural mortality ($M$) at each level of the OM uncertainty grid. 
+:::
+
+```{r}
+#| label: fig-lifehistory
+#| echo: false
+#| fig-cap: "Length-at-age and natural mortality-at-age, by operating model."
+<<lifehistory>>
+```
+
+## Overview of Population Dynamics 
+
+Each operating model was imported from the maximum likelihood estimates (MLE) of
+the corresponding SS3 run, so within each OM the historical population dynamics 
+are identical across simulations.
+
+The figures below provide an overview of the population dynamics described in the nine Reference OMs:
+
+- @fig-sb: historical spawning biomass  
+- @fig-sbsb0: historical spawning biomass relative to equilibrium unfished level 
+- @fig-sbsbmsy: historical spawning biomass relative to the MSY level  
+- @fig-fmsy: historical fishing mortality relative to the $F_\text{MSY}$
+
+@tbl-refpoints summarises the MSY reference points, along with terminal year $F/F_\text{MSY}$ and $SB/SB_\text{MSY}$, for each of the nine Reference OMs.
+
+```{r}
+#| label: fig-sb
+#| echo: false
+#| fig-cap: "Historical spawning biomass ($SB$), coloured by operating model and faceted by the axes of uncertainty"
+<<ssb>>
+```
+
+```{r}
+#| label: fig-sbsb0
+#| echo: false
+#| fig-cap: "Historical spawning biomass depletion ($SB/SB_0$), by operating model."
+<<depletion>>
+``` 
+
+```{r}
+#| label: fig-sbsbmsy
+#| echo: false
+#| fig-cap: 'Historical spawning biomass relative to MSY level ($SB/SB_{\text{MSY}}$), by operating model.'
+<<depletion_msy>>
+```
+
+```{r}
+#| label: fig-fmsy
+#| echo: false
+#| fig-cap: 'Historical fishing mortality relative to FMSY level ($F/F_{\text{MSY}}$), by operating model.'
+<<F_msy>>
+```
+
+## Reference Points 
+```{r}
+#| label: tbl-refpoints
+#| echo: false
+#| tbl-cap: "MSY reference points and terminal year status, by operating model."
+<<refpoints_table>>
+```
+
+ 

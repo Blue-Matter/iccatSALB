@@ -26,6 +26,7 @@ Imports:
     purrr
 Suggests:
     furrr,
-    here
+    here,
+    knitr
 Remotes:
     blue-matter/MSEtool

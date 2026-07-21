@@ -3,11 +3,41 @@ title: "ICCAT Southern Atlantic Albacore Management Strategy Evaluation"
 ---
 
 This site hosts the materials for the Management Strategy Evaluation (MSE)
-process for Southern Atlantic albacore tuna.
+process for South Atlantic albacore tuna (*Thunnus alalunga*), managed by the
+[International Commission for the Conservation of Atlantic Tunas
+(ICCAT)](https://www.iccat.int).
+
+The MSE tests candidate management procedures against a range of plausible
+operating models to evaluate their performance against management objectives
+under uncertainty.
+
+The MSE analysis uses the `iccatSALB` R package, developed for this purpose
+and built on the [openMSE](https://openmse.com/) framework.
 
 ## Materials
 
-- [**Trial Specifications Document**](tsd/): the operating models,
+- [Trial Specifications Document](tsd/): the operating models,
   management procedures, and performance metrics used in the MSE.
-- [**`iccatSALB` R package**](pkg/): the R package implementing the MSE
-  analysis, with full technical/code documentation.
+- [`iccatSALB` R package](pkg/): R package implementing the MSE analysis,
+  with full technical documentation.
+
+
+## Repository Structure
+
+The [`iccatSALB` repository](https://github.com/Blue-Matter/iccatSALB) is
+organised as follows:
+
+| Directory / File | Purpose |
+|------------------------------------|------------------------------------|
+| `R/` | Package functions and objects |
+| `analysis/` | Analysis scripts that run the MSE  |
+| `data-raw/` | Conditioning output and other raw data used to build the package |
+| `objects/` | Saved R objects produced by the analysis scripts (`OM/`, `Hist/`, etc.) |
+| `tsd/` | Quarto source for the Trial Specifications Document |
+| `homepage/` | Quarto source for this website |
+
+To reproduce the analysis, download the [`iccatSALB` repository](https://github.com/Blue-Matter/iccatSALB),
+install and load the `iccatSALB` package (e.g., `pak::pak('blue-matter/iccatSALB; load('iccatSALB')`)),
+and work through the scripts in `analysis`.
+
+

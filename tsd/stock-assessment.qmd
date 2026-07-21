@@ -1,0 +1,101 @@
+# Stock Assessment {#sec-stock-assessment}
+
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+library(ggplot2)
+Hist <- readRDS('../objects/Hist/Ref.hist')
+Data <- MSEtool::Data(Hist)[[1]][[1]]
+rnorm(5)
+```
+
+The first age-structured stock assessment for South Atlantic Albacore was completed in June 2026, using the Stock Synthesis 3 (SS3) framework [@methot2013]. The assessment output was used as the basis for the Reference (@sec-oms-reference) and Robustness (@sec-oms-robustness) operating models. 
+
+This chapter provides a brief overview of the assessment. For full details, see the [Report of the 2026 ICCAT Albacore Stock Assessment Meeting](https://www.iccat.int/Documents/Meetings/Docs/2026/reports/2026_ALB_SA_ENG.pdf) and the [Report of the 2026 ICCAT Albacore Data Preparatory Meeting](https://www.iccat.int/Documents/CVSP/CV083_2026/n_3/CV08303005.pdf).
+
+The assessment model integrated total catches, standardized indices of abundance, and length-composition data covering the period 1956 -- 2024.
+
+## Fleet Structure and Fishery Data
+
+Five fishing fleets were defined by aggregating catch and length composition data for fishing fleets with similar properties (@tbl-data-catch; @fig-assess-data; @fig-catch-data). 
+
+Five standardized CPUE indices were used in the Base Case assessment (@tbl-data-indices; @fig-assess-data; @fig-indices-data).
+
+The catch and CPUE data are imported into the Reference (@sec-oms-reference) and Robustness (@sec-oms-robustness) operating models, and made available to the candidate management procedures (@sec-cmps). 
+
+::: {#tbl-data-catch}
+| Fleet | Definition (FlagName and Gear Group) | Catch | Size composition data |   |
+|--------|----------------------|---|---|---|
+| Fleet 1 | Chinese Taipei (LL), Korea (LL) | 1964-2024 | up to 2024 |  |
+| Fleet 2 | Japan (LL), China (LL), EU-Spain (LL), EU-Portugal (LL), USA (LL), Philippines (LL), St Vincent and Grenadines (LL), Vanuatu (LL), Honduras (LL), NEI (LL), Côte D'Ivoire (LL), United Kingdom (LL), Seychelles (LL), UK.Sta Helena (LL), Angola (LL), Senegal (LL), Trinidad and Tobago (LL) | 1956-2024 | 1956-2024 |  |
+| Fleet 3 | Brazil (LL, SU), Uruguay (LL), Namibia (LL), Panama (LL), South Africa (LL, UN), Argentina (LL, TW, UN), Belize (LL), Cambodia (LL), Cuba (LL, UN) | 1959-2024 | 1969-2024 |  |
+| Fleet 4 | South Africa (BB, HL, PS, RR, SP) | 1973-2024 | 1980-2024 |  |
+| Fleet 5 | All others | 1961-2024 | 1961-2024 |  |
+
+Fleet structure, data and time periods to be used in the South Atlantic albacore Stock Synthesis model. Adapted from Table 11 in the [Data Preparatory Report](https://www.iccat.int/Documents/CVSP/CV083_2026/n_3/CV08303005.pdf).
+:::
+
+
+::: {#tbl-data-indices}
+
+| Index Name      | Definition                            | Years     |
+|-----------------|---------------------------------------|-----------|
+| Indx_CTP-LL_TB1 | Chinese Taipei longline, time block 1 | 1970-1980 |
+| Indx_CTP-LL_TB2 | Chinese Taipei longline, time block 2 | 1981-2024 |
+| Indx_JPN-LL_TB2 | Japan longline                        | 1979-2017 |
+| Indx_BR_URY-LL  | Brazil/Uruguay longline               | 1978-2024 |
+| Indx_ZAF-BB     | South Africa baitboat                 | 2003-2024 |
+
+CPUE indices and time periods to be used in the South Atlantic albacore Stock Synthesis model. Adapted from Table 11 in the [Data Preparatory Report](https://www.iccat.int/Documents/CVSP/CV083_2026/n_3/CV08303005.pdf).
+:::
+
+```{r}
+#| echo: false
+#| label: fig-assess-data
+#| fig-cap: "Overview of the data used in the 2026 stock assessment."
+ssdir <- '../data-raw/assessment/S05'
+replist <- MSEtool::ImportSSReport(ssdir, silent = TRUE)[[1]]
+r4ss::SSplotData(replist, subplots = 1)
+```
+
+```{r}
+#| echo: false
+#| label: fig-catch-data
+#| fig-cap: "Time series plot of the total catch data used in the 2026 assessment."
+
+MSEtool::PlotLandings(Data, byFleet = FALSE) + ggplot2::labs(y='Catch (t)')
+```
+
+```{r}
+#| echo: false
+#| label: fig-indices-data
+#| fig-cap: "Time series plot of the five CPUE indices used in the Base Case 2026 assessment."
+
+MSEtool::PlotSurvey(Data, byFleet = TRUE) + ggplot2::labs(y='CPUE Indices')
+```
+
+
+## Biological Parameters
+
+The assessment model assumed age-specific natural mortality modelled with the 
+Lorezen function [@lorenzen2022], mean length-at-age described by the von 
+Bertalanffy growth model, and the stock-recruitment relationship modelled with
+the Beverton-Holt equation, parameterized with the 'steepness' (*h*) formulation. 
+
+Recruitment variability $\left(\sigma_R\right)$ was fixed at 0.4 and *h* at 0.75.
+Maturity was specified as an at-age schedule with fish reaching 50% maturity at age 5 years
+and full maturity at 6 years. 
+
+See Table 5 in the [Data Preparatory Report](https://www.iccat.int/Documents/CVSP/CV083_2026/n_3/CV08303005.pdf)
+for a full list of the life-history parameters used in the model.
+
+Uncertainty in the biological parameters was focused on alternative mean length-at-age
+and naturality mortality-at-age schedules. A set of nine models were developed 
+combining three alternative growth parameterizations and three alternative
+natural mortality estimates corresponding to the 25th, 50th, and 75th percentiles 
+of the distributions agreed at the [Data Preparatory Meeting](https://www.iccat.int/Documents/CVSP/CV083_2026/n_3/CV08303005.pdf). 
+
+These nine models are used to create the Reference OM Grid (@sec-oms-reference). 
+The central model of this grid (model 5, referred to as `S05`) was used considered 
+the Base Case assessment model and is used in the MSE as the Reference OM.  

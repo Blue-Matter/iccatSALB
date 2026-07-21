@@ -1,4 +1,4 @@
-# Performance Metrics
+# Presentation of Results
 
 ```{r}
 #| include: false
@@ -7,5 +7,5 @@ library(ggplot2)
 rnorm(5)
 ```
 
-The performance metrics are in development.
+This chapter is in development.
 
