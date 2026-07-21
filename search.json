@@ -18,6 +18,6 @@
     "href": "index.html#repository-structure",
     "title": "ICCAT Southern Atlantic Albacore Management Strategy Evaluation",
     "section": "Repository Structure",
-    "text": "Repository Structure\nThe iccatSALB repository is organised as follows:\n\n\n\n\n\n\n\nDirectory / File\nPurpose\n\n\n\n\nR/\nPackage functions and objects. Currently not used\n\n\nanalysis/\nAnalysis scripts that run the MSE\n\n\ndata-raw/\nABC conditioning model output\n\n\nobjects/\nSaved R objects produced by the analysis scripts (OM/, Hist/, etc.)\n\n\ntsd/\nQuarto source for the Trial Specifications Document\n\n\nhomepage/\nQuarto source for this website\n\n\n\nTo reproduce the analysis, download the iccatSALB repository, install and work through the scripts in analysis."
+    "text": "Repository Structure\nThe iccatSALB repository is organised as follows:\n\n\n\n\n\n\n\nDirectory / File\nPurpose\n\n\n\n\nR/\nPackage functions and objects. Currently not used\n\n\nanalysis/\nAnalysis scripts that run the MSE\n\n\ndata-raw/\nABC conditioning model output\n\n\nobjects/\nSaved R objects produced by the analysis scripts (OM/, Hist/, etc.)\n\n\ntsd/\nQuarto source for the Trial Specifications Document\n\n\nhomepage/\nQuarto source for this website\n\n\n\nTo reproduce the analysis, download the iccatSALB repository, and work through the scripts in analysis."
   }
 ]
