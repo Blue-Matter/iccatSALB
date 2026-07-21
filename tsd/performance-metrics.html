@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>References – Trial Specifications Document</title>
+<title>6&nbsp; Performance Metrics – Trial Specifications Document</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -44,7 +41,6 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -52,7 +48,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./presentation-results.html" rel="prev">
+<link href="./management-procedures.html" rel="next">
+<link href="./forward-projections.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -66,8 +63,7 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -93,17 +89,37 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
-
 <body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Trial Specifications Document</span>
@@ -115,35 +131,29 @@ div.csl-indent {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="https://iccatsalb.bluematterscience.com/"> 
 <span class="menu-text">Albacore MSE Homepage</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="https://github.com/Blue-Matter/iccatSALB" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./performance-metrics.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Performance Metrics</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
@@ -175,7 +185,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./performance-metrics.html" class="sidebar-item-text sidebar-link">
+  <a href="./performance-metrics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
   </div>
 </li>
@@ -193,24 +203,20 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">References</h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-performance-metrics" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></h1>
 </div>
 
 
@@ -224,33 +230,84 @@ div.csl-indent {
   
 
 
-</header>
+</header><p>Resolution 24-09 <span class="citation" data-cites="ICCAT2024Res2409">(<a href="references.html#ref-ICCAT2024Res2409" role="doc-biblioref">ICCAT 2024</a>)</span> describes the initial operational management objectives for Southern Atlantic Albacore, organised into four categories: <em>Stock Status</em>, <em>Safety</em>, <em>Yield</em>, and <em>Stability</em>.</p>
+<p>Each performance metric (PM) below is calculated over the full 30-year projection period by default, for a given CMP, and can be summarised at two levels: for an individual OM, or across a set of OMs (e.g.&nbsp;the Reference Set).</p>
+<p>In the latter case, the simulations from every OM in the set are first combined into a single pooled MSE object and the summary statistic (e.g.&nbsp;a probability or a mean) is then calculated once over that combined set of simulations. This allows CMP performance to be summarised both by individual uncertainty axis (e.g.&nbsp;by growth or natural mortality level) and overall, across the full Reference OM set.</p>
+<p><strong>Stock Status.</strong> The stock should have a 60% or greater probability of occurring in the green quadrant of the Kobe matrix over a 30-year projection period: i.e.&nbsp;<span class="math inline">\(SB &gt; SB_{MSY}\)</span> and <span class="math inline">\(F &lt; F_{MSY}\)</span> simultaneously.</p>
+<p><strong>Safety.</strong> There should be no greater than 15% probability of the stock falling below <span class="math inline">\(B_{LIM}\)</span> at any point during the 30-year projection period, using an interim <span class="math inline">\(B_{LIM}\)</span> of 40% of <span class="math inline">\(SB_{MSY}\)</span> (footnote 1 of the Resolution). So that higher values are better for every PM, this is expressed as the probability of the stock remaining at or above <span class="math inline">\(B_{LIM}\)</span> throughout the projection period, with a target of at least 85%.</p>
+<p><strong>Yield.</strong> The objective is to maximise overall catch levels. As the Resolution does not specify a particular statistic, the mean annual catch is used.</p>
+<p><strong>Stability.</strong> Any change in total allowable catch (TAC) between management periods should be 20% or less, noting that asymmetric stability limits (e.g.&nbsp;different thresholds for TAC increases versus decreases) may also be evaluated. This is expressed as the probability that the change in TAC between successive management cycles is less than 20%; i.e.&nbsp;calculated between the TAC values actually set every 3 years.</p>
+<p><a href="#tbl-pm-summary" class="quarto-xref">Table&nbsp;<span>6.1</span></a> summarises these objectives, the corresponding performance metric used to evaluate CMP performance against each, and the associated target. T</p>
+<div id="tbl-pm-summary" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pm-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6.1: Summary of the Resolution 24-09 <span class="citation" data-cites="ICCAT2024Res2409">(<a href="references.html#ref-ICCAT2024Res2409" role="doc-biblioref">ICCAT 2024</a>)</span> initial operational management objectives and the corresponding performance metrics used to evaluate CMP performance.
+</figcaption><div aria-describedby="tbl-pm-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead><tr class="header">
+<th>Objective</th>
+<th>Performance Metric</th>
+<th>Formula</th>
+<th>Target</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Stock Status</td>
+<td>Probability of occurring in the Kobe green quadrant</td>
+<td><span class="math inline">\(\text{Prob}\left(SB/SB_{MSY} &gt; 1 \text{ and } F/F_{MSY} &lt; 1\right)\)</span></td>
+<td><span class="math inline">\(\geq 60\%\)</span></td>
+</tr>
+<tr class="even">
+<td>Safety</td>
+<td>Probability of remaining at or above <span class="math inline">\(B_{LIM}\)</span> (40% <span class="math inline">\(SB_{MSY}\)</span>) throughout the projection</td>
+<td><span class="math inline">\(\text{Prob}\left(\min_y(SB_y/SB_{MSY}) \geq 0.4\right)\)</span></td>
+<td><span class="math inline">\(\geq 85\%\)</span></td>
+</tr>
+<tr class="odd">
+<td>Yield</td>
+<td>Mean annual catch</td>
+<td><span class="math inline">\(\text{mean}_y(C_y)\)</span></td>
+<td>Maximise (ranked; no fixed target)</td>
+</tr>
+<tr class="even">
+<td>Stability</td>
+<td>Probability that the change in TAC between management periods is <span class="math inline">\(&lt; 20\%\)</span>
+</td>
+<td><span class="math inline">\(\text{Prob}\left(\lvert (TAC_c - TAC_{c-1})/TAC_{c-1}\rvert &lt; 0.2\right)\)</span></td>
+<td>Ranked (no fixed probability target)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Projection Period Used for PM Calculation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These PMs are currently calculated over all projection years, starting in 2028 when the CMPs are first used to set a TAC (<a href="forward-projections.html" class="quarto-xref"><span>Chapter 5</span></a>). The SALB MSE Technical Team may wish to consider excluding some initial number of years from this period, to allow time for a CMP’s TAC advice to actually take effect on the population dynamics before performance is assessed.</p>
+</div>
+</div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-ICCAT2024Res2409" class="csl-entry" role="listitem">
-ICCAT. 2024. <em>Resolution by <span>ICCAT</span> on Development of
-Initial Operational Management Objectives for Southern Atlantic
-Albacore</em>. Nos. 24-09. International Commission for the Conservation
-of Atlantic Tunas. <a href="https://www.iccat.int/documents/recs/compendiopdf-e/2024-09-e.pdf">https://www.iccat.int/documents/recs/compendiopdf-e/2024-09-e.pdf</a>.
-</div>
-<div id="ref-lorenzen2022" class="csl-entry" role="listitem">
-Lorenzen, Kai, Edward V. Camp, and Taryn M. Garlock. 2022.
-<span>“Natural Mortality and Body Size in Fish Populations.”</span>
-<em>Fisheries Research</em> 252 (August): 106327. <a href="https://doi.org/10.1016/j.fishres.2022.106327">https://doi.org/10.1016/j.fishres.2022.106327</a>.
-</div>
-<div id="ref-methot2013" class="csl-entry" role="listitem">
-Methot, Richard D., and Chantell R. Wetzel. 2013. <span>“Stock
-Synthesis: A Biological and Statistical Framework for Fish Stock
-Assessment and Fishery Management.”</span> <em>Fisheries Research</em>
-142 (May): 86–99. <a href="https://doi.org/10.1016/j.fishres.2012.10.012">https://doi.org/10.1016/j.fishres.2012.10.012</a>.
+ICCAT. 2024. <em>Resolution by <span>ICCAT</span> on Development of Initial Operational Management Objectives for Southern Atlantic Albacore</em>. Nos. 24-09. International Commission for the Conservation of Atlantic Tunas. <a href="https://www.iccat.int/documents/recs/compendiopdf-e/2024-09-e.pdf">https://www.iccat.int/documents/recs/compendiopdf-e/2024-09-e.pdf</a>.
 </div>
 </div>
 
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -649,18 +706,18 @@ Assessment and Fishery Management.”</span> <em>Fisheries Research</em>
       }
     }
   });
-  </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./presentation-results.html" class="pagination-link" aria-label="Presentation of Results">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Presentation of Results</span></span>
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./forward-projections.html" class="pagination-link" aria-label="Forward Projections">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Forward Projections</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./management-procedures.html" class="pagination-link" aria-label="Candidate Management Procedures">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Candidate Management Procedures</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 

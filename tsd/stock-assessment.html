@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>References – Trial Specifications Document</title>
+<title>2&nbsp; Stock Assessment – Trial Specifications Document</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -44,7 +41,6 @@ div.csl-indent {
   margin-left: 2em;
 }</style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -52,7 +48,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./presentation-results.html" rel="prev">
+<link href="./oms-reference.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -66,8 +63,7 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -93,17 +89,37 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
-
 <body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Trial Specifications Document</span>
@@ -115,35 +131,29 @@ div.csl-indent {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="https://iccatsalb.bluematterscience.com/"> 
 <span class="menu-text">Albacore MSE Homepage</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="https://github.com/Blue-Matter/iccatSALB" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stock-assessment.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Stock Assessment</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
@@ -151,7 +161,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./stock-assessment.html" class="sidebar-item-text sidebar-link">
+  <a href="./stock-assessment.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Stock Assessment</span></span></a>
   </div>
 </li>
@@ -193,24 +203,25 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#fleet-structure-and-fishery-data" id="toc-fleet-structure-and-fishery-data" class="nav-link active" data-scroll-target="#fleet-structure-and-fishery-data"><span class="header-section-number">2.1</span> Fleet Structure and Fishery Data</a></li>
+  <li><a href="#biological-parameters" id="toc-biological-parameters" class="nav-link" data-scroll-target="#biological-parameters"><span class="header-section-number">2.2</span> Biological Parameters</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">References</h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-stock-assessment" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Stock Assessment</span></span></h1>
 </div>
 
 
@@ -224,33 +235,169 @@ div.csl-indent {
   
 
 
-</header>
-
-
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-ICCAT2024Res2409" class="csl-entry" role="listitem">
-ICCAT. 2024. <em>Resolution by <span>ICCAT</span> on Development of
-Initial Operational Management Objectives for Southern Atlantic
-Albacore</em>. Nos. 24-09. International Commission for the Conservation
-of Atlantic Tunas. <a href="https://www.iccat.int/documents/recs/compendiopdf-e/2024-09-e.pdf">https://www.iccat.int/documents/recs/compendiopdf-e/2024-09-e.pdf</a>.
+</header><p>The first age-structured stock assessment for South Atlantic Albacore was completed in June 2026, using the Stock Synthesis 3 (SS3) framework <span class="citation" data-cites="methot2013">(<a href="references.html#ref-methot2013" role="doc-biblioref">Methot and Wetzel 2013</a>)</span>. The assessment output was used as the basis for the Reference (<a href="oms-reference.html" class="quarto-xref"><span>Chapter 3</span></a>) and Robustness (<a href="oms-robustness.html" class="quarto-xref"><span>Chapter 4</span></a>) operating models.</p>
+<p>This chapter provides a brief overview of the assessment. For full details, see the <a href="https://www.iccat.int/Documents/Meetings/Docs/2026/reports/2026_ALB_SA_ENG.pdf">Report of the 2026 ICCAT Albacore Stock Assessment Meeting</a> and the <a href="https://www.iccat.int/Documents/CVSP/CV083_2026/n_3/CV08303005.pdf">Report of the 2026 ICCAT Albacore Data Preparatory Meeting</a>.</p>
+<p>The assessment model integrated total catches, standardized indices of abundance, and length-composition data covering the period 1956 – 2024.</p>
+<section id="fleet-structure-and-fishery-data" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="fleet-structure-and-fishery-data">
+<span class="header-section-number">2.1</span> Fleet Structure and Fishery Data</h2>
+<p>Five fishing fleets were defined by aggregating catch and length composition data for fishing fleets with similar properties (<a href="#tbl-data-catch" class="quarto-xref">Table&nbsp;<span>2.1</span></a>; <a href="#fig-assess-data" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>; <a href="#fig-catch-data" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>).</p>
+<p>Five standardized CPUE indices were used in the Base Case assessment (<a href="#tbl-data-indices" class="quarto-xref">Table&nbsp;<span>2.2</span></a>; <a href="#fig-assess-data" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>; <a href="#fig-indices-data" class="quarto-xref">Figure&nbsp;<span>2.3</span></a>).</p>
+<p>The catch and CPUE data are imported into the Reference (<a href="oms-reference.html" class="quarto-xref"><span>Chapter 3</span></a>) and Robustness (<a href="oms-robustness.html" class="quarto-xref"><span>Chapter 4</span></a>) operating models, and made available to the candidate management procedures (<a href="management-procedures.html" class="quarto-xref"><span>Chapter 7</span></a>).</p>
+<div id="tbl-data-catch" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-catch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.1: Fleet structure, data and time periods to be used in the South Atlantic albacore Stock Synthesis model. Adapted from Table 11 in the <a href="https://www.iccat.int/Documents/CVSP/CV083_2026/n_3/CV08303005.pdf">Data Preparatory Report</a>.
+</figcaption><div aria-describedby="tbl-data-catch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 56%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead><tr class="header">
+<th>Fleet</th>
+<th>Definition (FlagName and Gear Group)</th>
+<th>Catch</th>
+<th>Size composition data</th>
+<th></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Fleet 1</td>
+<td>Chinese Taipei (LL), Korea (LL)</td>
+<td>1964-2024</td>
+<td>up to 2024</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Fleet 2</td>
+<td>Japan (LL), China (LL), EU-Spain (LL), EU-Portugal (LL), USA (LL), Philippines (LL), St Vincent and Grenadines (LL), Vanuatu (LL), Honduras (LL), NEI (LL), Côte D’Ivoire (LL), United Kingdom (LL), Seychelles (LL), UK.Sta Helena (LL), Angola (LL), Senegal (LL), Trinidad and Tobago (LL)</td>
+<td>1956-2024</td>
+<td>1956-2024</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Fleet 3</td>
+<td>Brazil (LL, SU), Uruguay (LL), Namibia (LL), Panama (LL), South Africa (LL, UN), Argentina (LL, TW, UN), Belize (LL), Cambodia (LL), Cuba (LL, UN)</td>
+<td>1959-2024</td>
+<td>1969-2024</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Fleet 4</td>
+<td>South Africa (BB, HL, PS, RR, SP)</td>
+<td>1973-2024</td>
+<td>1980-2024</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Fleet 5</td>
+<td>All others</td>
+<td>1961-2024</td>
+<td>1961-2024</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </div>
+</figure>
+</div>
+<div id="tbl-data-indices" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-indices-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2.2: CPUE indices and time periods to be used in the South Atlantic albacore Stock Synthesis model. Adapted from Table 11 in the <a href="https://www.iccat.int/Documents/CVSP/CV083_2026/n_3/CV08303005.pdf">Data Preparatory Report</a>.
+</figcaption><div aria-describedby="tbl-data-indices-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead><tr class="header">
+<th>Index Name</th>
+<th>Definition</th>
+<th>Years</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Indx_CTP-LL_TB1</td>
+<td>Chinese Taipei longline, time block 1</td>
+<td>1970-1980</td>
+</tr>
+<tr class="even">
+<td>Indx_CTP-LL_TB2</td>
+<td>Chinese Taipei longline, time block 2</td>
+<td>1981-2024</td>
+</tr>
+<tr class="odd">
+<td>Indx_JPN-LL_TB2</td>
+<td>Japan longline</td>
+<td>1979-2017</td>
+</tr>
+<tr class="even">
+<td>Indx_BR_URY-LL</td>
+<td>Brazil/Uruguay longline</td>
+<td>1978-2024</td>
+</tr>
+<tr class="odd">
+<td>Indx_ZAF-BB</td>
+<td>South Africa baitboat</td>
+<td>2003-2024</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-assess-data" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-assess-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="stock-assessment_files/figure-html/fig-assess-data-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-assess-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.1: Overview of the data used in the 2026 stock assessment.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-catch-data" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-catch-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="stock-assessment_files/figure-html/fig-catch-data-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-catch-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.2: Time series plot of the total catch data used in the 2026 assessment.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-indices-data" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-indices-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="stock-assessment_files/figure-html/fig-indices-data-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-indices-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Time series plot of the five CPUE indices used in the Base Case 2026 assessment.
+</figcaption></figure>
+</div>
+</div>
+</div>
+</section><section id="biological-parameters" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="biological-parameters">
+<span class="header-section-number">2.2</span> Biological Parameters</h2>
+<p>The assessment model assumed age-specific natural mortality modelled with the Lorezen function <span class="citation" data-cites="lorenzen2022">(<a href="references.html#ref-lorenzen2022" role="doc-biblioref">Lorenzen et al. 2022</a>)</span>, mean length-at-age described by the von Bertalanffy growth model, and the stock-recruitment relationship modelled with the Beverton-Holt equation, parameterized with the ‘steepness’ (<em>h</em>) formulation.</p>
+<p>Recruitment variability <span class="math inline">\(\left(\sigma_R\right)\)</span> was fixed at 0.4 and <em>h</em> at 0.75. Maturity was specified as an at-age schedule with fish reaching 50% maturity at age 5 years and full maturity at 6 years.</p>
+<p>See Table 5 in the <a href="https://www.iccat.int/Documents/CVSP/CV083_2026/n_3/CV08303005.pdf">Data Preparatory Report</a> for a full list of the life-history parameters used in the model.</p>
+<p>Uncertainty in the biological parameters was focused on alternative mean length-at-age and naturality mortality-at-age schedules. A set of nine models were developed combining three alternative growth parameterizations and three alternative natural mortality estimates corresponding to the 25th, 50th, and 75th percentiles of the distributions agreed at the <a href="https://www.iccat.int/Documents/CVSP/CV083_2026/n_3/CV08303005.pdf">Data Preparatory Meeting</a>.</p>
+<p>These nine models are used to create the Reference OM Grid (<a href="oms-reference.html" class="quarto-xref"><span>Chapter 3</span></a>). The central model of this grid (model 5, referred to as <code>S05</code>) was used considered the Base Case assessment model and is used in the MSE as the Reference OM.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-lorenzen2022" class="csl-entry" role="listitem">
-Lorenzen, Kai, Edward V. Camp, and Taryn M. Garlock. 2022.
-<span>“Natural Mortality and Body Size in Fish Populations.”</span>
-<em>Fisheries Research</em> 252 (August): 106327. <a href="https://doi.org/10.1016/j.fishres.2022.106327">https://doi.org/10.1016/j.fishres.2022.106327</a>.
+Lorenzen, Kai, Edward V. Camp, and Taryn M. Garlock. 2022. <span>“Natural Mortality and Body Size in Fish Populations.”</span> <em>Fisheries Research</em> 252 (August): 106327. <a href="https://doi.org/10.1016/j.fishres.2022.106327">https://doi.org/10.1016/j.fishres.2022.106327</a>.
 </div>
 <div id="ref-methot2013" class="csl-entry" role="listitem">
-Methot, Richard D., and Chantell R. Wetzel. 2013. <span>“Stock
-Synthesis: A Biological and Statistical Framework for Fish Stock
-Assessment and Fishery Management.”</span> <em>Fisheries Research</em>
-142 (May): 86–99. <a href="https://doi.org/10.1016/j.fishres.2012.10.012">https://doi.org/10.1016/j.fishres.2012.10.012</a>.
+Methot, Richard D., and Chantell R. Wetzel. 2013. <span>“Stock Synthesis: A Biological and Statistical Framework for Fish Stock Assessment and Fishery Management.”</span> <em>Fisheries Research</em> 142 (May): 86–99. <a href="https://doi.org/10.1016/j.fishres.2012.10.012">https://doi.org/10.1016/j.fishres.2012.10.012</a>.
 </div>
 </div>
-
-
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -649,18 +796,18 @@ Assessment and Fishery Management.”</span> <em>Fisheries Research</em>
       }
     }
   });
-  </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./presentation-results.html" class="pagination-link" aria-label="Presentation of Results">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Presentation of Results</span></span>
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./oms-reference.html" class="pagination-link" aria-label="Reference Operating Models">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reference Operating Models</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 

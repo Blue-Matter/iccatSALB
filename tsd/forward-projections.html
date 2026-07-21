@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.38">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>References – Trial Specifications Document</title>
+<title>5&nbsp; Forward Projections – Trial Specifications Document</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
-
+</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -52,7 +29,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./presentation-results.html" rel="prev">
+<link href="./performance-metrics.html" rel="next">
+<link href="./oms-robustness.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -66,8 +44,7 @@ div.csl-indent {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -93,17 +70,37 @@ div.csl-indent {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-
-
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 </head>
-
 <body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Trial Specifications Document</span>
@@ -115,35 +112,29 @@ div.csl-indent {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
+<li class="nav-item">
     <a class="nav-link" href="https://iccatsalb.bluematterscience.com/"> 
 <span class="menu-text">Albacore MSE Homepage</span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
+</div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="https://github.com/Blue-Matter/iccatSALB" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./forward-projections.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Forward Projections</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
@@ -169,7 +160,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./forward-projections.html" class="sidebar-item-text sidebar-link">
+  <a href="./forward-projections.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
   </div>
 </li>
@@ -193,24 +184,27 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#management-cycle-and-data-lag" id="toc-management-cycle-and-data-lag" class="nav-link active" data-scroll-target="#management-cycle-and-data-lag"><span class="header-section-number">5.1</span> Management Cycle and Data Lag</a></li>
+  <li><a href="#initial-projection-years" id="toc-initial-projection-years" class="nav-link" data-scroll-target="#initial-projection-years"><span class="header-section-number">5.2</span> Initial Projection Years</a></li>
+  <li><a href="#recruitment-deviations" id="toc-recruitment-deviations" class="nav-link" data-scroll-target="#recruitment-deviations"><span class="header-section-number">5.3</span> Recruitment Deviations</a></li>
+  <li><a href="#observation-error-for-simulated-data" id="toc-observation-error-for-simulated-data" class="nav-link" data-scroll-target="#observation-error-for-simulated-data"><span class="header-section-number">5.4</span> Observation Error for Simulated Data</a></li>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">References</h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-forward-projections" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></h1>
 </div>
 
 
@@ -224,33 +218,180 @@ div.csl-indent {
   
 
 
-</header>
-
-
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-ICCAT2024Res2409" class="csl-entry" role="listitem">
-ICCAT. 2024. <em>Resolution by <span>ICCAT</span> on Development of
-Initial Operational Management Objectives for Southern Atlantic
-Albacore</em>. Nos. 24-09. International Commission for the Conservation
-of Atlantic Tunas. <a href="https://www.iccat.int/documents/recs/compendiopdf-e/2024-09-e.pdf">https://www.iccat.int/documents/recs/compendiopdf-e/2024-09-e.pdf</a>.
+</header><p>This chapter describes the assumptions and settings for the projection years.</p>
+<p>Each operating model has 100 independent simulations.</p>
+<section id="management-cycle-and-data-lag" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="management-cycle-and-data-lag">
+<span class="header-section-number">5.1</span> Management Cycle and Data Lag</h2>
+<p>The MSE assumed that the first TAC generated by the CMPs will be set in 2028, with a 3-year management cycle and and a 2-year data lag .</p>
+<p>This means that the TAC that will be implemented for the 2028 fishing year will be calculated in 2027 using data up to 2025, and then from there the TAC is updated every 3 years (<a href="#tbl-mgmt-schedule" class="quarto-xref">Table&nbsp;<span>5.1</span></a>).</p>
+<div id="tbl-mgmt-schedule" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mgmt-schedule-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.1: The management interval and data lag used in the SALB MSE.
+</figcaption><div aria-describedby="tbl-mgmt-schedule-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead><tr class="header">
+<th>Implementation Year</th>
+<th>Calculation Year</th>
+<th>Management Year?</th>
+<th>TAC decision</th>
+<th>DataYear used</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>2028</td>
+<td>2027</td>
+<td>Yes</td>
+<td>Calculated in 2027, implemented 2028</td>
+<td>2025</td>
+</tr>
+<tr class="even">
+<td>2029</td>
+<td>2028</td>
+<td>No</td>
+<td>Carries forward 2028’s TAC</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>2030</td>
+<td>2029</td>
+<td>No</td>
+<td>Carries forward 2028’s TAC</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>2031</td>
+<td>2030</td>
+<td>Yes</td>
+<td>Calculated in 2030, implemented 2031</td>
+<td>2028</td>
+</tr>
+<tr class="odd">
+<td>2032</td>
+<td>2031</td>
+<td>No</td>
+<td>Carries forward 2031’s TAC</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>2033</td>
+<td>2032</td>
+<td>No</td>
+<td>Carries forward 2031’s TAC</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>2034</td>
+<td>2033</td>
+<td>Yes</td>
+<td>Calculated in 2033, implemented 2034</td>
+<td>2031</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="ref-lorenzen2022" class="csl-entry" role="listitem">
-Lorenzen, Kai, Edward V. Camp, and Taryn M. Garlock. 2022.
-<span>“Natural Mortality and Body Size in Fish Populations.”</span>
-<em>Fisheries Research</em> 252 (August): 106327. <a href="https://doi.org/10.1016/j.fishres.2022.106327">https://doi.org/10.1016/j.fishres.2022.106327</a>.
+</figure>
 </div>
-<div id="ref-methot2013" class="csl-entry" role="listitem">
-Methot, Richard D., and Chantell R. Wetzel. 2013. <span>“Stock
-Synthesis: A Biological and Statistical Framework for Fish Stock
-Assessment and Fishery Management.”</span> <em>Fisheries Research</em>
-142 (May): 86–99. <a href="https://doi.org/10.1016/j.fishres.2012.10.012">https://doi.org/10.1016/j.fishres.2012.10.012</a>.
+</section><section id="initial-projection-years" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="initial-projection-years">
+<span class="header-section-number">5.2</span> Initial Projection Years</h2>
+<p>Following the stock assessment, the OMs have a historical period spanning from 1956 to 2024. Given that the TAC advice generated by the CMPs will be implemented in 2028, the first 3 years of the projection period (2025, 2026, 2027) are, in effect, an extension of the historical period rather than years managed by the CMPs.</p>
+<p>Where real catch data (and, for the indices used by index-based CMPs, real CPUE data) become available for these years, they will be used directly in the OM. Where data are not yet available, fleet-specific catches for these years will instead be simulated by resampling from the mean and standard deviation of each fleet’s catches over the preceding four years.</p>
+<p>This is necessary primarily because the population dynamics model needs a catch value for every year in order to project the population forward in time. Additionally, the CMPs require a complete data stream up to the data-lag year in order to calculate the first TAC.</p>
+<p>As shown in <a href="#tbl-mgmt-schedule" class="quarto-xref">Table&nbsp;<span>5.1</span></a>, the 2028 TAC is calculated in 2027 using data up to 2025. Because the historical period ends in 2024, 2025 falls within the projection period and will not yet be observed at the time this MSE is conditioned. For now, the simulated 2025 catch and CPUE index values will be used to calculate the 2028 TAC; once real 2025 data become available, these can replace the simulated values without requiring any change to the underlying MSE framework.</p>
+</section><section id="recruitment-deviations" class="level2" data-number="5.3"><h2 data-number="5.3" class="anchored" data-anchor-id="recruitment-deviations">
+<span class="header-section-number">5.3</span> Recruitment Deviations</h2>
+<p>Annual recruitment deviations are generated as autocorrelated, bias-corrected log-normal deviates around the stock-recruit relationship. For a given simulation, the (log-scale) deviation in year <span class="math inline">\(y\)</span> is calculated as:</p>
+<p><span class="math display">\[
+\varepsilon_y \sim \text{TruncNormal}(\mu, \sigma_R,\ \pm 2\sigma_R)
+\]</span></p>
+<p><span class="math display">\[
+x_y = \rho\, x_{y-1} + \varepsilon_y \sqrt{1-\rho^2}
+\]</span></p>
+<p><span class="math display">\[
+\text{RecDev}_y = \exp(x_y)
+\]</span></p>
+<p>where <span class="math inline">\(\sigma_R\)</span> is the recruitment deviation standard deviation, <span class="math inline">\(\rho\)</span> is the lag-1 autocorrelation, and <span class="math inline">\(\mu = -0.5\sigma_R^2(1-\rho)/\sqrt{1-\rho^2}\)</span> is a bias-correction term so that <span class="math inline">\(E[\text{RecDev}_y] = 1\)</span> on the natural scale. Deviations are truncated at <span class="math inline">\(\pm 2\sigma_R\)</span> (on the log scale) to avoid unrealistic extremes.</p>
+</section><section id="observation-error-for-simulated-data" class="level2" data-number="5.4"><h2 data-number="5.4" class="anchored" data-anchor-id="observation-error-for-simulated-data">
+<span class="header-section-number">5.4</span> Observation Error for Simulated Data</h2>
+<p>The data used by the CMPs (fleet-specific catches and standardised CPUE indices) are simulated from the true OM-generated values with multiplicative observation error.</p>
+<p>For catch, the observation error is conditioned on the historical fit between the OM’s simulated catch and the actual reported historical catch. In practice, the assessment model is fit to the catch data essentially exactly, so the catch data provided to the CMPs exactly matches the catches in the OM.</p>
+<p>For the CPUE indices, the same historical-conditioning approach is used, but with a lag-1 autocorrelation additionally estimated from the residuals between the observed and simulated index. Index observation error therefore follows the same truncated, autocorrelated log-normal process described above for recruitment deviations, continuing on from the last estimated historical residual.</p>
+<p><a href="#tbl-indexobserror" class="quarto-xref">Table&nbsp;<span>5.2</span></a> shows the fitted SD and lag-1 autocorrelation for each index, together with the last historical year in which the index was produced; all five indices are currently assumed to scale proportionally with true abundance (i.e.&nbsp;no hyperstability/hyperdepletion).</p>
+<p>These values are specific to the Reference OM shown here as an example. The conditioned SD and autocorrelation will vary across the full set of Reference and Robustness OMs, since each is conditioned on its own historical fit.</p>
+<div class="cell">
+<div id="tbl-indexobserror" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-indexobserror-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.2: Conditioned CPUE index observation error for the Reference OM (as an example): SD of the log-scale residuals, lag-1 autocorrelation, and the last historical year each index was produced.
+</figcaption><div aria-describedby="tbl-indexobserror-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead><tr class="header">
+<th style="text-align: left;">Index</th>
+<th style="text-align: right;">SD (log-scale)</th>
+<th style="text-align: right;">Lag-1 AC</th>
+<th style="text-align: right;">Last historical year</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Indx_CTP-LL_TB1</td>
+<td style="text-align: right;">0.093</td>
+<td style="text-align: right;">0.334</td>
+<td style="text-align: right;">1980</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Indx_CTP-LL_TB2</td>
+<td style="text-align: right;">0.197</td>
+<td style="text-align: right;">0.795</td>
+<td style="text-align: right;">2024</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Indx_JPN-LL_TB2</td>
+<td style="text-align: right;">0.350</td>
+<td style="text-align: right;">0.198</td>
+<td style="text-align: right;">2007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Indx_BR_URY-LL</td>
+<td style="text-align: right;">0.332</td>
+<td style="text-align: right;">0.396</td>
+<td style="text-align: right;">2024</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Indx_ZAF-BB</td>
+<td style="text-align: right;">0.187</td>
+<td style="text-align: right;">0.186</td>
+<td style="text-align: right;">2024</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p><a href="#fig-indexobserror" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> shows example realisations of the index observation error multiplier for three simulations, spanning the historical and projection periods, again for the Reference OM only.</p>
+<p>It illustrates that the autocorrelated observation error applied in the projections has the same statistical properties as estimated from the historical period, with no discontinuity at the start of the projection period. Historical indices that are no longer produced are excluded, since these will not be generated or used in the projection period.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-indexobserror" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-indexobserror-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="forward-projections_files/figure-html/fig-indexobserror-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-indexobserror-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: Example CPUE index observation error multipliers for three simulations (Reference OM only), spanning the historical and projection periods. The dashed line marks the end of the historical period. Discontinued indices are excluded (see text).
+</figcaption></figure>
+</div>
 </div>
 </div>
 
 
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -649,18 +790,18 @@ Assessment and Fishery Management.”</span> <em>Fisheries Research</em>
       }
     }
   });
-  </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./presentation-results.html" class="pagination-link" aria-label="Presentation of Results">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Presentation of Results</span></span>
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./oms-robustness.html" class="pagination-link" aria-label="Robustness Operating Models">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Robustness Operating Models</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./performance-metrics.html" class="pagination-link" aria-label="Performance Metrics">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 
