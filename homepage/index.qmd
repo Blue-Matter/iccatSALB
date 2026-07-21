@@ -11,9 +11,6 @@ The MSE tests candidate management procedures against a range of plausible
 operating models to evaluate their performance against management objectives
 under uncertainty.
 
-The MSE analysis uses the `iccatSALB` R package, developed for this purpose
-and built on the [openMSE](https://openmse.com/) framework.
-
 ## Materials
 
 - [Trial Specifications Document](tsd/): the operating models,
