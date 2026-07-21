@@ -1,0 +1,4 @@
+Warning 1 : 1st iteration warning: ssb(endyr)/ssb(styr)= 1.84229e-11; suggest start with larger R0 to get near 0.4; or use depletion fleet option
+Warning 2 : 1st iteration warning: catch logL > 50% total logL; check configuration; suggest start with larger R0
+Note 1 Information: A revised protocol for the Fcast_yr specification is available and recommended.
+ 2 warnings  and 1 note 
