@@ -11,13 +11,13 @@
     "href": "index.html#materials",
     "title": "ICCAT Southern Atlantic Albacore Management Strategy Evaluation",
     "section": "Materials",
-    "text": "Materials\n\nTrial Specifications Document: the operating models, management procedures, and performance metrics used in the MSE.\niccatSALB R package: R package implementing the MSE analysis, with full technical documentation."
+    "text": "Materials\n\nTrial Specifications Document: the operating models, management procedures, and performance metrics used in the MSE."
   },
   {
     "objectID": "index.html#repository-structure",
     "href": "index.html#repository-structure",
     "title": "ICCAT Southern Atlantic Albacore Management Strategy Evaluation",
     "section": "Repository Structure",
-    "text": "Repository Structure\nThe iccatSALB repository is organised as follows:\n\n\n\n\n\n\n\nDirectory / File\nPurpose\n\n\n\n\nR/\nPackage functions and objects\n\n\nanalysis/\nAnalysis scripts that run the MSE\n\n\ndata-raw/\nConditioning output and other raw data used to build the package\n\n\nobjects/\nSaved R objects produced by the analysis scripts (OM/, Hist/, etc.)\n\n\ntsd/\nQuarto source for the Trial Specifications Document\n\n\nhomepage/\nQuarto source for this website\n\n\n\nTo reproduce the analysis, download the iccatSALB repository, install and load the iccatSALB package (e.g., pak::pak('blue-matter/iccatSALB; load('iccatSALB'))), and work through the scripts in analysis."
+    "text": "Repository Structure\nThe iccatSALB repository is organised as follows:\n\n\n\n\n\n\n\nDirectory / File\nPurpose\n\n\n\n\nR/\nPackage functions and objects. Currently not used\n\n\nanalysis/\nAnalysis scripts that run the MSE\n\n\ndata-raw/\nABC conditioning model output\n\n\nobjects/\nSaved R objects produced by the analysis scripts (OM/, Hist/, etc.)\n\n\ntsd/\nQuarto source for the Trial Specifications Document\n\n\nhomepage/\nQuarto source for this website\n\n\n\nTo reproduce the analysis, download the iccatSALB repository, install and work through the scripts in analysis."
   }
 ]
