@@ -1,6 +1,6 @@
 ###
 console output
-2026-07-20 09:44:56.490725
+2026-07-30 10:13:02.072548
 ###
  
  reading from starter.ss
@@ -12,7 +12,7 @@ Data read successful 999
 End of control file successful! 999
 Begin setting up parameters ...  end of parameter section 
 Evaluating biology calculations once ... done
-Starting optimization of 'ss3' in phase 1 of 4 at Mon Jul 20 09:43:55 2026
+Starting optimization of 'ss3' in phase 1 of 4 at Thu Jul 30 10:12:00 2026
 phase= 1 | nvar=  6 | iter=  0 | nll=5.78e+03 | mag=1.58e+05 | par[  1]=SR_parm[1]
 phase= 1 | nvar=  6 | iter= 20 | nll=4.28e+02 | mag=4.25e+03 | par[  6]=init_F[1]
 phase= 1 | nvar=  6 | iter= 33 | nll=3.81e+02 | mag=8.96e+00 | par[  6]=init_F[1]
@@ -60,7 +60,7 @@ phase= 4 | nvar= 91 | iter=580 | nll=2.26e+02 | mag=3.64e+00 | par[ 76]=selparm[
 phase= 4 | nvar= 91 | iter=600 | nll=2.26e+02 | mag=4.53e-01 | par[ 76]=selparm[8]
 phase= 4 | nvar= 91 | iter=620 | nll=2.26e+02 | mag=9.11e-01 | par[ 76]=selparm[8]
 phase= 4 | nvar= 91 | iter=634 | nll=2.26e+02 | mag=1.37e-03 | par[ 76]=selparm[8]
-Optimization completed after 1 m 0.31 s with final statistics:
+Optimization completed after 1 m 0.98 s with final statistics:
   nll=226.336271 | mag=1.36638e-03 | par[ 76]=selparm[8]
 
 Iterations: 1108
@@ -75,4 +75,4 @@ Begin writing *.ss_new output files ... Finished writing *.ss_new output files
 !!  Run has completed  !! 
 !!  See warning.sso for 1 warning  and 1 note 
 
-Finished running model 'ss3' after 1 m 0.75 s.
+Finished running model 'ss3' after 1 m 1.4 s.

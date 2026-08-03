@@ -1,4 +1,3 @@
-here::i_am('analysis/00-Specifications.R')
 
 if (packageVersion('MSEtool') < '4.0.0') {
   cli::cli_abort(c(
@@ -8,12 +7,11 @@ if (packageVersion('MSEtool') < '4.0.0') {
 }
 
 # ---- Reference Assessment ----
-RefDir <- here::here('data-raw', 'assessment', 'S05')
+RefDir <- file.path('data-raw', 'assessment', 'S05')
 
 # ---- InterimAdvice ----
 SSData <- MSEtool::ImportSSData(RefDir, silent = TRUE)
 Hist_Landings <- MSEtool::Landings(SSData) |> MSEtool::Value() |> utils::tail(4)
-
 
 mu <- apply(Hist_Landings, 2, mean)
 sd <- apply(Hist_Landings, 2, sd)

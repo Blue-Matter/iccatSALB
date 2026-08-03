@@ -1,116 +1,130 @@
-library(MSEtool)
+library(iccatSALB)
 
-source('analysis/00-Specifications.R')
+source("analysis/00-Specifications.R")
+
+ss3_exe <- normalizePath("ss3.exe", mustWork = TRUE)
+
 
 # ---- Reference Model ----
 
-RefOM <- MSEtool::ImportSS(SSDir         = RefDir,
-                           Name          = OMSpecs$Name,
-                           nSim          = OMSpecs$nSim,
-                           pYear         = OMSpecs$pYear,
-                           Agency        = OMSpecs$Agency,
-                           StockName     = OMSpecs$StockName,
-                           CommonName    = OMSpecs$StockName,
-                           Interval      = OMSpecs$Interval,
-                           DataLag       = OMSpecs$DataLag,
-                           MPStartYear   = OMSpecs$MPStartYear,
-                           InterimAdvice = OMSpecs$InterimAdvice
+RefOM <- MSEtool::ImportSS(
+  SSDir         = RefDir,
+  Name          = OMSpecs$Name,
+  nSim          = OMSpecs$nSim,
+  pYear         = OMSpecs$pYear,
+  Agency        = OMSpecs$Agency,
+  StockName     = OMSpecs$StockName,
+  CommonName    = OMSpecs$StockName,
+  Interval      = OMSpecs$Interval,
+  DataLag       = OMSpecs$DataLag,
+  MPStartYear   = OMSpecs$MPStartYear,
+  InterimAdvice = OMSpecs$InterimAdvice
 )
 
-MSEtool::Save(RefOM, 'objects/OM/Ref.om', overwrite = TRUE)
+# ---- Reference Grid (growth x M) ----
 
-# ---- Reference Grid ----
-source('analysis/00-Specifications.R')
+OM_grid <- Build_OM_Grid(
+  g_levels = c(25, 50, 75),
+  m_levels = c(25, 50, 75),
+  ref_dir  = RefDir,
+  base_dir = "data-raw/assessment"
+)
 
-RefOM <- readRDS('objects/OM/Ref.om')
+# growth/M scenario definitions are in 00-Specifications.R
+growth_scenarios <- mget(unique(OM_grid$g_scen))
+M_scenarios      <- mget(unique(OM_grid$m_scen))
 
-OM_grid <- expand.grid(g_scen = paste0('G_', c(25, 50, 75)),
-                        m_scen = paste0('M_', c(25, 50, 75)),
-                        stringsAsFactors = FALSE)
+Prepare_OM_Grid(
+  grid             = OM_grid,
+  ref_dir          = RefDir,
+  growth_scenarios = growth_scenarios,
+  M_scenarios      = M_scenarios
+)
 
-OM_grid$om_name <- paste(OM_grid$g_scen, OM_grid$m_scen, sep = '-')
-OM_grid$is_ref  <- OM_grid$g_scen == 'G_50' & OM_grid$m_scen == 'M_50'
-OM_grid$run_dir <- ifelse(OM_grid$is_ref,
-                           RefDir,
-                           file.path('data-raw/assessment', OM_grid$om_name))
+Run_SS3_Grid(
+  run_dirs     = OM_grid$run_dir[!OM_grid$is_ref],
+  exe          = ss3_exe,
+  extras       = "-nohess",
+  skipfinished = FALSE
+)
 
-## ---- Prepare SS3 run directories (copy inputs + modify parameters) ----
-for (i in seq_len(nrow(OM_grid))) {
 
-  if (OM_grid$is_ref[i]) next
+Grid_OM_Specs <- list(
+  Name       = OMSpecs$Name,
+  nSim       = OMSpecs$nSim,
+  pYear      = OMSpecs$pYear,
+  Agency     = OMSpecs$Agency,
+  StockName  = OMSpecs$StockName,
+  CommonName = OMSpecs$StockName,
+  Interval   = OMSpecs$Interval,
+  DataLag    = OMSpecs$DataLag
+)
 
-  g_scen  <- OM_grid$g_scen[i]
-  m_scen  <- OM_grid$m_scen[i]
-  run_dir <- OM_grid$run_dir[i]
 
-  growth <- get(g_scen)
-  m      <- get(m_scen)
+Import_OM_Grid(
+  grid     = OM_grid,
+  out_dir  = "objects/OM/Reference",
+  om_specs = Grid_OM_Specs
+)
 
-  if (!dir.exists(run_dir))
-    dir.create(run_dir)
 
-  # copy SS3 files
-  r4ss::copy_SS_inputs(dir.old   = RefDir,
-                       dir.new   = run_dir,
-                       copy_exe  = TRUE,
-                       copy_par  = TRUE,
-                       overwrite = TRUE,
-                       verbose   = FALSE)
 
-  # modify growth and M
-  inputs <- r4ss::SS_read(dir = run_dir)
 
-  # growth
-  inputs$ctl$MG_parms['L_at_Amin_Fem_GP_1', 'INIT'] <- vonbert_L_at_Amin(growth$Linf, growth$K, growth$t0)
-  inputs$ctl$MG_parms['L_at_Amax_Fem_GP_1', 'INIT'] <- growth$Linf
-  inputs$ctl$MG_parms['VonBert_K_Fem_GP_1', 'INIT']  <- growth$K
-
-  # M (Lorenzen reference scalar)
-  inputs$ctl$MG_parms['NatM_p_1_Fem_GP_1', 'INIT'] <- m
-
-  # write modified inputs back to run_dir
-  r4ss::SS_write(inputs, dir = run_dir, overwrite = TRUE)
-}
-
-## ---- Run SS3 in parallel ----
-run_dirs <- OM_grid$run_dir[!OM_grid$is_ref]
-
-library(furrr)
-future::plan(future::multisession, workers = max(1, nrow(OM_grid) - 1))
-
-furrr::future_walk(run_dirs, function(d) {
-  r4ss::run(dir = d, exe = 'ss3', skipfinished = FALSE, extras = '-nohess')
-})
-
-future::plan(future::sequential)
-
-## ---- Import OMs ----
-for (i in seq_len(nrow(OM_grid))) {
-
-  run_dir <- OM_grid$run_dir[i]
-  om_name <- OM_grid$om_name[i]
-
-  OM <- MSEtool::ImportSS(SSDir      = run_dir,
-                          Name       = OMSpecs$Name,
-                          nSim       = OMSpecs$nSim,
-                          pYear      = OMSpecs$pYear,
-                          Agency     = OMSpecs$Agency,
-                          StockName  = OMSpecs$StockName,
-                          CommonName = OMSpecs$StockName,
-                          Interval   = OMSpecs$Interval,
-                          DataLag    = OMSpecs$DataLag
-  )
-
-  if (!dir.exists('objects/OM/Reference'))
-    dir.create('objects/OM/Reference', recursive = TRUE)
-
-  MSEtool::Save(OM, file.path('objects/OM/Reference', paste0(om_name, '.om')),
-                overwrite = TRUE)
-}
-
+Hist <- readRDS('objects/Hist/Reference/001.hist')
 
 # ---- Robustness Models ----
 
-# TODO
-# Save robustness OMs to 'objects/OM/Robustness'
+# TODO: add beta estimation/implementation in MSEtool
+
+## ---- R1: Down-weight Surv_Indx_BR_URY-LL_Phz1 Index ----
+
+drop_fleet <- 'Surv_Indx_BR_URY-LL_Phz1'
+
+R1_Grid <- OM_grid
+
+R1_Grid$run_dir <- file.path('data-raw/robustness/R1', basename(R1_Grid$run_dir ))
+R1_Grid$is_ref <- NULL
+
+for (i in seq_len(nrow(R1_Grid))) {
+
+  # copy already modified files over
+  fls <- list.files(OM_grid$run_dir[i])
+  if (!dir.exists(R1_Grid$run_dir[i]))
+    dir.create(R1_Grid$run_dir[i], recursive = TRUE)
+
+  file.copy(file.path(OM_grid$run_dir[i], fls),
+            file.path(R1_Grid$run_dir[i], fls),
+            )
+
+
+  ctl <- r4ss::SS_readctl(file = file.path(R1_Grid$run_dir[i],"control.ss_new"),
+                          datlist = r4ss::SS_readdat(file.path(R1_Grid$run_dir[i],"data.ss_new")))
+
+  fleet_ind <- which(rownames(ctl$lambdas) == drop_fleet)
+
+  ctl$lambdas$value <- 0
+
+  r4ss::SS_writectl(ctl, file.path(R1_Grid$run_dir[i],"control.ss_new"), overwrite = TRUE)
+
+}
+
+# run SS for robustness OM
+
+
+
+## ---- R2: Down-weight Surv_Indx_CTP-LL_TB2_Phz1 Index ----
+
+'Surv_Indx_CTP-LL_TB2_Phz1'
+
+# write files
+
+# run SS for robustness OM
+
+
+
+MSEtool::DisableParallel()
+
+
+
+
 
