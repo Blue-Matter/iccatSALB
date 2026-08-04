@@ -1,13 +1,13 @@
 #V3.30.23.1;_safe;_compile_date:_Dec  5 2024;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_13.2
 data.ss_new #_DataFile 
 control.ss_new #_Control 
-Run_Date: Thu Jul 30 10:12:00 2026
-Final_phase: 4  N_iterations: 661
+Run_Date: Tue Aug  4 08:48:06 2026
+Final_phase: 4  N_iterations: 978
 #_LIKELIHOOD 
 Label logL*Lambda
 TOTAL_LogL 214.884
 Catch 0.00010766
-Equil_catch 5.98279e-06
+Equil_catch 5.98286e-06
 Survey -132.53
 Length_comp 362.654
 Recruitment -15.2934
@@ -121,7 +121,7 @@ LnQ_base_Indx_ZAF-BB(10) -10.7108 0 Fix 0.357229
 Size_DblN_peak_Fleet_01(1) 116.557 0 Act 0.695973
 Size_DblN_top_logit_Fleet_01(1) -2.75088 0 Act 0.556228
 Size_DblN_ascend_se_Fleet_01(1) 6.3905 0 Act 0.649406
-Size_DblN_descend_se_Fleet_01(1) -9.50267 0 Act 0.499914
+Size_DblN_descend_se_Fleet_01(1) -9.50269 0 Act 0.499913
 Size_DblN_start_logit_Fleet_01(1) -15 0 Fix 0.970414
 Size_DblN_end_logit_Fleet_01(1) 0.178554 0 Act 0.559523
 Size_DblN_peak_Fleet_02(2) 112.853 0 Act 0.6623
@@ -534,7 +534,7 @@ SmryBio_1956 280812 0.0
 SmryBio_1957 283924 0.0
 SmryBio_1958 287286 0.0
 SmryBio_1959 289919 0.0
-SmryBio_1960 284318 0.0
+SmryBio_1960 284319 0.0
 SmryBio_1961 269041 0.0
 SmryBio_1962 255195 0.0
 SmryBio_1963 239466 0.0
@@ -608,7 +608,7 @@ TotBio_1956 280812 0.0
 TotBio_1957 283924 0.0
 TotBio_1958 287286 0.0
 TotBio_1959 289919 0.0
-TotBio_1960 284318 0.0
+TotBio_1960 284319 0.0
 TotBio_1961 269041 0.0
 TotBio_1962 255195 0.0
 TotBio_1963 239466 0.0

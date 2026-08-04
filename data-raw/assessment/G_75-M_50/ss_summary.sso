@@ -1,13 +1,13 @@
 #V3.30.23.1;_safe;_compile_date:_Dec  5 2024;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_13.2
 data.ss_new #_DataFile 
 control.ss_new #_Control 
-Run_Date: Thu Jul 30 10:12:00 2026
-Final_phase: 4  N_iterations: 649
+Run_Date: Tue Aug  4 08:48:06 2026
+Final_phase: 4  N_iterations: 677
 #_LIKELIHOOD 
 Label logL*Lambda
 TOTAL_LogL 220.743
 Catch 3.14361e-07
-Equil_catch 0.000258052
+Equil_catch 0.000258053
 Survey -131.913
 Length_comp 366.067
 Recruitment -14.1325
@@ -107,7 +107,7 @@ Main_RecrDev_2020 -0.129098 0 Act 0.490779
 Main_RecrDev_2021 -0.0882503 0 Act 0.493696
 Main_RecrDev_2022 -0.151835 0 Act 0.489155
 Late_RecrDev_2023 -0.061262 0 Act 0.495624
-Late_RecrDev_2024 -0.00252892 0 Act 0.499819
+Late_RecrDev_2024 -0.00252893 0 Act 0.499819
 ForeRecr_2025 0 0 Act 0.5
 #_Init_F
 InitF_seas_1_flt_2Fleet_02 0.0295317 0 Act 0.0294347
@@ -121,7 +121,7 @@ LnQ_base_Indx_ZAF-BB(10) -10.7945 0 Fix 0.355137
 Size_DblN_peak_Fleet_01(1) 108.469 0 Act 0.622443
 Size_DblN_top_logit_Fleet_01(1) -1.28875 0 Act 0.592781
 Size_DblN_ascend_se_Fleet_01(1) 6.24837 0 Act 0.640523
-Size_DblN_descend_se_Fleet_01(1) -9.50001 0 Act 0.5
+Size_DblN_descend_se_Fleet_01(1) -9.5 0 Act 0.5
 Size_DblN_start_logit_Fleet_01(1) -15 0 Fix 0.970414
 Size_DblN_end_logit_Fleet_01(1) -0.776188 0 Act 0.538307
 Size_DblN_peak_Fleet_02(2) 107.489 0 Act 0.613536

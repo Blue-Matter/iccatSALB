@@ -48,7 +48,6 @@ Run_SS3_Grid(
   skipfinished = FALSE
 )
 
-
 Grid_OM_Specs <- list(
   Name       = OMSpecs$Name,
   nSim       = OMSpecs$nSim,
@@ -68,59 +67,36 @@ Import_OM_Grid(
 )
 
 
-
-
-Hist <- readRDS('objects/Hist/Reference/001.hist')
-
 # ---- Robustness Models ----
 
-# TODO: add beta estimation/implementation in MSEtool
+# Each robustness scenario downweights one survey index to zero (lambda = 0)
+# across the full growth x M grid, then re-runs and imports the resulting OMs.
+Robustness_Scenarios <- c(
+  R1 = 'Indx_BR_URY-LL',
+  R2 = 'Indx_CTP-LL_TB2'
+)
 
-## ---- R1: Down-weight Surv_Indx_BR_URY-LL_Phz1 Index ----
+for (r_name in names(Robustness_Scenarios)) {
 
-drop_fleet <- 'Surv_Indx_BR_URY-LL_Phz1'
+  R_Grid <- Downweight_Index_Grid(
+    grid         = OM_grid,
+    index_name   = Robustness_Scenarios[[r_name]],
+    out_base_dir = file.path('data-raw/robustness', r_name)
+  )
 
-R1_Grid <- OM_grid
+  Run_SS3_Grid(
+    run_dirs     = R_Grid$run_dir,
+    exe          = ss3_exe,
+    extras       = "-nohess",
+    skipfinished = FALSE
+  )
 
-R1_Grid$run_dir <- file.path('data-raw/robustness/R1', basename(R1_Grid$run_dir ))
-R1_Grid$is_ref <- NULL
-
-for (i in seq_len(nrow(R1_Grid))) {
-
-  # copy already modified files over
-  fls <- list.files(OM_grid$run_dir[i])
-  if (!dir.exists(R1_Grid$run_dir[i]))
-    dir.create(R1_Grid$run_dir[i], recursive = TRUE)
-
-  file.copy(file.path(OM_grid$run_dir[i], fls),
-            file.path(R1_Grid$run_dir[i], fls),
-            )
-
-
-  ctl <- r4ss::SS_readctl(file = file.path(R1_Grid$run_dir[i],"control.ss_new"),
-                          datlist = r4ss::SS_readdat(file.path(R1_Grid$run_dir[i],"data.ss_new")))
-
-  fleet_ind <- which(rownames(ctl$lambdas) == drop_fleet)
-
-  ctl$lambdas$value <- 0
-
-  r4ss::SS_writectl(ctl, file.path(R1_Grid$run_dir[i],"control.ss_new"), overwrite = TRUE)
-
+  Import_OM_Grid(
+    grid     = R_Grid,
+    out_dir  = file.path('objects/OM/Robustness', r_name),
+    om_specs = Grid_OM_Specs
+  )
 }
-
-# run SS for robustness OM
-
-
-
-## ---- R2: Down-weight Surv_Indx_CTP-LL_TB2_Phz1 Index ----
-
-'Surv_Indx_CTP-LL_TB2_Phz1'
-
-# write files
-
-# run SS for robustness OM
-
-
 
 MSEtool::DisableParallel()
 

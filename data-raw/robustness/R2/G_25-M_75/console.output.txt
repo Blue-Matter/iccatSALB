@@ -1,0 +1,75 @@
+###
+console output
+2026-08-04 09:05:43.617147
+###
+ 
+ reading from starter.ss
+ reading from data file
+Data read successful 999
+
+ reading forecast file 
+ reading from control file
+End of control file successful! 999
+Begin setting up parameters ...  end of parameter section 
+Evaluating biology calculations once ... done
+Starting optimization of 'ss3' in phase 1 of 4 at Tue Aug  4 09:04:44 2026
+phase= 1 | nvar=  6 | iter=  0 | nll=2.46e+03 | mag=6.58e+07 | par[  1]=SR_parm[1]
+phase= 1 | nvar=  6 | iter= 20 | nll=4.91e+02 | mag=1.05e+05 | par[  1]=SR_parm[1]
+phase= 1 | nvar=  6 | iter= 40 | nll=4.82e+02 | mag=1.72e+04 | par[  1]=SR_parm[1]
+phase= 1 | nvar=  6 | iter= 60 | nll=4.48e+02 | mag=1.75e+02 | par[  1]=SR_parm[1]
+Exiting without success due to excessive function evaluations (maxfn=100) | mag=2146.18
+phase= 1 | nvar=  6 | iter= 66 | nll=4.33e+02 | mag=2.15e+03 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 60 | iter=  0 | nll=4.33e+02 | mag=2.15e+03 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 60 | iter= 20 | nll=3.29e+02 | mag=1.90e+03 | par[  2]=SR_parm[6]
+phase= 2 | nvar= 60 | iter= 40 | nll=3.16e+02 | mag=2.02e+03 | par[  1]=SR_parm[1]
+phase= 2 | nvar= 60 | iter= 60 | nll=3.08e+02 | mag=3.06e+03 | par[  1]=SR_parm[1]
+Exiting without success due to excessive function evaluations (maxfn=100) | mag=3602.34
+phase= 2 | nvar= 60 | iter= 64 | nll=3.07e+02 | mag=3.60e+03 | par[  1]=SR_parm[1]
+phase= 3 | nvar= 81 | iter=  0 | nll=3.07e+02 | mag=3.60e+03 | par[  1]=SR_parm[1]
+phase= 3 | nvar= 81 | iter= 20 | nll=2.93e+02 | mag=1.10e+04 | par[  1]=SR_parm[1]
+phase= 3 | nvar= 81 | iter= 40 | nll=2.91e+02 | mag=7.23e+03 | par[  1]=SR_parm[1]
+phase= 3 | nvar= 81 | iter= 60 | nll=2.85e+02 | mag=6.31e+03 | par[  1]=SR_parm[1]
+Exiting without success due to excessive function evaluations (maxfn=100) | mag=5498.48
+phase= 3 | nvar= 81 | iter= 72 | nll=2.83e+02 | mag=5.50e+03 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=  0 | nll=2.83e+02 | mag=5.50e+03 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter= 20 | nll=2.76e+02 | mag=2.26e+03 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter= 40 | nll=2.75e+02 | mag=3.20e+03 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter= 60 | nll=2.71e+02 | mag=4.73e+02 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter= 80 | nll=2.69e+02 | mag=1.29e+03 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=100 | nll=2.64e+02 | mag=6.27e+03 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=120 | nll=2.60e+02 | mag=1.30e+02 | par[ 72]=selparm[3]
+phase= 4 | nvar= 91 | iter=140 | nll=2.57e+02 | mag=1.04e+03 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=160 | nll=2.56e+02 | mag=2.07e+02 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=180 | nll=2.56e+02 | mag=3.55e+02 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=200 | nll=2.56e+02 | mag=6.73e+01 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=220 | nll=2.56e+02 | mag=4.20e+00 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=240 | nll=2.56e+02 | mag=4.30e+00 | par[ 75]=selparm[7]
+phase= 4 | nvar= 91 | iter=260 | nll=2.56e+02 | mag=9.03e+01 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=280 | nll=2.56e+02 | mag=8.68e-01 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=300 | nll=2.56e+02 | mag=6.06e-01 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=320 | nll=2.56e+02 | mag=5.94e-01 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=340 | nll=2.56e+02 | mag=5.29e+00 | par[ 75]=selparm[7]
+phase= 4 | nvar= 91 | iter=360 | nll=2.56e+02 | mag=5.92e-01 | par[  2]=SR_parm[6]
+phase= 4 | nvar= 91 | iter=380 | nll=2.56e+02 | mag=1.20e+03 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=400 | nll=2.56e+02 | mag=8.97e+00 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=420 | nll=2.56e+02 | mag=8.65e+01 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=440 | nll=2.56e+02 | mag=9.08e-02 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=460 | nll=2.56e+02 | mag=2.28e+00 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=480 | nll=2.56e+02 | mag=3.38e-01 | par[  1]=SR_parm[1]
+phase= 4 | nvar= 91 | iter=494 | nll=2.56e+02 | mag=7.51e-05 | par[ 72]=selparm[3]
+Optimization completed after 59 s with final statistics:
+  nll=255.520668 | mag=7.51182e-05 | par[ 72]=selparm[3]
+
+Iterations: 974
+Finished calculating benchmarks
+Finished forecast
+Writing wtatage.ss_new
+mceval counter: 0
+Finished posteriors
+Finished final writing of report.sso
+Begin writing *.ss_new output files ... Finished writing *.ss_new output files
+
+!!  Run has completed  !! 
+!!  See warning.sso for 1 warning  and 1 note 
+
+Finished running model 'ss3' after 59 s.

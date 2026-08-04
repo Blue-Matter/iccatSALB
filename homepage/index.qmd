@@ -24,7 +24,7 @@ organised as follows:
 
 | Directory / File | Purpose |
 |------------------------------------|------------------------------------|
-| `R/` | Package functions and objects. Currently not used |
+| `R/` | Package functions and objects.  |
 | `analysis/` | Analysis scripts that run the MSE  |
 | `data-raw/` | ABC conditioning model output  |
 | `objects/` | Saved R objects produced by the analysis scripts (`OM/`, `Hist/`, etc.) |

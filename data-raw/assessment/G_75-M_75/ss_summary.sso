@@ -1,13 +1,13 @@
 #V3.30.23.1;_safe;_compile_date:_Dec  5 2024;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_13.2
 data.ss_new #_DataFile 
 control.ss_new #_Control 
-Run_Date: Thu Jul 30 10:12:00 2026
-Final_phase: 4  N_iterations: 616
+Run_Date: Tue Aug  4 08:48:06 2026
+Final_phase: 4  N_iterations: 587
 #_LIKELIHOOD 
 Label logL*Lambda
 TOTAL_LogL 216.986
-Catch 1.96694e-06
-Equil_catch 6.80965e-05
+Catch 1.96695e-06
+Equil_catch 6.80963e-05
 Survey -132.535
 Length_comp 364.02
 Recruitment -14.741
@@ -83,7 +83,7 @@ Main_RecrDev_1996 -0.00532053 0 Act 0.49962
 Main_RecrDev_1997 -0.0797341 0 Act 0.494305
 Main_RecrDev_1998 -0.160131 0 Act 0.488562
 Main_RecrDev_1999 -0.152663 0 Act 0.489095
-Main_RecrDev_2000 -0.00163238 0 Act 0.499883
+Main_RecrDev_2000 -0.00163237 0 Act 0.499883
 Main_RecrDev_2001 0.140174 0 Act 0.510012
 Main_RecrDev_2002 0.105196 0 Act 0.507514
 Main_RecrDev_2003 0.108539 0 Act 0.507753
@@ -91,11 +91,11 @@ Main_RecrDev_2004 0.0644693 0 Act 0.504605
 Main_RecrDev_2005 0.160162 0 Act 0.51144
 Main_RecrDev_2006 0.082523 0 Act 0.505894
 Main_RecrDev_2007 -0.268065 0 Act 0.480852
-Main_RecrDev_2008 -0.296808 0 Act 0.478799
+Main_RecrDev_2008 -0.296809 0 Act 0.478799
 Main_RecrDev_2009 -0.245835 0 Act 0.48244
 Main_RecrDev_2010 -0.0499061 0 Act 0.496435
 Main_RecrDev_2011 -0.136252 0 Act 0.490268
-Main_RecrDev_2012 -0.000521088 0 Act 0.499963
+Main_RecrDev_2012 -0.000521092 0 Act 0.499963
 Main_RecrDev_2013 -0.338404 0 Act 0.475828
 Main_RecrDev_2014 -0.276064 0 Act 0.480281
 Main_RecrDev_2015 -0.250086 0 Act 0.482137
@@ -107,7 +107,7 @@ Main_RecrDev_2020 -0.133706 0 Act 0.49045
 Main_RecrDev_2021 -0.0801362 0 Act 0.494276
 Main_RecrDev_2022 -0.143133 0 Act 0.489776
 Late_RecrDev_2023 -0.0655767 0 Act 0.495316
-Late_RecrDev_2024 -0.00305779 0 Act 0.499782
+Late_RecrDev_2024 -0.00305778 0 Act 0.499782
 ForeRecr_2025 0 0 Act 0.5
 #_Init_F
 InitF_seas_1_flt_2Fleet_02 0.0374621 0 Act 0.0373658
@@ -121,13 +121,13 @@ LnQ_base_Indx_ZAF-BB(10) -10.8019 0 Fix 0.354952
 Size_DblN_peak_Fleet_01(1) 112.16 0 Act 0.655996
 Size_DblN_top_logit_Fleet_01(1) -1.72352 0 Act 0.581912
 Size_DblN_ascend_se_Fleet_01(1) 6.29386 0 Act 0.643366
-Size_DblN_descend_se_Fleet_01(1) -9.50172 0 Act 0.499944
+Size_DblN_descend_se_Fleet_01(1) -9.50174 0 Act 0.499944
 Size_DblN_start_logit_Fleet_01(1) -15 0 Fix 0.970414
 Size_DblN_end_logit_Fleet_01(1) -0.38974 0 Act 0.546895
 Size_DblN_peak_Fleet_02(2) 110.256 0 Act 0.638691
 Size_DblN_top_logit_Fleet_02(2) -2.77132 0 Act 0.555717
 Size_DblN_ascend_se_Fleet_02(2) 6.0295 0 Act 0.626844
-Size_DblN_descend_se_Fleet_02(2) -9.50002 0 Act 0.499999
+Size_DblN_descend_se_Fleet_02(2) -9.5 0 Act 0.5
 Size_DblN_start_logit_Fleet_02(2) -15 0 Fix 0.970414
 Size_DblN_end_logit_Fleet_02(2) -2.27227 0 Act 0.36365
 Size_DblN_peak_Fleet_03(3) 107.766 0 Act 0.616055

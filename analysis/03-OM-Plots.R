@@ -7,13 +7,23 @@ here::i_am('analysis/03-OM-Plots.R')
 
 source(here::here('analysis', '00-Specifications.R'))
 
-Hist_files <- list.files(here::here('objects', 'Hist', 'Reference'), pattern = '\\.hist$', full.names = TRUE)
+read_hist_dir <- function(dir) {
+  Hist_files <- list.files(dir, pattern = '\\.hist$', full.names = TRUE)
+  purrr::map(Hist_files, readRDS) |>
+    purrr::set_names(tools::file_path_sans_ext(basename(Hist_files)))
+}
 
-OM_names   <- tools::file_path_sans_ext(basename(Hist_files))
+HistList <- read_hist_dir(here::here('objects', 'Hist', 'Reference'))
+OM_names  <- names(HistList)
 
-HistList <- purrr::map(Hist_files, readRDS) |>
-  purrr::set_names(OM_names)
+# ---- load_robustness_files ----
 
+Robustness_dirs <- list.files(here::here('objects', 'Hist', 'Robustness'), full.names = TRUE) |>
+  purrr::set_names(basename)
+
+RobustnessHistList <- purrr::map(Robustness_dirs, read_hist_dir)
+
+AllHistList <- c(list(Reference = HistList), RobustnessHistList)
 
 # ---- lifehistory ----
 
@@ -59,7 +69,7 @@ p_sb <- ggplot(SB, aes(x = Year, y = Value, colour = OM)) +
   labs(x = 'Year', y = 'SB') +
   expand_limits(y = c(0, 1)) +
   theme_bw() +
-  theme(legend.position = 'bottom')
+  theme(legend.position = 'none')
 
 print(p_sb)
 
@@ -69,6 +79,7 @@ SBSB0 <- purrr::imap_dfr(HistList, function(Hist, om_name) {
   SB_SB0(Hist, df = TRUE) |>
     dplyr::mutate(OM = om_name)
 })
+
 
 p_sbsb0 <- ggplot(SBSB0, aes(x = Year, y = Value, colour = OM)) +
   stat_summary(fun = median, geom = 'line') +
@@ -151,3 +162,65 @@ knitr::kable(
   ),
   escape = FALSE
 )
+
+# ---- Robustness Comparison ----
+
+extract_grid_metric <- function(HistLists, metric_fun) {
+  purrr::imap_dfr(HistLists, function(HistList, model_name) {
+    purrr::imap_dfr(HistList, function(Hist, om_name) {
+      metric_fun(Hist, df = TRUE) |>
+        dplyr::mutate(OM = om_name, Model = model_name)
+    })
+  }) |>
+    dplyr::mutate(
+      Growth  = paste('Growth:', gsub('G_(\\d+)-M_\\d+', '\\1', OM)),
+      NatMort = paste('M:', gsub('G_\\d+-M_(\\d+)', '\\1', OM))
+    )
+}
+
+plot_grid_metric <- function(data, ylab, hline = NA) {
+  p <- ggplot(data, aes(x = Year, y = Value, colour = Model))
+
+  if (!is.na(hline)) p <- p + geom_hline(yintercept = hline, linetype = 2)
+
+  p +
+    stat_summary(fun = median, geom = 'line') +
+    facet_grid(NatMort ~ Growth) +
+    labs(x = 'Year', y = ylab, colour = 'Model') +
+    expand_limits(y = c(0, 1)) +
+    theme_bw() +
+    theme(legend.position = 'bottom')
+}
+
+# ---- sb_robustness ----
+
+SB_Robustness <- extract_grid_metric(AllHistList, MSEtool::SBiomass)
+
+p_sb_robustness <- plot_grid_metric(SB_Robustness, ylab = 'SB')
+
+print(p_sb_robustness)
+
+# ---- depletion_robustness ----
+
+SBSB0_Robustness <- extract_grid_metric(AllHistList, MSEtool::SB_SB0)
+
+p_sbsb0_robustness <- plot_grid_metric(SBSB0_Robustness, ylab = expression(SB/SB[0]))
+
+print(p_sbsb0_robustness)
+
+# ---- depletion_msy_robustness ----
+
+SBSBMSY_Robustness <- extract_grid_metric(AllHistList, MSEtool::SB_SBMSY)
+
+p_sbsbmsy_robustness <- plot_grid_metric(SBSBMSY_Robustness, ylab = expression(SB/SB[MSY]), hline = 1)
+
+print(p_sbsbmsy_robustness)
+
+# ---- f_msy_robustness ----
+
+F_FMSY_Robustness <- extract_grid_metric(AllHistList, MSEtool::F_FMSY)
+
+p_ffmsy_robustness <- plot_grid_metric(F_FMSY_Robustness, ylab = expression(F/F[MSY]), hline = 1)
+
+print(p_ffmsy_robustness)
+

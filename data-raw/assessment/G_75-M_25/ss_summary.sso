@@ -1,8 +1,8 @@
 #V3.30.23.1;_safe;_compile_date:_Dec  5 2024;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_13.2
 data.ss_new #_DataFile 
 control.ss_new #_Control 
-Run_Date: Thu Jul 30 10:12:00 2026
-Final_phase: 4  N_iterations: 1108
+Run_Date: Tue Aug  4 08:48:06 2026
+Final_phase: 4  N_iterations: 978
 #_LIKELIHOOD 
 Label logL*Lambda
 TOTAL_LogL 226.336
@@ -59,7 +59,7 @@ Main_RecrDev_1972 -0.182358 0 Act 0.486974
 Main_RecrDev_1973 -0.154227 0 Act 0.488984
 Main_RecrDev_1974 -0.0877114 0 Act 0.493735
 Main_RecrDev_1975 0.0202871 0 Act 0.501449
-Main_RecrDev_1976 0.00044927 0 Act 0.500032
+Main_RecrDev_1976 0.000449271 0 Act 0.500032
 Main_RecrDev_1977 0.0650424 0 Act 0.504646
 Main_RecrDev_1978 -0.142058 0 Act 0.489853
 Main_RecrDev_1979 -0.187319 0 Act 0.48662
@@ -121,13 +121,13 @@ LnQ_base_Indx_ZAF-BB(10) -10.7918 0 Fix 0.355205
 Size_DblN_peak_Fleet_01(1) 104.317 0 Act 0.584699
 Size_DblN_top_logit_Fleet_01(1) -0.959926 0 Act 0.601002
 Size_DblN_ascend_se_Fleet_01(1) 6.16494 0 Act 0.635309
-Size_DblN_descend_se_Fleet_01(1) -9.50518 0 Act 0.499833
+Size_DblN_descend_se_Fleet_01(1) -9.50519 0 Act 0.499832
 Size_DblN_start_logit_Fleet_01(1) -15 0 Fix 0.970414
 Size_DblN_end_logit_Fleet_01(1) -1.17674 0 Act 0.529406
 Size_DblN_peak_Fleet_02(2) 104.198 0 Act 0.583621
 Size_DblN_top_logit_Fleet_02(2) -1.61978 0 Act 0.584506
 Size_DblN_ascend_se_Fleet_02(2) 5.93291 0 Act 0.620807
-Size_DblN_descend_se_Fleet_02(2) -9.49734 0 Act 0.500086
+Size_DblN_descend_se_Fleet_02(2) -9.49735 0 Act 0.500085
 Size_DblN_start_logit_Fleet_02(2) -15 0 Fix 0.970414
 Size_DblN_end_logit_Fleet_02(2) -2.96634 0 Act 0.343819
 Size_DblN_peak_Fleet_03(3) 105.196 0 Act 0.592692
@@ -544,7 +544,7 @@ SmryBio_1966 217136 0.0
 SmryBio_1967 207251 0.0
 SmryBio_1968 210623 0.0
 SmryBio_1969 204449 0.0
-SmryBio_1970 193930 0.0
+SmryBio_1970 193931 0.0
 SmryBio_1971 186291 0.0
 SmryBio_1972 177147 0.0
 SmryBio_1973 161550 0.0
@@ -553,7 +553,7 @@ SmryBio_1975 153894 0.0
 SmryBio_1976 158385 0.0
 SmryBio_1977 162413 0.0
 SmryBio_1978 163630 0.0
-SmryBio_1979 161047 0.0
+SmryBio_1979 161048 0.0
 SmryBio_1980 157492 0.0
 SmryBio_1981 152604 0.0
 SmryBio_1982 146394 0.0
@@ -618,7 +618,7 @@ TotBio_1966 217136 0.0
 TotBio_1967 207251 0.0
 TotBio_1968 210623 0.0
 TotBio_1969 204449 0.0
-TotBio_1970 193930 0.0
+TotBio_1970 193931 0.0
 TotBio_1971 186291 0.0
 TotBio_1972 177147 0.0
 TotBio_1973 161550 0.0
@@ -627,7 +627,7 @@ TotBio_1975 153894 0.0
 TotBio_1976 158385 0.0
 TotBio_1977 162413 0.0
 TotBio_1978 163630 0.0
-TotBio_1979 161047 0.0
+TotBio_1979 161048 0.0
 TotBio_1980 157492 0.0
 TotBio_1981 152604 0.0
 TotBio_1982 146394 0.0

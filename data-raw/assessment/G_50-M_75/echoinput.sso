@@ -2893,7 +2893,7 @@ Finished lencomp obj_fun  654.662 244.116 378.765 183.733 134.36 0 0 0 0 0
  catch -log(L)  1.42424e+06 1.33506e+06 1.36051e+06 1.3421e+06 1.37612e+06 0 0 0 0 0
 Finished recruitdev obj_fun -22.9703 25.0688 0.32
  OK with obj_func 6.84421e+06
-Iterations: 661
+Iterations: 978
 Finished calculating benchmarks
 Finished forecast
 Writing wtatage.ss_new

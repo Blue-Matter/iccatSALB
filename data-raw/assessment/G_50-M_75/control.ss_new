@@ -6,7 +6,7 @@
 #_Source_code_at:_https://github.com/nmfs-ost/ss3-source-code
 
 #C file created using an r4ss function
-#C file write time: 2026-07-30  10:07:38
+#C file write time: 2026-08-04  08:47:53
 #_data_and_control_files: data.ss_new // control.ss_new
 0  # 0 means do not read wtatage.ss; 1 means read and use wtatage.ss and also read and use growth parameters
 1  #_N_Growth_Patterns (Growth Patterns, Morphs, Bio Patterns, GP are terms used interchangeably in SS3)
@@ -257,7 +257,7 @@
             40           150       116.557       131.116            99             0          3          0          0          0          0          0          0          0  #  Size_DblN_peak_Fleet_01(1)
            -25            15      -2.75088      -4.70237            99             0          3          0          0          0          0          0          0          0  #  Size_DblN_top_logit_Fleet_01(1)
             -4            12        6.3905       7.01235            99             0          3          0          0          0          0          0          0          0  #  Size_DblN_ascend_se_Fleet_01(1)
-           -25             6      -9.50267      -9.49999            99             0          3          0          0          0          0          0          0          0  #  Size_DblN_descend_se_Fleet_01(1)
+           -25             6      -9.50269      -9.49999            99             0          3          0          0          0          0          0          0          0  #  Size_DblN_descend_se_Fleet_01(1)
           -999            15           -15           -15            99             0         -2          0          0          0          0          0          0          0  #  Size_DblN_start_logit_Fleet_01(1)
            -25            20      0.178554       5.95856            99             0          3          0          0          0          0          0          0          0  #  Size_DblN_end_logit_Fleet_01(1)
 # 2   Fleet_02 LenSelex

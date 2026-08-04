@@ -1,7 +1,5 @@
+library(iccatSALB)
 library(MSEtool)
-Hist <- readRDS('objects/Hist/Ref.hist')
-Data <- Data(Hist)[[1]][[1]]
-Data@Survey@Name
 
 # ---- Combined Abundance Index ----
 # Combines the abundance indices available in the terminal year into a single
@@ -27,39 +25,31 @@ CombinedIndex <- function(Data) {
 }
 
 # ----- Surplus Production Model ----
-SP_FMSY <- function(Data, MSY_frac=1, MaxChange=0.4, ...) {
-  advice <- Advice()
+SP_FMSY <- function(Data, MSY_frac=1, MaxChange=0.2, ...) {
 
-  data <- new('Data')
-  data@Year <- Data@Years
-  data@LHYear <- Data@YearLH
-  data@Cat <- matrix(rowSums(Data@Landings@Value), 1, length(data@Year))
-  Index <- CombinedIndex(Data)
-  data@Ind <- matrix(Index, 1, length(data@Year))
-  data@CV_Ind <- array(0.2, dim(data@Ind))
-  data@Year <- data@Year[1:length(data@Cat[1,])]
+  data <- Build_Legacy_Data_MultiIndex(Data, CV = 0.2)
+  nInd <- dim(data@AddInd)[2]
 
-  do_Assessment <- SAMtool::SP(x = 1, Data = data)
+  # TRY SPICT?
+
+  do_Assessment <- SAMtool::SP(
+    x = 1,
+    Data = data,
+    AddInd = seq_len(nInd),
+    start  = list(n = 1, dep = 0.9),
+    fix_n  = TRUE,     # Fox model, BMSY/K = 0.37 — matches continuity run
+    fix_dep = TRUE,    # dep = 0.9 anchor, approximating Beta(0.9, CV=0.1)
+    prior  = list(r = c(0.2, 1))   # exact match to JABBA's r ~ ln(log(0.2), 1)
+  )
+
+
   Rec <- SAMtool::HCR_MSY(Assessment = do_Assessment, MSY_frac = MSY_frac)
 
-  NewTAC <- as.numeric(Rec@TAC)
-  LastTAC <- LastTAC(Data)
+  Cap <- Cap_TAC_Change(as.numeric(Rec@TAC), LastTAC(Data), MaxChange)
 
-  if (!is.finite(NewTAC)) {
-    NewTAC <- LastTAC
-    advice@Log <- list(warning="non-finite TAC; using previous TAC")
-  }
-
-
-  deltaTAC <- NewTAC/LastTAC
-  if (deltaTAC>(1+MaxChange)) {
-    NewTAC <- LastTAC * (1+MaxChange)
-  }
-  if (deltaTAC<(1-MaxChange)) {
-    NewTAC <- LastTAC * (1-MaxChange)
-  }
-
-  advice@TAC <- NewTAC
+  advice <- Advice()
+  advice@TAC <- Cap$TAC
+  if (!is.null(Cap$Log)) advice@Log <- Cap$Log
   advice
 }
 class(SP_FMSY) <- 'mp'
@@ -72,85 +62,34 @@ class(SP_75FMSY) <- 'mp'
 # ---- Index Ratio ----
 
 IRatio <- function(Data, MaxChange=0.4) {
-  advice <- Advice()
 
-  data <- new('Data')
-  data@Year <- Data@Years
-  data@LHYear <- Data@YearLH
-  data@Cat <- matrix(rowSums(Data@Landings@Value), 1, length(data@Year))
-  Index <- CombinedIndex(Data)
-  data@Ind <- matrix(Index, 1, length(data@Year))
-  data@Year <- data@Year[1:length(data@Cat[1,])]
+  data <- Build_Legacy_Data(Data, CombinedIndex)
 
   Rec <- DLMtool::Iratio(1, data, reps=1)
-  NewTAC <- as.numeric(Rec@TAC)
-  LastTAC <- LastTAC(Data)
-  if (!is.finite(NewTAC)) {
-    NewTAC <- LastTAC
-    advice@Log <- list(warning="non-finite TAC; using previous TAC")
-  }
 
-  deltaTAC <- NewTAC/LastTAC
-  if (deltaTAC>(1+MaxChange)) {
-    NewTAC <- LastTAC * (1+MaxChange)
-  }
-  if (deltaTAC<(1-MaxChange)) {
-    NewTAC <- LastTAC * (1-MaxChange)
-  }
+  Cap <- Cap_TAC_Change(as.numeric(Rec@TAC), LastTAC(Data), MaxChange)
 
-  advice@TAC <- NewTAC
+  advice <- Advice()
+  advice@TAC <- Cap$TAC
+  if (!is.null(Cap$Log)) advice@Log <- Cap$Log
   advice
 }
 class(IRatio) <- 'mp'
 
 ISlope <- function(Data, MaxChange=0.4) {
 
-  data <- new('Data')
-  data@Year <- Data@Years
-  data@LHYear <- Data@YearLH
-  data@Cat <- matrix(rowSums(Data@Landings@Value), 1, length(data@Year))
-  Index <- CombinedIndex(Data)
-  data@Ind <- matrix(Index, 1, length(data@Year))
-  data@Year <- data@Year[1:length(data@Cat[1,])]
+  data <- Build_Legacy_Data(Data, CombinedIndex)
 
   Rec <- DLMtool::Islope1(1, data, reps=1, xx=0)
-  NewTAC <- as.numeric(Rec@TAC)
-  LastTAC <- LastTAC(Data)
-  if (!is.finite(NewTAC)) {
-    NewTAC <- LastTAC
-    advice@Log <- list(warning="non-finite TAC; using previous TAC")
-  }
 
-  deltaTAC <- NewTAC/LastTAC
-  if (deltaTAC>(1+MaxChange)) {
-    NewTAC <- LastTAC * (1+MaxChange)
-  }
-  if (deltaTAC<(1-MaxChange)) {
-    NewTAC <- LastTAC * (1-MaxChange)
-  }
+  Cap <- Cap_TAC_Change(as.numeric(Rec@TAC), LastTAC(Data), MaxChange)
 
   advice <- Advice()
-  advice@TAC <- NewTAC
+  advice@TAC <- Cap$TAC
+  if (!is.null(Cap$Log)) advice@Log <- Cap$Log
   advice
 }
 class(ISlope) <- 'mp'
-
-# ---- Constant Catch ----
-
-CC24000 <- function(Data) {
-  advice <- Advice()
-  advice@TAC <- 24000
-  advice
-}
-class(CC24000) <- 'mp'
-
-
-CC28000 <- function(Data) {
-  advice <- Advice()
-  advice@TAC <- 28000
-  advice
-}
-class(CC28000) <- 'mp'
 
 # ---- Stepped TAC ----
 
@@ -158,54 +97,29 @@ class(CC28000) <- 'mp'
 
 MCC1 <- function(Data, tunepar = 1) {
 
-  TACbase <- 20693 * tunepar # 2024 catch
+  # 2024 catch
+  landings <- Landings(Data)  |> Value()
+  ind <- MSEtool::LastHistYearInd(Data)
 
-  HistRefYears <- 2009:2012
+  TACbase <- sum(landings[ind,]) * tunepar
+
+  HistRefYears <- 2007:2010
   Index <- CombinedIndex(Data)
-  ind <- match(HistRefYears, names(Index))
+  Ibase <- mean(Index[match(HistRefYears, names(Index))], na.rm = TRUE)
+  Icurr <- mean(tail(Index, 3))
+  Irat  <- Icurr / Ibase
 
-  Ibase <- mean(Index[ind], na.rm=TRUE)
+  # TAC multiplier by index ratio (Icurr/Ibase); below the lowest breakpoint
+  # the stock is considered in poor condition and a fixed low TAC is used
+  # instead of a multiplier
+  IratBreaks <- c(0.50, 0.75, 1.20, 1.30, 1.40, 1.50, 1.60, 1.70)
+  TACmult    <- c(0.75, 1.00, 1.20, 1.30, 1.40, 1.50, 1.60, 1.70)
+  fixed_low_TAC <- 5000
 
-  Icurr <- mean(tail(Index,3))
+  ind <- findInterval(Irat, IratBreaks)
+  TAC <- if (ind == 0) fixed_low_TAC else TACbase * TACmult[ind]
 
-  Irat <- Icurr/Ibase
-
-  fixed_low_TAC <- NULL  # initialize
-
-  if (Irat>=1.70) {
-    deltaTAC <- 1.70
-  }
-  if (Irat>=1.60 & Irat<1.70) {
-    deltaTAC <- 1.60
-  }
-  if (Irat>=1.50 & Irat<1.60) {
-    deltaTAC <- 1.50
-  }
-  if (Irat>=1.40 & Irat<1.50) {
-    deltaTAC <- 1.40
-  }
-  if (Irat>=1.30 & Irat<1.40) {
-    deltaTAC <- 1.30
-  }
-  if (Irat>=1.20 & Irat<1.30) {
-    deltaTAC <- 1.20
-  }
-  if (Irat>=0.75 & Irat<1.20) {
-    deltaTAC <- 1
-  }
-  if (Irat>=0.5 & Irat<0.75) {
-    deltaTAC <- 0.75
-  }
-  if (Irat<0.5) {
-    fixed_low_TAC <- 5000
-  }
-
-  if (is.null(fixed_low_TAC)) {
-    TAC <- TACbase * deltaTAC
-  } else {
-    TAC <- fixed_low_TAC
-  }
-  Advice(TAC=TAC)
+  Advice(TAC = TAC)
 }
 class(MCC1) <- 'mp'
 

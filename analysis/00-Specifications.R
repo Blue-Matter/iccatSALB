@@ -74,3 +74,12 @@ vonbert_L_at_Amin <- function(Linf, K, t0, Amin = 0) {
   Linf * (1 - exp(-K * (Amin - t0)))
 }
 
+# ---- Performance Metrics ----
+
+# Interim Blim (footnote 1 of Resolution 24-09): 40% of SBMSY
+BlimFrac <- 0.4
+
+# TAC stability threshold (Resolution 24-09): +/-20% change between
+# management cycles
+StabilityThreshold <- 0.2
+
