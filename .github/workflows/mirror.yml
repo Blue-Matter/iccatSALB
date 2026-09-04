@@ -1,0 +1,29 @@
+name: Mirror to client repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout with full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up SSH deploy key
+        run: |
+          mkdir -p ~/.ssh
+          echo "$CLIENT_REPO_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+        env:
+          CLIENT_REPO_SSH_KEY: ${{ secrets.CLIENT_REPO_SSH_KEY }}
+
+      - name: Push to client repo
+        run: |
+          GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes" \
+            git push --force git@github.com:ICCAT/salb-mse.git main
