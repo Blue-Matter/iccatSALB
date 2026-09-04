@@ -1,0 +1,57 @@
+# Per-simulation values for the standard PM panel
+
+Same fixed panel of performance metrics as \[Calc_PMs()\]
+(\`PM\`/\`Window\` combinations), but keeps every simulation's own value
+instead of collapsing to \`@Mean\`. Intended for populating
+\`Slick::Boxplot()\`/ \`Slick::Quilt()\`/\`Slick::Spider()\` \`Value\`
+arrays, which need a \`Sim\` dimension so that averaging over a subset
+of selected OMs (in the \`Slick\` \`App()\`) is a mean over the raw
+per-sim values, not a mean of the per-OM means \[Calc_PMs()\] would
+give.
+
+For probability-scale PMs (\`Safety\`, \`Stability\`, \`Status\`) the
+per-sim value is read from \`@Prob\` (already the 0/1 indicator that
+\`@Mean\` averages – confirmed identical to \`@Mean\` when re-averaged).
+For natural-scale PMs (\`Yield\`, \`Depletion_Min\`, \`SB_SBMSY\`,
+\`F_FMSY\`), which leave \`@Prob\` all \`NA\`, the value is read from
+\`@Stat\` instead (the same slot \[Calc_PMs()\] averages for these).
+
+\`Safety\`, \`Stability\`, \`Status\`, and \`Depletion_Min\` are all
+naturally on a 0-1 scale and safe to use directly in a \`Spider()\`
+chart (which requires every PI on a 0-1 or 0-100 scale); \`Yield\`,
+\`SB_SBMSY\`, and \`F_FMSY\` are not and should be left out of
+\`Spider()\`.
+
+## Usage
+
+``` r
+Calc_PM_Stats(MSE, BlimFrac = 0.4, StabilityThreshold = 0.2, silent = TRUE)
+```
+
+## Arguments
+
+- MSE:
+
+  An \`mse\` object (or list of \`mse\` objects, combined via
+  \[MSEtool::CombineMSE()\]).
+
+- BlimFrac:
+
+  Numeric. Fraction of \`SBMSY\` used as the safety limit, passed
+  straight through as \`Lim\` (with \`Definition = 'SBiomass'\`).
+
+- StabilityThreshold:
+
+  Numeric. Passed to \[MSEtool::PM_Stability()\].
+
+- silent:
+
+  Logical. Suppress the \[MSEtool::CombineMSE()\] summary message when
+  \`MSE\` is a \`list\`. Default \`TRUE\`.
+
+## Value
+
+A tidy \`data.frame\` with columns \`PM\`, \`Window\`, \`PI\`,
+\`Stock\`, \`MP\`, \`Sim\`, \`Value\`. \`PI\` is the \`PM\`/\`Window\`
+pair collapsed into the single code expected by
+\`analysis/08-Create-Slick.R\`'s \`PM_Codes\` (see \[.PM_Code()\]).

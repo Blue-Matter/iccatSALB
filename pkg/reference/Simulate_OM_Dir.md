@@ -1,0 +1,37 @@
+# Simulate historical dynamics for a directory of operating models
+
+Recursively finds all \`.om\` files under \`om_dir\` (as saved by
+\[MSEtool::Save()\], runs \[MSEtool::Simulate()\] on each, and saves the
+resulting \`Hist\` object under \`hist_dir\`.
+
+## Usage
+
+``` r
+Simulate_OM_Dir(om_dir, hist_dir, recursive = TRUE)
+```
+
+## Arguments
+
+- om_dir:
+
+  Character. Directory to search for \`.om\` files.
+
+- hist_dir:
+
+  Character. Directory to save \`.hist\` files to; created (including
+  subdirectories) if necessary.
+
+- recursive:
+
+  Logical. If \`TRUE\` (default), searches subdirectories of \`om_dir\`
+  as well.
+
+## Value
+
+Invisibly, a character vector of the saved \`.hist\` file paths.
+
+## Details
+
+The directory structure of \`om_dir\` is mirrored under \`hist_dir\`, so
+e.g. \`om_dir/Reference/G_25-M_25.om\` is saved to
+\`hist_dir/Reference/G_25-M_25.hist\`.

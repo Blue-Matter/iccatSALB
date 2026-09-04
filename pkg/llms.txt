@@ -1,0 +1,84 @@
+# iccatSALB
+
+`iccatSALB` is an R package supporting the Management Strategy
+Evaluation (MSE) for South Atlantic albacore tuna, developed for the
+International Commission for the Conservation of Atlantic Tunas (ICCAT).
+It provides the operating models, management procedures, performance
+metrics, and all related data and code used to evaluate the candidate
+management procedures against a range of plausible operating models for
+the stock and fishery.
+
+See the [project homepage](https://iccatsalb.bluematterscience.com/) for
+an overview of the MSE materials, and the [Trial Specifications
+Document](https://iccatsalb.bluematterscience.com/tsd/) for full details
+of the operating models, management procedures, and performance metrics
+used in the MSE.
+
+## Installation
+
+You can install the `iccatSALB` package from its [GitHub
+repository](https://github.com/ICCAT/salb-mse) with:
+
+``` r
+
+# install.packages("pak")
+pak::pak("ICCAT/salb-mse")
+```
+
+# Package index
+
+## All functions
+
+- [`Best_Compliant()`](https://iccatsalb.bluematterscience.com/pkg/reference/Best_Compliant.md)
+  : Pick the highest-yield compliant row from a \[Tune_Grid()\] result
+- [`Build_MP_Variants()`](https://iccatsalb.bluematterscience.com/pkg/reference/Build_MP_Variants.md)
+  : Build a set of named MP variants from a generator and a parameter
+  grid
+- [`Build_OM_Grid()`](https://iccatsalb.bluematterscience.com/pkg/reference/Build_OM_Grid.md)
+  : Build a reference operating model grid specification
+- [`Calc_PM_Stats()`](https://iccatsalb.bluematterscience.com/pkg/reference/Calc_PM_Stats.md)
+  : Per-simulation values for the standard PM panel
+- [`Calc_PMs()`](https://iccatsalb.bluematterscience.com/pkg/reference/Calc_PMs.md)
+  : Tabulate a standard set of performance metrics, for comparing CMPs
+- [`Cap_TAC_Change()`](https://iccatsalb.bluematterscience.com/pkg/reference/Cap_TAC_Change.md)
+  : Cap the year-on-year change in a management procedure's TAC
+  recommendation
+- [`Downweight_Index()`](https://iccatsalb.bluematterscience.com/pkg/reference/Downweight_Index.md)
+  : Set the likelihood weight (lambda) for a survey index in an SS3
+  control file
+- [`Downweight_Index_Grid()`](https://iccatsalb.bluematterscience.com/pkg/reference/Downweight_Index_Grid.md)
+  : Build a robustness operating model grid by downweighting one survey
+  index
+- [`Extract_MSE_Timeseries()`](https://iccatsalb.bluematterscience.com/pkg/reference/Extract_MSE_Timeseries.md)
+  : Tidy per-simulation, per-year SB/SBMSY, F/FMSY, and Yield time
+  series
+- [`GetHistFiles()`](https://iccatsalb.bluematterscience.com/pkg/reference/GetHistFiles.md)
+  : List saved Hist files for a projection run
+- [`GetMSEFiles()`](https://iccatsalb.bluematterscience.com/pkg/reference/GetMSEFiles.md)
+  : List MSE files and build an OM index
+- [`Import_OM_Grid()`](https://iccatsalb.bluematterscience.com/pkg/reference/Import_OM_Grid.md)
+  : Import a grid of SS3 models into MSEtool operating model objects
+- [`Modify_Growth_M()`](https://iccatsalb.bluematterscience.com/pkg/reference/Modify_Growth_M.md)
+  : Modify growth and natural mortality parameters in an SS3 control
+  file
+- [`PM_Depletion_Min()`](https://iccatsalb.bluematterscience.com/pkg/reference/PM_Depletion_Min.md)
+  : Lowest depletion (SB/SB0) reached during a performance-metric window
+- [`PM_Ratio_Mean()`](https://iccatsalb.bluematterscience.com/pkg/reference/PM_Ratio_Mean.md)
+  : Mean SB/SBMSY or F/FMSY ratio over a performance-metric window
+- [`PM_Window_Years()`](https://iccatsalb.bluematterscience.com/pkg/reference/PM_Window_Years.md)
+  : Resolve a named performance-metric year window
+- [`PM_Years()`](https://iccatsalb.bluematterscience.com/pkg/reference/PM_Years.md)
+  : Restrict performance-metric years to those on/after an OM's
+  MPStartYear
+- [`Prepare_OM_Grid()`](https://iccatsalb.bluematterscience.com/pkg/reference/Prepare_OM_Grid.md)
+  : Prepare SS3 run directories for an operating model grid
+- [`Run_SS3_Grid()`](https://iccatsalb.bluematterscience.com/pkg/reference/Run_SS3_Grid.md)
+  : Run SS3 across a set of model directories in parallel
+- [`Simulate_OM_Dir()`](https://iccatsalb.bluematterscience.com/pkg/reference/Simulate_OM_Dir.md)
+  : Simulate historical dynamics for a directory of operating models
+- [`Tune_Grid()`](https://iccatsalb.bluematterscience.com/pkg/reference/Tune_Grid.md)
+  : Project a set of MP variants and tabulate performance metrics in one
+  call
+- [`Write_MP_Variants()`](https://iccatsalb.bluematterscience.com/pkg/reference/Write_MP_Variants.md)
+  : Write named MP-variant definitions into a CMP-definition script
+
