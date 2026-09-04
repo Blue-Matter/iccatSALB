@@ -1,0 +1,20 @@
+---
+suppress-bibliography: true
+---
+
+# Introduction
+
+This Trial Specifications Document (TSD) describes the design and technical details of the Management Strategy Evaluation (MSE) of South Atlantic albacore tuna (*Thunnus alalunga*; SALB), including the operating models, candidate management procedures, and performance metrics used to evaluate them.
+
+The TSD is a **living document** that will be updated as the MSE progresses to reflect the current state of the analysis.
+
+For more information on the South Atlantic Albacore (SALB) MSE process see the project [homepage](https://iccatsalb.bluematterscience.com/).
+
+## About the SALB MSE 
+
+The SALB MSE is built and maintained by [Blue Matter Science](https://bluematterscience.com) using the [openMSE](https://openMSE.com) framework. 
+
+The analysis is fully reproducible: all code, functions, and objects used to build the operating models, candidate management procedures, and performance indicators are available in associated [GitHub repository](https://github.com/ICCAT/salb-mse).
+
+To reproduce the analysis, download the GitHub repository] and work through the scripts in the `analysis` directory.
+

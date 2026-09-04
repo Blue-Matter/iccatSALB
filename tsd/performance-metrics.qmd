@@ -1,0 +1,127 @@
+---
+suppress-bibliography: true
+---
+
+# Performance Metrics {#sec-performance-metrics}
+
+```{r}
+#| include: false
+library(MSEtool)
+library(ggplot2)
+library(Slick)
+OM <- readRDS("../objects/OM/Ref.om")
+slick <- readRDS("../objects/slick.rds")
+```
+
+## Primary Performance Metrics
+
+Resolution 24-09 [@ICCAT2024Res2409] describes the initial operational management
+objectives for Southern Atlantic Albacore:
+
+1. **Stock Status.** The stock should have a 60% or greater probability of occurring in the
+green quadrant of the Kobe matrix over a 30-year projection period: i.e. $SB > SB_{MSY}$
+and $F < F_{MSY}$ simultaneously.
+
+2. **Safety.** There should be no greater than 15% probability of the stock falling below
+$B_{LIM}$ at any point during the 30-year projection period, using an interim $B_{LIM}$ of
+40% of $SB_{MSY}$. So
+that higher values are better for every PM, this is expressed as the probability of the
+stock remaining at or above $B_{LIM}$ throughout the projection period, with a target of
+at least 85%.
+
+3. **Yield.** The objective is to maximise overall catch levels. As the Resolution does not
+specify a particular statistic, the mean annual catch is used. 
+ 
+4. **Stability.** Any change in total allowable catch (TAC) between management periods
+should be 20% or less, noting that asymmetric stability limits (e.g. different thresholds
+for TAC increases versus decreases) may also be evaluated. This is expressed as the
+probability that the change in TAC between successive management cycles is less than
+20%; i.e. calculated between the TAC values actually set every `r Interval(OM)` years.
+
+@tbl-pm-summary summarises these objectives together with the corresponding
+performance metric and the associated target. The equation for each performance
+metric is given below the table.
+
+```{r}
+#| echo: false
+#| label: tbl-pm-summary
+#| tbl-cap: "Summary of the Resolution 24-09 [@ICCAT2024Res2409] initial operational management objectives and the corresponding performance metrics used to evaluate CMP performance."
+PrimarySummaryDF <- data.frame(
+  Objective = c('Stock Status', 'Safety', 'Yield', 'Stability'),
+  Metric    = c(
+    'Probability of occurring in the Kobe green quadrant',
+    'Probability of remaining at or above $B_{LIM}$ (40% $SB_{MSY}$) throughout the projection',
+    'Mean annual catch',
+    'Probability that the change in TAC between management periods is < 20%'
+  ),
+  Target    = c(
+    '≥ 60%',
+    '≥ 85%',
+    'Maximise',
+    'Ranked'
+  )
+)
+
+knitr::kable(PrimarySummaryDF, col.names = c('Objective', 'Performance Metric', 'Target'))
+```
+
+Each PM can also be calculated for an individual OM or across a set of OMs (e.g. the Reference Set).
+In the latter case, the simulations from every OM in the set are first combined 
+into a single pooled MSE object and the summary statistic (e.g. a probability 
+or a mean) is then calculated over that combined set of simulations. 
+
+The performance metrics in @tbl-pm-summary are calculated as follows:
+
+**Stock Status:**
+$$
+\text{Prob}\left(SB/SB_{MSY} > 1 \text{ and } F/F_{MSY} < 1\right)
+$$
+
+**Safety:**
+$$
+\text{Prob}\left(\min_y(SB_y/SB_{MSY}) \geq 0.4\right)
+$$
+
+**Yield:**
+$$
+\text{mean}_y(C_y)
+$$
+
+**Stability:**
+$$
+\text{Prob}\left(\lvert (TAC_c - TAC_{c-1})/TAC_{c-1}\rvert < 0.2\right)
+$$
+
+## Secondary Performance Metrics {#sec-secondary-pms}
+
+Beyond the four primary metrics above, a wider set of performance metrics are reported for every
+CMP/OM combination (@tbl-pm-secondary). 
+
+Every performance metric (PM) is calculated over the full 30-year projection period. 
+*Status*, *Yield*, *SB_SBMSY*, and *F_FMSY* are also broken down into three
+time windows: 
+
+1. Short: the first 10 years (2028 -- 2037);
+2. Medium: the second 10 years (2038 -- 2047);
+3. Long: the last 10 years (2048 -- 2057).
+```{r}
+#| echo: false
+#| label: tbl-pm-secondary
+#| tbl-cap: "Secondary performance metrics computed for every CMP/OM combination, in addition to the four primary metrics above."
+PrimaryCodes <- c('Yield_All', 'Safety', 'Status_All', 'Stability')
+
+bp <- slick@Boxplot
+SecondaryDF <- data.frame(
+  Code        = Slick::Code(bp),
+  Label       = Slick::Label(bp),
+  Description = Slick::Description(bp)
+)
+SecondaryDF <- SecondaryDF[!SecondaryDF$Code %in% PrimaryCodes, ]
+rownames(SecondaryDF) <- NULL
+
+knitr::kable(SecondaryDF, col.names = c('Code', 'Metric', 'Description'))
+```
+
+
+
+

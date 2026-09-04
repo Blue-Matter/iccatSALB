@@ -1,0 +1,497 @@
+---
+suppress-bibliography: true
+---
+
+# Candidate Management Procedures {#sec-cmps}
+
+```{r}
+#| include: false
+library(MSEtool)
+library(ggplot2)
+library(iccatSALB)
+source('../analysis/04-Define-CMPs.R')
+
+FinalMP_Families <- setdiff(names(MP_Groups), c('Reference', 'MultiIndexAgreement'))
+FinalMP_Groups <- MP_Groups[FinalMP_Families]
+FinalMP_Groups$MCC <- 'MCC_98'
+
+slick <- readRDS('../objects/slick.rds')
+MPMeta <- data.frame(Code = Slick::Code(slick@MPs), Label = Slick::Label(slick@MPs))
+mp_label <- function(code) MPMeta$Label[match(code, MPMeta$Code)]
+
+hcr_curve <- function(ControlPointsIndex, ControlPointsRate, RampType = 'linear', xmax = 1.8, n = 400) {
+  x <- seq(0, xmax, length.out = n)
+  y <- vapply(x, function(xi) {
+    MSEtool::HockeyStickHCR(TrialRate = 1, Est = xi, Ref = 1,
+                             ControlPointsIndex = ControlPointsIndex,
+                             ControlPointsRate = ControlPointsRate,
+                             RampType = RampType)
+  }, numeric(1))
+  data.frame(x = x, y = y)
+}
+
+plot_hcr <- function(ControlPointsIndex, ControlPointsRate, RampType = 'linear',
+                      xlab, ylab = 'Fraction of trial rate applied') {
+  ggplot(hcr_curve(ControlPointsIndex, ControlPointsRate, RampType), aes(x, y)) +
+    geom_line(linewidth = 0.9, color = '#0072B2') +
+    expand_limits(x = 0, y = c(0, 1.05)) +
+    labs(x = xlab, y = ylab) +
+    theme_bw()
+}
+
+pct_cap <- function(dd, du) {
+  if (isTRUE(all.equal(dd[2], du[2]))) {
+    sprintf('%.0f%%', 100 * dd[2])
+  } else {
+    sprintf('%.0f%% down / %.0f%% up', 100 * dd[2], 100 * du[2])
+  }
+}
+
+pct_range_of <- function(variant_name) {
+  gen <- get(variant_name)
+  pct_cap(eval(formals(gen)$DeltaDown), eval(formals(gen)$DeltaUp))
+}
+```
+
+The MSE currently includes three model-free CMP families:
+
+1. Index Rate
+2. Mostly Constant Catch
+3. Ensemble
+
+There are two variants of the Index Rate and Ensemble CMPs, making a total five CMPs included in
+the analysis (@tbl-cmp-summary). Each CMP is described in full in the sections below.
+
+Model-based CMPs using a surplus production assessment model (SPiCT; @pedersenStochasticSurplusProduction2017) were
+thoroughly explored but were not included in the final analysis due to the consistent poor performance relative to the
+model-free CMPs.
+
+## Description of CMPs 
+
+```{r}
+#| label: tbl-cmp-summary
+#| echo: false
+#| tbl-cap: "The Code and Label, tuning parameter values, and the maximum per-cycle TAC change (where applicable) for the five CMPs variants."
+CMPCodes <- c('MCC', 'IR', 'IR_20', 'Ens', 'Ens_20')
+CMPNames <- c(FinalMP_Groups$MCC, FinalMP_Groups$IndexRate, FinalMP_Groups$IndexRate_MC20,
+              FinalMP_Groups$Ensemble, FinalMP_Groups$EnsembleIR20)
+
+ensemble_ir_cap <- function(variant_name) {
+  gen <- get(variant_name)
+  paste(pct_cap(eval(formals(gen)$IR_DeltaDown), eval(formals(gen)$IR_DeltaUp)), '(IR)')
+}
+
+ensemble_note <- function(variant_name) {
+  gen <- get(variant_name)
+  sprintf('MCC tunepar %s, IR tunepar %s',
+          eval(formals(gen)$MCC_tunepar), eval(formals(gen)$IR_tunepar))
+}
+
+data.frame(
+  Code = CMPCodes,
+  Label = mp_label(CMPCodes),
+  tunepar = unname(vapply(CMPNames, function(n) eval(formals(get(n))$tunepar), numeric(1))),
+  `Max change / cycle` = c(
+    '--',
+    pct_range_of(FinalMP_Groups$IndexRate),
+    pct_range_of(FinalMP_Groups$IndexRate_MC20),
+    ensemble_ir_cap(FinalMP_Groups$Ensemble),
+    ensemble_ir_cap(FinalMP_Groups$EnsembleIR20)
+  ),
+  Notes = c(
+    '--',
+    '--',
+    '--',
+    ensemble_note(FinalMP_Groups$Ensemble),
+    ensemble_note(FinalMP_Groups$EnsembleIR20)
+  ),
+  check.names = FALSE
+) |> knitr::kable(row.names = FALSE, align = c('l', 'l', 'c', 'c', 'l'))
+```
+
+### Index Rate {#sec-cmps-indexrate}
+
+The Index Rate CMPs use the Chinese Taipei longline, Brazil-Uruguay longline, and South Africa
+baitboat indices, together with catch data from the last historical year, to set each management
+cycle's trial catch limit in five steps:
+
+1. Each index's current status is projected forward using its own short-term trend, and the three
+   indices are combined (equally weighted) into a single current index value, $I_{\text{cur}}$,
+   and a single historical reference level, $I_{\text{ref}}$.
+2. Each index is separately calibrated into its own catch-per-index rate: the total catch across
+   all fleets in the last historical year, divided by that index's own value in the calibration
+   period.
+3. A single ramped response, based on how $I_{\text{cur}}$ compares with $I_{\text{ref}}$, throttles
+   all three indices' rates by the same fraction.
+4. Each index's most recent value, multiplied by its own throttled rate, gives that index's own
+   implied catch limit; the trial catch limit is the equally-weighted average of the three.
+5. Only a fraction of the move from the previous cycle's catch limit to the trial catch limit is
+   actually taken (the `Responsiveness` parameter), and the resulting change is then optionally further capped.
+
+These steps are described in more detail below.
+
+Each index's `Status` is simply its own most recent-year value. `Status` is then projected
+forward to account for any short-term trend: a linear trend is fitted by least-squares regression to
+the log of the index over the preceding $n_T$ years, and `Status` is extrapolated forward $h$ years
+at that fitted rate:
+  
+$$
+I_{\text{proj}} = \text{Status} \times e^{\,\text{Slope} \times h}
+$$
+where Slope is the fitted trend (in log-index units per year), $n_T$ =
+`r eval(formals(IndexRate_MP)$TrendYears)` years is the trend-fitting window, and $h$ =
+`r eval(formals(IndexRate_MP)$TrendHorizon)` years is how far forward the status is projected.
+
+This calculation is done separately for each of the three indices, giving each index its own
+projected value, $I_{\text{proj}}$ (@fig-indexrate-trend). These three $I_{\text{proj}}$ values are then combined into a single
+current index, $I_{\text{cur}}$, as an equally-weighted average across the three indices. Each
+index's own historical reference level, the average level over 2007--2010,  is combined in the
+same mannger, using the same equal weighting, to give the combined reference level, $I_{\text{ref}}$.
+
+```{r}
+#| label: fig-indexrate-trend
+#| warning: false
+#| echo: false
+#| fig-width: 9
+#| fig-height: 4
+#| fig-cap: "The status-projection step applied to all three indices used by the Index Rate CMPs showing the historical index (grey), the trend fitted over the preceding years used for the fit (solid blue) extended forward (dashed blue), the most recent year's value (filled point, Status), and the resulting projected value (open point, $I_{\\text{proj}}$)."
+Hist       <- readRDS('../objects/Hist/Ref.hist')
+IndexValue <- Hist@Data[[1]][[1]]@Survey@Value
+IndexNames <- eval(formals(get(FinalMP_Groups$IndexRate))$Indices)
+
+TrendYears   <- eval(formals(IndexRate_MP)$TrendYears)
+TrendHorizon <- eval(formals(IndexRate_MP)$TrendHorizon)
+RecentYears  <- eval(formals(IndexRate_MP)$RecentYears)
+RefYears     <- 2007:2010
+
+Year  <- as.numeric(rownames(IndexValue))
+nYear <- length(Year)
+
+SeriesList <- list(); TrendList <- list(); PointList <- list()
+IProjVec <- numeric(0); IRefVec <- numeric(0)
+
+for (nm in IndexNames) {
+  Value <- IndexValue[, nm]
+
+  FitRows  <- seq(max(1, nYear - TrendYears + 1), nYear)
+  FitYear  <- Year[FitRows]
+  FitValue <- Value[FitRows]
+  Fit      <- lm(log(FitValue) ~ FitYear)
+  Slope    <- unname(coef(Fit)[2])
+
+  Status   <- mean(utils::tail(Value, RecentYears))
+  ProjYear <- max(Year) + TrendHorizon
+  IProj    <- Status * exp(Slope * TrendHorizon)
+  IRef     <- mean(Value[Year %in% RefYears], na.rm = TRUE)
+
+  SeriesList[[nm]] <- data.frame(Index = nm, Year = Year, Value = Value)
+  TrendList[[nm]]  <- data.frame(
+    Index = nm,
+    Year  = c(min(FitYear), max(Year), ProjYear),
+    Value = exp(predict(Fit, newdata = data.frame(FitYear = c(min(FitYear), max(Year), ProjYear))))
+  )
+  PointList[[nm]] <- data.frame(
+    Index = nm,
+    Year  = c(max(Year), ProjYear),
+    Value = c(Status, IProj),
+    Label = c('Status (most recent year)', 'Projected value (I_proj)')
+  )
+  IProjVec[nm] <- IProj
+  IRefVec[nm]  <- IRef
+}
+
+SeriesDF <- dplyr::bind_rows(SeriesList)
+TrendDF  <- dplyr::bind_rows(TrendList)
+PointDF  <- dplyr::bind_rows(PointList)
+PointDF$Label <- factor(PointDF$Label,
+                         levels = c('Status (most recent year)', 'Projected value (I_proj)'))
+
+Icur <- mean(IProjVec)
+Iref <- mean(IRefVec)
+
+TrendSolid  <- TrendDF |> dplyr::group_by(Index) |> dplyr::slice(1:2) |> dplyr::ungroup()
+TrendDashed <- TrendDF |> dplyr::group_by(Index) |> dplyr::slice(2:3) |> dplyr::ungroup()
+
+PlotFrom <- max(Year) - 15
+
+ggplot() +
+  geom_line(data = SeriesDF, aes(Year, Value), colour = 'grey50') +
+  geom_point(data = SeriesDF, aes(Year, Value), colour = 'grey50') +
+  geom_line(data = TrendSolid, aes(Year, Value), colour = '#0072B2', linewidth = 1.1) +
+  geom_line(data = TrendDashed, aes(Year, Value), colour = '#0072B2', linewidth = 1.1,
+            linetype = 'dashed') +
+  geom_point(data = PointDF, aes(Year, Value, shape = Label, fill = Label),
+             colour = '#D55E00', size = 3, stroke = 1.2) +
+  scale_shape_manual(values = c(19, 21)) +
+  scale_fill_manual(values = c('#D55E00', 'white')) +
+  coord_cartesian(xlim = c(PlotFrom, max(TrendDF$Year) + 0.5)) +
+  facet_wrap(~Index, scales = 'free_y') +
+  labs(x = 'Year', y = 'Index value', shape = NULL, fill = NULL) +
+  theme_bw() +
+  theme(legend.position = 'bottom')
+```
+
+Averaging the three indices' projected values equally gives $I_{\text{cur}} =$
+`r round(Icur, 3)`, and averaging their three 2007--2010 reference levels equally gives
+$I_{\text{ref}} =$ `r round(Iref, 3)`, so $I_{\text{cur}}/I_{\text{ref}} =$
+`r round(Icur / Iref, 3)` for this example based on the historical data.
+
+Since each index's `Status` is in that index's own units, not absolute catch or biomass, it must be
+calibrated before it can be used to set a catch limit. Each index is first turned into its own
+catch-per-index rate, $\hat{r}_j$: the total catch across all fleets in the last historical year
+(`CalibYears` = `r eval(formals(IndexRate_MP)$CalibYears)`)
+divided by that particular index's own value in that same year:
+
+$$
+\hat{r}_j = \frac{\bar{C}_{\text{hist}}}{\bar{I}_{\text{hist},\,j}}
+$$
+
+where $j$ indexes the three indices, $\bar{C}_{\text{hist}}$ is the total catch in the last
+historical year and $\bar{I}_{\text{hist},\,j}$ is index $j$'s own value in that same year.
+Because $\hat{r}_j$ has units of catch *per unit of that index*, multiplying it by
+$\text{Status}_j$ (index $j$'s own `Status`, in the index's own units) will give a catch value, once the
+rate itself has been scaled and throttled as described next.
+
+Before that final multiplication, each index's own rate $\hat{r}_j$ is scaled by the tuning
+parameter, $m$, and throttled by a single response fraction, $\theta(I_{\text{cur}}/I_{\text{ref}})$
+giving each index its own adjusted rate, $\text{AdjRate}_j$. Each index's own most recent value, $\text{Status}_j$, is then
+multiplied by its own adjusted rate to give that index's own implied catch limit. The trial catch
+limit is the equally-weighted average of the three:
+
+$$
+\text{AdjRate}_j = m \times \hat{r}_j \times \theta\!\left(\frac{I_{\text{cur}}}{I_{\text{ref}}}\right)
+$$
+$$
+\text{TrialTAC} = \frac{1}{3}\sum_{j=1}^{3} \text{Status}_j \times \text{AdjRate}_j
+$$
+
+where $\text{Status}_j$ is index $j$'s own most recent-year value, $m$ is the tuning parameter, and
+$\theta(x)$ ramps the response linearly between two control points:
+
+$$
+\theta(x) =
+\begin{cases}
+0 & x \le x_L \\[4pt]
+\dfrac{x - x_L}{x_U - x_L} & x_L < x < x_U \\[4pt]
+1 & x \ge x_U
+\end{cases}
+$$
+
+with $x_L$ = `r eval(formals(IndexRate_MP)$HCRControlPointsIndex)[1]` and
+$x_U$ = `r eval(formals(IndexRate_MP)$HCRControlPointsIndex)[2]`. When
+$I_{\text{cur}}/I_{\text{ref}}$ is at or below $x_L$ the throttle zeroes out every index's implied
+catch limit, at or above $x_U$ (i.e. at or above the historical reference level) the full
+calibrated rate is applied, while in between the response ramps up linearly (@fig-hcr-indexrate).
+
+```{r}
+#| label: fig-hcr-indexrate
+#| echo: false
+#| fig-cap: "Index Rate response: the fraction of the calibrated catch rate applied, as a function of the current abundance index relative to its historical reference level."
+plot_hcr(eval(formals(IndexRate_MP)$HCRControlPointsIndex),
+         eval(formals(IndexRate_MP)$HCRControlPointsRate),
+         eval(formals(IndexRate_MP)$RampType)[1],
+         xlab = 'Current Index / Historical Reference Index',
+         ylab = 'Fraction of Calibrated Catch Rate Applied')
+```
+
+The `Responsiveness` parameter, $R$, controls what fraction of the move from the previous cycle's catch
+limit to `TrialTAC` is actually taken:
+
+$$
+\text{Mod} = \left(\frac{\text{TrialTAC}}{\text{TAC}_{\text{prev}}}\right)^{\!R}
+$$
+$$
+\text{TAC} = \text{TAC}_{\text{prev}} \times \text{Mod}
+$$
+
+where $\text{TAC}_{\text{prev}}$ is the previous cycle's catch limit. The Index Rate variants used in the MSE have $R =$
+`r eval(formals(IndexRate_MP)$Responsiveness)`, so a
+proportional change in `TrialTAC` relative to $\text{TAC}_{\text{prev}}$ only moves the actual TAC
+by that fraction on the log scale. 
+
+Finally, this proportional change in the TAC is capped per management cycle; the two 
+Index Rate variants (`IR`, `IR_20`) share this structure and differ only in the maximum TAC change cap (@tbl-cmp-summary).
+
+### MCC {#sec-cmps-mcc}
+
+Based on the Mostly Constant Catch (MCC) design ICCAT adopted for North Atlantic swordfish,
+the MCC CMP uses the same abundance indices as Index Rate, together with the last historical year's
+total landings, to set each management cycle's catch limit in three steps. 
+
+Unlike Index Rate where the catch limit is iteratively adjusted from the previous cycle's TAC, MCC uses fixed 
+baseline TAC that is stepped by a pre-agreed multiplier. There is no per-cycle absolute TAC change cap.
+
+1. The indices reporting each year are combined into a single series, and that combined series'
+   most recent value, $I_{\text{cur}}$, is compared with its own average over a historical
+   reference period, $I_{\text{ref}}$, giving a ratio, $I_{\text{rat}}$.
+2. $I_{\text{rat}}$ determines which of several pre-agreed bins applies (@tbl-mcc-steps), each with
+   its own multiplier on the baseline catch level.
+3. The catch limit is the baseline catch level -- the last historical year's total landings, scaled
+   by the tuning parameter -- multiplied by that bin's multiplier.
+
+Each of these steps is set out in full below.
+
+MCC first combines the raw indices into a single equally-weighted mean combined index $I_y$
+(@fig-mcc-combined):
+
+$$
+I_y = \frac{1}{n_y}\sum_{j} I_{j,\,y}
+$$
+
+
+```{r}
+#| label: fig-mcc-combined
+#| warning: false
+#| echo: false
+#| fig-width: 8
+#| fig-height: 4.5
+#| fig-cap: "The combined index from the historical data (grey), calculated as the equally-weighted mean of the individual indices, its average over the historical reference period (blue, $I_{\\text{ref}}$), and its most recent value (orange point, $I_{\\text{cur}}$)."
+HistRefYears <- eval(formals(MCC_HCR)$HistRefYears)
+RecentYears  <- eval(formals(MCC_HCR)$RecentYears)
+
+ActiveCols <- which(!is.na(IndexValue[nrow(IndexValue), ]))
+ActiveVal  <- IndexValue[, ActiveCols, drop = FALSE]
+
+CombinedIndexEx <- rowMeans(ActiveVal, na.rm = TRUE)
+CombinedDF <- data.frame(Year = Year, Value = CombinedIndexEx)
+
+McuCur <- mean(utils::tail(CombinedIndexEx, RecentYears))
+McuRef <- mean(CombinedIndexEx[Year %in% HistRefYears], na.rm = TRUE)
+McuRat <- McuCur / McuRef
+
+RefDF <- data.frame(Year = range(HistRefYears[HistRefYears %in% Year]), Value = McuRef)
+
+ggplot(CombinedDF, aes(Year, Value)) +
+  geom_line(colour = 'grey50') +
+  geom_point(colour = 'grey50') +
+  geom_line(data = RefDF, aes(Year, Value), colour = '#0072B2', linewidth = 1.3) +
+  geom_point(data = data.frame(Year = max(Year), Value = McuCur),
+             aes(Year, Value), colour = '#D55E00', size = 3) +
+  labs(x = 'Year', y = 'Combined index value') +
+  theme_bw()
+```
+
+ $I_{\text{cur}}$, the combined index's value in the most recent year (the orange point in @fig-mcc-combined),
+is compared with $I_{\text{ref}}$, calculated as the average over a
+`r paste(range(eval(formals(MCC_HCR)$HistRefYears)), collapse=' -- ')` historical reference period
+(the blue line in @fig-mcc-combined):
+
+$$
+I_{\text{rat}} = \frac{I_{\text{cur}}}{I_{\text{ref}}}
+$$
+
+For this example using the historical data, $I_{\text{cur}} =$ `r round(McuCur, 3)`, $I_{\text{ref}} =$
+`r round(McuRef, 3)`, so $I_{\text{rat}} =$ `r round(McuRat, 3)`.
+$I_{\text{rat}}$ then determines which multiplier on the baseline catch level from the pre-specified bins applies (@tbl-mcc-steps).
+
+```{r}
+#| label: tbl-mcc-steps
+#| tbl-cap: "The MCC step schedule showing the multipliers applied to the baseline TAC level based on the current index ratio."
+#| echo: false
+mcc_breaks <- eval(formals(MCC_HCR)$IratBreaks)
+mcc_mult   <- eval(formals(MCC_HCR)$TACmult)
+
+mcc_tbl <- data.frame(
+  Ratio = c(
+    sprintf('< %.2f', mcc_breaks[1]),
+    sprintf('%.2f -- %.2f', mcc_breaks[-length(mcc_breaks)], mcc_breaks[-1]),
+    sprintf('>= %.2f', mcc_breaks[length(mcc_breaks)])
+  ),
+  Multiplier = mcc_mult
+)
+
+knitr::kable(mcc_tbl, col.names = c('Combined Index / Historical Base ($I_{\\text{rat}}$)', 'TACbase multiplier'))
+```
+
+The catch limit is then the baseline catch level (the last historical year's total landings
+across all fleets, scaled by the tuning parameter) multiplied by that bin's multiplier:
+
+$$
+\text{TAC}_{\text{base}} = C_{\text{LHY}} \times m
+$$
+$$
+\text{TAC} = \text{TAC}_{\text{base}} \times s(I_{\text{rat}})
+$$
+
+where $C_{\text{LHY}}$ is the total landings across all fleets in the last historical year, $m$ is
+the tuning parameter, and $s(\cdot)$ is the step function in @tbl-mcc-steps. As noted above, there
+is no per-cycle change cap on top of this step (@tbl-cmp-summary).
+
+### Ensemble {#sec-cmps-ensemble}
+
+The Ensemble CMP combines MCC and Index Rate by averaging their two independently-computed TAC 
+recommendations. Each cycle, MCC and Index Rate independently compute their own TAC recommendation
+and the Ensemble's catch limit is the tuning-parameter-scaled average of the two:
+
+$$
+C_{\text{limit}} = m \times \text{mean}\big(C_{\text{MCC}},\ C_{\text{IndexRate}}\big)
+$$
+
+where $C_{\text{MCC}}$ and $C_{\text{IndexRate}}$ are MCC's and Index Rate's own recommendations,
+each computed independently at its own individually-tuned setting for the blend (not necessarily
+the same setting as the standalone MCC/Index Rate variants in @tbl-cmp-summary), and $m$ is the
+Ensemble's own tuning parameter (@tbl-cmp-summary), applied on top of the blend.
+
+Two variants are included: 
+
+1. `Ens` blends MCC with the uncapped Index Rate component;
+2. `Ens_20` blends MCC with the 20%-capped Index Rate component
+
+The internal MCC/Index Rate tunepars and the Index Rate caps are shown in @tbl-cmp-summary. 
+
+
+## Tuning Methodology {#sec-tuning-methodology}
+
+Each CMP has a set of structural settings (which data it uses, how that data
+is combined or smoothed, the shape of its response, how much its recommendation can change between
+cycles) plus a single tuning parameter, `tunepar`, that scales how aggressively it converts that
+data into a TAC recommendation. A two stage process is used to determine the optimal values for both 
+the structural settings and `tunepar`:
+
+1. Each structural setting is explored first, trying a small number of candidate values for that
+   setting (e.g. `CalibYears`: 1 vs. 2 years; `Smooth`: on vs. off; `WeightMethod`: equal vs.
+   inverse-CV vs. inverse-variance weighting). Once the optimal values for these settings are found,
+   they are fixed and the process moves on to `tunepar`.
+2. `tunepar` is then found by grid search over the full pooled Reference OM grid (i.e.,the nine
+   OMs spanning the Growth x Natural Mortality uncertainty grid to find the highest-yield 
+   value that still meets the Safety and Status objectives from Resolution 24-09 (@sec-performance-metrics),
+   evaluated jointly across all nine OMs.
+
+The resulting `tunepar` (and, where applicable, per-cycle change cap) for each CMP is
+given in @tbl-cmp-summary. 
+
+### Index Rate {#sec-tuning-indexrate}
+
+For Index Rate (@sec-cmps-indexrate), step 1 fixed: 
+
+- which indices to use (all three currently-reporting indices, `WeightMethod = 'equal'`); 
+- the calibration window (`CalibYears` =`r eval(formals(IndexRate_MP)$CalibYears)`); 
+- whether to smooth the index before use (`Smooth = FALSE`; LOESS smoothing is available in the CMP but did not improve
+on the raw index); 
+- the trend-projection window and horizon (`TrendYears` = `r eval(formals(IndexRate_MP)$TrendYears)`, `TrendHorizon` =
+`r eval(formals(IndexRate_MP)$TrendHorizon)`); 
+- the shape of the ramped throttle (`RampType = 'linear'`, control points shown in @fig-hcr-indexrate); and 
+- the `Responsiveness` parameter (`r eval(formals(IndexRate_MP)$Responsiveness)`, @sec-cmps-indexrate). 
+
+`tunepar` (the `IndexFactor` multiplier on the calibrated rate) was then set by the step-2 grid search, run
+separately for the uncapped and 20%-capped per-cycle change cap, giving the two variants in
+@tbl-cmp-summary.
+
+### MCC {#sec-tuning-mcc}
+
+For MCC (@sec-cmps-mcc), the historical reference window (`HistRefYears` =
+`r paste(range(eval(formals(MCC_HCR)$HistRefYears)), collapse = '--')`), the step schedule itself
+(`IratBreaks`/`TACmult`, @tbl-mcc-steps), and how the three indices are combined into one series
+(`WeightMethod = 'equal'`) were fixed in step 1. 
+
+`tunepar` (the multiplier on the reference catch level) was then set by the step-2 grid search, 
+giving the single MCC variant in @tbl-cmp-summary.
+
+### Ensemble {#sec-tuning-ensemble}
+
+For Ensemble (@sec-cmps-ensemble), step 1 fixed how the two component CMPs (Index Rate and MCC) are combined
+(`Combiner = 'mean'`). 
+
+The two components' own tuning parameters (`MCC_tunepar`, `IR_tunepar`) were re-tuned jointly with the
+Ensemble's own `tunepar` in step 2. The resulting values for both Ensemble variants are given in @tbl-cmp-summary.
+

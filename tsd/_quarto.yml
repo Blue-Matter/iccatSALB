@@ -1,0 +1,41 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Trial Specifications Document"
+  subtitle: "South Atlantic Albacore MSE"
+  author:
+    - name: Adrian Hordyk
+      affiliation: Blue Matter Science
+      email: adrian@bluematterscience.com
+  date: today
+  date-format: "D MMMM YYYY"
+  site-url: https://iccatsalb.bluematterscience.com/tsd/
+  repo-url: https://github.com/Blue-Matter/iccatSALB
+  navbar:
+    left:
+      - text: "Albacore MSE Homepage"
+        href: https://iccatsalb.bluematterscience.com/
+      - text: "iccatSALB Code"
+        href: https://github.com/ICCAT/salb-mse
+  chapters:
+    - index.qmd
+    - operating-models.qmd
+    - forward-projections.qmd
+    - performance-metrics.qmd
+    - management-procedures.qmd
+    - references.qmd
+
+
+bibliography: references.bib
+
+brand: _blue-matter.yml
+
+format:
+  html:
+    theme:
+    - cosmo
+    code-link: true
+    toc-depth: 3
+

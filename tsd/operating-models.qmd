@@ -1,0 +1,212 @@
+---
+suppress-bibliography: true
+---
+
+```{r}
+#| echo: false
+#| include: false
+library(MSEtool)
+library(ggplot2)
+Hist <- readRDS('../objects/Hist/Ref.hist')
+Data <- MSEtool::Data(Hist)[[1]][[1]]
+rnorm(5)
+knitr::read_chunk("../analysis/03-OM-Plots.R")
+```
+
+```{r load_files}
+#| include: false
+```
+
+# Operating Models {#sec-oms}
+
+## OM Conditioning {#sec-om-conditioning}
+
+The operating models were based on the recent SALB stock assessment, completed in June 2026 using the Stock Synthesis 3 (SS3) assessment framework [@methot2013]. See the [Report of the 2026 ICCAT Albacore Stock Assessment Meeting](https://www.iccat.int/Documents/Meetings/Docs/2026/reports/2026_ALB_SA_ENG.pdf) and the [Report of the 2026 ICCAT Albacore Data Preparatory Meeting](https://www.iccat.int/Documents/CVSP/CV083_2026/n_3/CV08303005.pdf) for full details on the stock assessment.
+
+The assessment model integrated total catches, standardized indices of abundance, and length-composition data covering the period 1956 -- 2024. Five fishing fleets were defined by aggregating catch and length composition data for fishing fleets with similar properties (@tbl-data-catch; @fig-assess-data; @fig-catch-data). Five standardized CPUE indices were used in the Base Case assessment (@tbl-data-indices; @fig-assess-data; @fig-indices-data).
+
+::: {#tbl-data-catch}
+| Fleet | Definition (FlagName and Gear Group) | Catch | Size composition data |   |
+|--------|----------------------|---|---|---|
+| Fleet 1 | Chinese Taipei (LL), Korea (LL) | 1964-2024 | up to 2024 |  |
+| Fleet 2 | Japan (LL), China (LL), EU-Spain (LL), EU-Portugal (LL), USA (LL), Philippines (LL), St Vincent and Grenadines (LL), Vanuatu (LL), Honduras (LL), NEI (LL), Côte D'Ivoire (LL), United Kingdom (LL), Seychelles (LL), UK.Sta Helena (LL), Angola (LL), Senegal (LL), Trinidad and Tobago (LL) | 1956-2024 | 1956-2024 |  |
+| Fleet 3 | Brazil (LL, SU), Uruguay (LL), Namibia (LL), Panama (LL), South Africa (LL, UN), Argentina (LL, TW, UN), Belize (LL), Cambodia (LL), Cuba (LL, UN) | 1959-2024 | 1969-2024 |  |
+| Fleet 4 | South Africa (BB, HL, PS, RR, SP) | 1973-2024 | 1980-2024 |  |
+| Fleet 5 | All others | 1961-2024 | 1961-2024 |  |
+
+Fleet structure, data and time periods to be used in the South Atlantic albacore Stock Synthesis model. Adapted from Table 11 in the [Data Preparatory Report](https://www.iccat.int/Documents/CVSP/CV083_2026/n_3/CV08303005.pdf).
+:::
+
+
+::: {#tbl-data-indices}
+
+| Index Name      | Definition                            | Years     |
+|-----------------|---------------------------------------|-----------|
+| Indx_CTP-LL_TB1 | Chinese Taipei longline, time block 1 | 1970-1980 |
+| Indx_CTP-LL_TB2 | Chinese Taipei longline, time block 2 | 1981-2024 |
+| Indx_JPN-LL_TB2 | Japan longline                        | 1979-2017 |
+| Indx_BR_URY-LL  | Brazil/Uruguay longline               | 1978-2024 |
+| Indx_ZAF-BB     | South Africa baitboat                 | 2003-2024 |
+
+CPUE indices and time periods to be used in the South Atlantic albacore Stock Synthesis model. Adapted from Table 11 in the [Data Preparatory Report](https://www.iccat.int/Documents/CVSP/CV083_2026/n_3/CV08303005.pdf).
+:::
+
+```{r}
+#| echo: false
+#| label: fig-assess-data
+#| fig-cap: "Overview of the data used in the 2026 stock assessment."
+ssdir <- '../data-raw/assessment/S05'
+replist <- MSEtool::ImportSSReport(ssdir, silent = TRUE)[[1]]
+r4ss::SSplotData(replist, subplots = 1)
+```
+
+```{r}
+#| echo: false
+#| label: fig-catch-data
+#| fig-cap: "Time series plot of the total catch data used in the 2026 assessment."
+
+MSEtool::PlotLandings(Data, byFleet = FALSE) + ggplot2::labs(y='Catch (t)')
+```
+
+```{r}
+#| echo: false
+#| label: fig-indices-data
+#| fig-cap: "Time series plot of the five CPUE indices used in the Base Case 2026 assessment."
+
+MSEtool::PlotSurvey(Data, byFleet = TRUE) + ggplot2::labs(y='CPUE Indices')
+```
+
+
+## Primary Uncertainties
+
+The primary uncertainties identified during the stock assessment process related to the life-history parameters related to growth and natural mortality rate, and the conflicting signals in the indices of abundance that were fit in the assessment (see assessment reports linked above). 
+
+### Life History Parameters
+
+Following the assessment, growth was modelled with the von Bertalanffy function with parameters $L_\infty$, $K$, and $t_0$ describing the mean asymptotic length, the Brody growth coefficient, and the theoretical age where mean length is 0 respectively. Natural mortality (*M*) was modelled with the Lorenzen function which assumes decreasing natural mortality as fish increase in size [@lorenzen2022]. The stock-recruitment relationship modelled with
+the Beverton-Holt equation, parameterized with steepness (*h*) fixed at 0.75. Maturity was specified as an at-age schedule with fish reaching 50% maturity at age 5 years
+and full maturity at 6 years. See Table 5 in the [Data Preparatory Report](https://www.iccat.int/Documents/CVSP/CV083_2026/n_3/CV08303005.pdf)
+for a full list of the life-history parameters used in the model.
+
+The von Bertalanffy parameters and the natural mortality rate were identified as the primary life-history uncertainties. To account for these uncertainties, a factorial uncertainty grid was developed spanning the two axes of uncertainty (*Growth* and *Natural Mortality*), each with three levels corresponding to the 25th, 50th, and 75th percentiles of the estimated distributions for these parameters (@tbl-percentile-grid). The 50th percentile level for each axis matches the Base Case stock assessment model. 
+
+::: {#tbl-percentile-grid}
+| Percentile | $L_\infty$ | $K$ | $t_0$  | $M$ |
+|---|---|---|---| --- |
+| 25th | 115.93 | 0.235 | -0.561 | 0.29 | 
+| 50th (Base Case) | 121.24 | 0.238 | -0.891 | 0.36 |
+| 75th | 125.02 | 0.237 | -1.217 | 0.44 |
+von Bertalanffy growth parameters and reference natural mortality ($M$) at each level of the uncertainty grid. 
+:::
+
+The three levels for each axis produces a 3 x 3 uncertainty grid with 9 variations (@tbl-uncertainty-grid). 
+@fig-lifehistory shows the length- and natural mortality-at-age curves for each of the 9 combination of parameters in the uncertainty grid.
+
+::: {#tbl-uncertainty-grid}
+| # | OM | Growth | Natural Mortality |
+|-- | ---|---|---|
+| 1| G_25-M_25 | 25th  | 25th  |
+| 2 | G_25-M_50 | 25th  | 50th  |
+| 3 | G_25-M_75 | 25th  | 75th  |
+| 4 | G_50-M_25 | 50th  | 25th  |
+| 5 | G_50-M_50 | 50th  | 50th  |
+| 6 | G_50-M_75 | 50th  | 75th  |
+| 7 | G_75-M_25 | 75th  | 25th  |
+| 8 | G_75-M_50 | 75th  | 50th  |
+| 9 | G_75-M_75 | 75th  | 75th  |
+
+The uncertainty grid spanning two axes of uncertainty, each with three levels.
+:::
+
+
+```{r}
+#| label: fig-lifehistory
+#| echo: false
+#| fig-cap: "The mean length-at-age and natural mortality-at-age schedules for each level in the life-history uncertainty grid."
+<<life-history>>
+```
+  
+
+### Indices of Abudance
+
+The primary uncertainty in the indices of abundance used in the stock assessment related to two of the three indices that continue through to the terminal year having conflicting trends in recent years: the Chinese Taipei index has an increasing trend in recent years, and the Brazil-Uruguay index has a declining trend (@fig-index-fits).
+
+```{r}
+#| label: fig-index-fits
+#| echo: false
+#| fig-cap: 'The three indices of abundance that continue through to the terminal year (blue solid lines): Chinese Taipei (Indx_CTP-LL_TB2), Brazil Uruguay (Indx_BR_URL-LL), and South Africa bait boat (Index_ZAF-BB) plotted together with the corresponding population biomass trend as described in the central OM (50th percentile for both axes) for a) the Reference models where all three indices were fit in the assessment model), b) R1 where the Brazil Uruguay index was excluded from the likelihood, and c) R2 where the Chinese Taipei index was excluded from the likelihood (black dashed line).'
+<<plot_index_fits>>
+```
+ 
+
+## Reference and Robustness OMs
+
+A set of nine Reference OMs were conditioned using the factorial uncertainty grid (@tbl-percentile-grid) and following the stock assessment methodology of including all indices in the conditioning process (@fig-index-fits).
+
+Two additional Robustness sets of OMs were developed to span the uncertainty in the indices of abundance. The robustness models used the same factorial uncertainty grid as the Reference OMs, but varied in how the indices were treated in the SS3 conditioning model. 
+
+The first robustness set, R1, excluded the Brazilian–Uruguay index with the declining trend from the likelihood, while the second robustness set, R2, excluded the Chinese Taipei index (@fig-index-fits).
+
+```{r}
+#| include: false
+<<stock_status_calc>>
+```
+
+```{r}
+#| include: false
+<<refpoints_calc>>
+
+refpt_range <- function(col, digits = 2) {
+  round(range(refpoints_result[[col]]), digits)
+}
+fmt_t <- function(x) format(round(x), big.mark = ",")
+```
+
+
+The estimated spawning biomass from the nine Reference OMs was distributed around $SB_{\text{MSY}}$, with $SB/SB_{\text{MSY}}$ ranging from `r status_range("Reference", "SB_SBMSY")[1]` to `r status_range("Reference", "SB_SBMSY")[2]` and $F/F_{\text{MSY}}$ ranging from `r status_range("Reference", "F_FMSY")[1]` to `r status_range("Reference", "F_FMSY")[2]`, with the more pessimistic estimates of stock status corresponding with the higher Growth and lower Natural Mortality percentiles (@tbl-stock-status; @fig-sbsbmsy-robustness; @fig-fmsy-robustness). 
+
+The OMs in the R1 Robustness set had consistently higher estimates of $SB/SB_{\text{MSY}}$ and lower values of $F/F_{\text{MSY}}$ for each OM compared to the Reference Set, ranging from `r status_range("R1", "SB_SBMSY")[1]` to `r status_range("R1", "SB_SBMSY")[2]` and `r status_range("R1", "F_FMSY")[1]` to `r status_range("R1", "F_FMSY")[2]` respectively (@tbl-stock-status; @fig-sbsbmsy-robustness; @fig-fmsy-robustness). 
+
+The R2 Robustness Set resulted in more pessimistic estimates of stock status compared to the Reference Set, with $SB/SB_{\text{MSY}}$ and $F/F_{\text{MSY}}$ ranging from `r status_range("R2", "SB_SBMSY")[1]` to `r status_range("R2", "SB_SBMSY")[2]` and `r status_range("R2", "F_FMSY")[1]` to `r status_range("R2", "F_FMSY")[2]` respectively (@tbl-stock-status; @fig-sbsbmsy-robustness; @fig-fmsy-robustness).
+
+The MSY-based reference points ($F_{\text{MSY}}$, $SB_{\text{MSY}}$, and $MSY$) estimated for each OM in the Reference, R1, and R2 sets are reported in @tbl-ref-points. 
+
+$F_{\text{MSY}}$ was most sensitive to the Natural Mortality axis, ranging from `r refpt_range("FMSY")[1]` to `r refpt_range("FMSY")[2]` across the uncertainty grid and OM sets, increasing with higher Natural Mortality percentiles and decreasing with higher Growth percentiles. 
+
+$SB_{\text{MSY}}$ was also primarily driven by the Natural Mortality axis, ranging from `r fmt_t(refpt_range("SBMSY", 0)[1])` t to `r fmt_t(refpt_range("SBMSY", 0)[2])` t, with only a modest reduction across the Growth axis. 
+
+In contrast, estimated $MSY$ was comparatively stable across the uncertainty grid and among the three OM sets, ranging from `r fmt_t(refpt_range("MSY", 0)[1])` t to `r fmt_t(refpt_range("MSY", 0)[2])` t, reflecting the offsetting effects of the Growth and Natural Mortality uncertainty axes on stock productivity.
+
+ 
+```{r}
+#| label: tbl-stock-status
+#| tbl-cap: 'Summary of the estimated stock status ($SB/SB_{\text{MSY}}$ and $F/F_{\text{MSY}}$) in the terminal year (2024) for the nine operating models from the Growth and Natural Mortality uncertainty grid for the Reference Set and the R1 and R2 Robustness Sets.'
+#| echo: false
+#| message: false
+<<summarize_stock_status>>
+```
+
+```{r}
+#| label: fig-sbsbmsy-robustness
+#| echo: false
+#| fig-cap: 'Historical spawning biomass relative to MSY level ($SB/SB_{\text{MSY}}$), by operating model for the two Robustness OM sets (R1 and R2). The results from the Reference Set OMs are included for comparison.'
+<<depletion_msy_robustness>>
+```
+
+```{r}
+#| label: fig-fmsy-robustness
+#| echo: false
+#| fig-cap: 'Historical fishing mortality relative to FMSY level ($F/F_{\text{MSY}}$), by operating model for the two Robustness OM sets (R1 and R2). The results from the Reference Set OMs are included for comparison.'
+<<f_msy_robustness>>
+```
+
+
+
+```{r}
+#| label: tbl-ref-points
+#| tbl-cap: "The MSY reference points for the nine operating models from the Growth and Natural Mortality uncertainty grid for the Reference Set and the R1 and R2 Robustness Sets."
+#| echo: false
+#| message: false
+<<refpoints_table>>
+```
+

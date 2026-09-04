@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>5&nbsp; Candidate Management Procedures – Trial Specifications Document</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./performance-metrics.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a55b41f70a3cc1b3f7c96c7da63be89b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+</head>
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Trial Specifications Document</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="https://iccatsalb.bluematterscience.com/"> 
+<span class="menu-text">Albacore MSE Homepage</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/ICCAT/salb-mse"> 
+<span class="menu-text">iccatSALB Code</span></a>
+  </li>  
+</ul>
+</div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/Blue-Matter/iccatSALB" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./management-procedures.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Candidate Management Procedures</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./operating-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Operating Models</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./forward-projections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Forward Projections</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./performance-metrics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./management-procedures.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Candidate Management Procedures</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li>
+<a href="#description-of-cmps" id="toc-description-of-cmps" class="nav-link active" data-scroll-target="#description-of-cmps"><span class="header-section-number">5.1</span> Description of CMPs</a>
+  <ul class="collapse">
+<li><a href="#sec-cmps-indexrate" id="toc-sec-cmps-indexrate" class="nav-link" data-scroll-target="#sec-cmps-indexrate"><span class="header-section-number">5.1.1</span> Index Rate</a></li>
+  <li><a href="#sec-cmps-mcc" id="toc-sec-cmps-mcc" class="nav-link" data-scroll-target="#sec-cmps-mcc"><span class="header-section-number">5.1.2</span> MCC</a></li>
+  <li><a href="#sec-cmps-ensemble" id="toc-sec-cmps-ensemble" class="nav-link" data-scroll-target="#sec-cmps-ensemble"><span class="header-section-number">5.1.3</span> Ensemble</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sec-tuning-methodology" id="toc-sec-tuning-methodology" class="nav-link" data-scroll-target="#sec-tuning-methodology"><span class="header-section-number">5.2</span> Tuning Methodology</a>
+  <ul class="collapse">
+<li><a href="#sec-tuning-indexrate" id="toc-sec-tuning-indexrate" class="nav-link" data-scroll-target="#sec-tuning-indexrate"><span class="header-section-number">5.2.1</span> Index Rate</a></li>
+  <li><a href="#sec-tuning-mcc" id="toc-sec-tuning-mcc" class="nav-link" data-scroll-target="#sec-tuning-mcc"><span class="header-section-number">5.2.2</span> MCC</a></li>
+  <li><a href="#sec-tuning-ensemble" id="toc-sec-tuning-ensemble" class="nav-link" data-scroll-target="#sec-tuning-ensemble"><span class="header-section-number">5.2.3</span> Ensemble</a></li>
+  </ul>
+</li>
+  </ul></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title"><span id="sec-cmps" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Candidate Management Procedures</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header><p>The MSE currently includes three model-free CMP families:</p>
+<ol type="1">
+<li>Index Rate</li>
+<li>Mostly Constant Catch</li>
+<li>Ensemble</li>
+</ol>
+<p>There are two variants of the Index Rate and Ensemble CMPs, making a total five CMPs included in the analysis (<a href="#tbl-cmp-summary" class="quarto-xref">Table&nbsp;<span>5.1</span></a>). Each CMP is described in full in the sections below.</p>
+<p>Model-based CMPs using a surplus production assessment model (SPiCT; <span class="citation" data-cites="pedersenStochasticSurplusProduction2017">Pedersen and Berg (2017)</span>) were thoroughly explored but were not included in the final analysis due to the consistent poor performance relative to the model-free CMPs.</p>
+<section id="description-of-cmps" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="description-of-cmps">
+<span class="header-section-number">5.1</span> Description of CMPs</h2>
+<div class="cell">
+<div id="tbl-cmp-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cmp-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.1: The Code and Label, tuning parameter values, and the maximum per-cycle TAC change (where applicable) for the five CMPs variants.
+</figcaption><div aria-describedby="tbl-cmp-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 23%">
+<col style="width: 9%">
+<col style="width: 21%">
+<col style="width: 36%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">Code</th>
+<th style="text-align: left;">Label</th>
+<th style="text-align: center;">tunepar</th>
+<th style="text-align: center;">Max change / cycle</th>
+<th style="text-align: left;">Notes</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">MCC</td>
+<td style="text-align: left;">Mostly Constant Catch</td>
+<td style="text-align: center;">0.98</td>
+<td style="text-align: center;">–</td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">IR</td>
+<td style="text-align: left;">Index Rate</td>
+<td style="text-align: center;">0.76</td>
+<td style="text-align: center;">50%</td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IR_20</td>
+<td style="text-align: left;">Index Rate 20% Cap</td>
+<td style="text-align: center;">0.72</td>
+<td style="text-align: center;">20%</td>
+<td style="text-align: left;">–</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ens</td>
+<td style="text-align: left;">Ensemble</td>
+<td style="text-align: center;">1.03</td>
+<td style="text-align: center;">50% (IR)</td>
+<td style="text-align: left;">MCC tunepar 0.95, IR tunepar 0.71</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ens_20</td>
+<td style="text-align: left;">Ensemble 20% Cap</td>
+<td style="text-align: center;">1.02</td>
+<td style="text-align: center;">20% (IR)</td>
+<td style="text-align: left;">MCC tunepar 0.95, IR tunepar 0.72</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<section id="sec-cmps-indexrate" class="level3" data-number="5.1.1"><h3 data-number="5.1.1" class="anchored" data-anchor-id="sec-cmps-indexrate">
+<span class="header-section-number">5.1.1</span> Index Rate</h3>
+<p>The Index Rate CMPs use the Chinese Taipei longline, Brazil-Uruguay longline, and South Africa baitboat indices, together with catch data from the last historical year, to set each management cycle’s trial catch limit in five steps:</p>
+<ol type="1">
+<li>Each index’s current status is projected forward using its own short-term trend, and the three indices are combined (equally weighted) into a single current index value, <span class="math inline">\(I_{\text{cur}}\)</span>, and a single historical reference level, <span class="math inline">\(I_{\text{ref}}\)</span>.</li>
+<li>Each index is separately calibrated into its own catch-per-index rate: the total catch across all fleets in the last historical year, divided by that index’s own value in the calibration period.</li>
+<li>A single ramped response, based on how <span class="math inline">\(I_{\text{cur}}\)</span> compares with <span class="math inline">\(I_{\text{ref}}\)</span>, throttles all three indices’ rates by the same fraction.</li>
+<li>Each index’s most recent value, multiplied by its own throttled rate, gives that index’s own implied catch limit; the trial catch limit is the equally-weighted average of the three.</li>
+<li>Only a fraction of the move from the previous cycle’s catch limit to the trial catch limit is actually taken (the <code>Responsiveness</code> parameter), and the resulting change is then optionally further capped.</li>
+</ol>
+<p>These steps are described in more detail below.</p>
+<p>Each index’s <code>Status</code> is simply its own most recent-year value. <code>Status</code> is then projected forward to account for any short-term trend: a linear trend is fitted by least-squares regression to the log of the index over the preceding <span class="math inline">\(n_T\)</span> years, and <code>Status</code> is extrapolated forward <span class="math inline">\(h\)</span> years at that fitted rate:</p>
+<p><span class="math display">\[
+I_{\text{proj}} = \text{Status} \times e^{\,\text{Slope} \times h}
+\]</span> where Slope is the fitted trend (in log-index units per year), <span class="math inline">\(n_T\)</span> = 5 years is the trend-fitting window, and <span class="math inline">\(h\)</span> = 2 years is how far forward the status is projected.</p>
+<p>This calculation is done separately for each of the three indices, giving each index its own projected value, <span class="math inline">\(I_{\text{proj}}\)</span> (<a href="#fig-indexrate-trend" class="quarto-xref">Figure&nbsp;<span>5.1</span></a>). These three <span class="math inline">\(I_{\text{proj}}\)</span> values are then combined into a single current index, <span class="math inline">\(I_{\text{cur}}\)</span>, as an equally-weighted average across the three indices. Each index’s own historical reference level, the average level over 2007–2010, is combined in the same mannger, using the same equal weighting, to give the combined reference level, <span class="math inline">\(I_{\text{ref}}\)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-indexrate-trend" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-indexrate-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="management-procedures_files/figure-html/fig-indexrate-trend-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-indexrate-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: The status-projection step applied to all three indices used by the Index Rate CMPs showing the historical index (grey), the trend fitted over the preceding years used for the fit (solid blue) extended forward (dashed blue), the most recent year’s value (filled point, Status), and the resulting projected value (open point, <span class="math inline">\(I_{\text{proj}}\)</span>).
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>Averaging the three indices’ projected values equally gives <span class="math inline">\(I_{\text{cur}} =\)</span> 0.78, and averaging their three 2007–2010 reference levels equally gives <span class="math inline">\(I_{\text{ref}} =\)</span> 1.063, so <span class="math inline">\(I_{\text{cur}}/I_{\text{ref}} =\)</span> 0.734 for this example based on the historical data.</p>
+<p>Since each index’s <code>Status</code> is in that index’s own units, not absolute catch or biomass, it must be calibrated before it can be used to set a catch limit. Each index is first turned into its own catch-per-index rate, <span class="math inline">\(\hat{r}_j\)</span>: the total catch across all fleets in the last historical year (<code>CalibYears</code> = 1) divided by that particular index’s own value in that same year:</p>
+<p><span class="math display">\[
+\hat{r}_j = \frac{\bar{C}_{\text{hist}}}{\bar{I}_{\text{hist},\,j}}
+\]</span></p>
+<p>where <span class="math inline">\(j\)</span> indexes the three indices, <span class="math inline">\(\bar{C}_{\text{hist}}\)</span> is the total catch in the last historical year and <span class="math inline">\(\bar{I}_{\text{hist},\,j}\)</span> is index <span class="math inline">\(j\)</span>’s own value in that same year. Because <span class="math inline">\(\hat{r}_j\)</span> has units of catch <em>per unit of that index</em>, multiplying it by <span class="math inline">\(\text{Status}_j\)</span> (index <span class="math inline">\(j\)</span>’s own <code>Status</code>, in the index’s own units) will give a catch value, once the rate itself has been scaled and throttled as described next.</p>
+<p>Before that final multiplication, each index’s own rate <span class="math inline">\(\hat{r}_j\)</span> is scaled by the tuning parameter, <span class="math inline">\(m\)</span>, and throttled by a single response fraction, <span class="math inline">\(\theta(I_{\text{cur}}/I_{\text{ref}})\)</span> giving each index its own adjusted rate, <span class="math inline">\(\text{AdjRate}_j\)</span>. Each index’s own most recent value, <span class="math inline">\(\text{Status}_j\)</span>, is then multiplied by its own adjusted rate to give that index’s own implied catch limit. The trial catch limit is the equally-weighted average of the three:</p>
+<p><span class="math display">\[
+\text{AdjRate}_j = m \times \hat{r}_j \times \theta\!\left(\frac{I_{\text{cur}}}{I_{\text{ref}}}\right)
+\]</span> <span class="math display">\[
+\text{TrialTAC} = \frac{1}{3}\sum_{j=1}^{3} \text{Status}_j \times \text{AdjRate}_j
+\]</span></p>
+<p>where <span class="math inline">\(\text{Status}_j\)</span> is index <span class="math inline">\(j\)</span>’s own most recent-year value, <span class="math inline">\(m\)</span> is the tuning parameter, and <span class="math inline">\(\theta(x)\)</span> ramps the response linearly between two control points:</p>
+<p><span class="math display">\[
+\theta(x) =
+\begin{cases}
+0 &amp; x \le x_L \\[4pt]
+\dfrac{x - x_L}{x_U - x_L} &amp; x_L &lt; x &lt; x_U \\[4pt]
+1 &amp; x \ge x_U
+\end{cases}
+\]</span></p>
+<p>with <span class="math inline">\(x_L\)</span> = 0.3 and <span class="math inline">\(x_U\)</span> = 1. When <span class="math inline">\(I_{\text{cur}}/I_{\text{ref}}\)</span> is at or below <span class="math inline">\(x_L\)</span> the throttle zeroes out every index’s implied catch limit, at or above <span class="math inline">\(x_U\)</span> (i.e.&nbsp;at or above the historical reference level) the full calibrated rate is applied, while in between the response ramps up linearly (<a href="#fig-hcr-indexrate" class="quarto-xref">Figure&nbsp;<span>5.2</span></a>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-hcr-indexrate" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-hcr-indexrate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="management-procedures_files/figure-html/fig-hcr-indexrate-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hcr-indexrate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.2: Index Rate response: the fraction of the calibrated catch rate applied, as a function of the current abundance index relative to its historical reference level.
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p>The <code>Responsiveness</code> parameter, <span class="math inline">\(R\)</span>, controls what fraction of the move from the previous cycle’s catch limit to <code>TrialTAC</code> is actually taken:</p>
+<p><span class="math display">\[
+\text{Mod} = \left(\frac{\text{TrialTAC}}{\text{TAC}_{\text{prev}}}\right)^{\!R}
+\]</span> <span class="math display">\[
+\text{TAC} = \text{TAC}_{\text{prev}} \times \text{Mod}
+\]</span></p>
+<p>where <span class="math inline">\(\text{TAC}_{\text{prev}}\)</span> is the previous cycle’s catch limit. The Index Rate variants used in the MSE have <span class="math inline">\(R =\)</span> 0.5, so a proportional change in <code>TrialTAC</code> relative to <span class="math inline">\(\text{TAC}_{\text{prev}}\)</span> only moves the actual TAC by that fraction on the log scale.</p>
+<p>Finally, this proportional change in the TAC is capped per management cycle; the two Index Rate variants (<code>IR</code>, <code>IR_20</code>) share this structure and differ only in the maximum TAC change cap (<a href="#tbl-cmp-summary" class="quarto-xref">Table&nbsp;<span>5.1</span></a>).</p>
+</section><section id="sec-cmps-mcc" class="level3" data-number="5.1.2"><h3 data-number="5.1.2" class="anchored" data-anchor-id="sec-cmps-mcc">
+<span class="header-section-number">5.1.2</span> MCC</h3>
+<p>Based on the Mostly Constant Catch (MCC) design ICCAT adopted for North Atlantic swordfish, the MCC CMP uses the same abundance indices as Index Rate, together with the last historical year’s total landings, to set each management cycle’s catch limit in three steps.</p>
+<p>Unlike Index Rate where the catch limit is iteratively adjusted from the previous cycle’s TAC, MCC uses fixed baseline TAC that is stepped by a pre-agreed multiplier. There is no per-cycle absolute TAC change cap.</p>
+<ol type="1">
+<li>The indices reporting each year are combined into a single series, and that combined series’ most recent value, <span class="math inline">\(I_{\text{cur}}\)</span>, is compared with its own average over a historical reference period, <span class="math inline">\(I_{\text{ref}}\)</span>, giving a ratio, <span class="math inline">\(I_{\text{rat}}\)</span>.</li>
+<li>
+<span class="math inline">\(I_{\text{rat}}\)</span> determines which of several pre-agreed bins applies (<a href="#tbl-mcc-steps" class="quarto-xref">Table&nbsp;<span>5.2</span></a>), each with its own multiplier on the baseline catch level.</li>
+<li>The catch limit is the baseline catch level – the last historical year’s total landings, scaled by the tuning parameter – multiplied by that bin’s multiplier.</li>
+</ol>
+<p>Each of these steps is set out in full below.</p>
+<p>MCC first combines the raw indices into a single equally-weighted mean combined index <span class="math inline">\(I_y\)</span> (<a href="#fig-mcc-combined" class="quarto-xref">Figure&nbsp;<span>5.3</span></a>):</p>
+<p><span class="math display">\[
+I_y = \frac{1}{n_y}\sum_{j} I_{j,\,y}
+\]</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-mcc-combined" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-mcc-combined-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="management-procedures_files/figure-html/fig-mcc-combined-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mcc-combined-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.3: The combined index from the historical data (grey), calculated as the equally-weighted mean of the individual indices, its average over the historical reference period (blue, <span class="math inline">\(I_{\text{ref}}\)</span>), and its most recent value (orange point, <span class="math inline">\(I_{\text{cur}}\)</span>).
+</figcaption></figure>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(I_{\text{cur}}\)</span>, the combined index’s value in the most recent year (the orange point in <a href="#fig-mcc-combined" class="quarto-xref">Figure&nbsp;<span>5.3</span></a>), is compared with <span class="math inline">\(I_{\text{ref}}\)</span>, calculated as the average over a 2000 – 2024 historical reference period (the blue line in <a href="#fig-mcc-combined" class="quarto-xref">Figure&nbsp;<span>5.3</span></a>):</p>
+<p><span class="math display">\[
+I_{\text{rat}} = \frac{I_{\text{cur}}}{I_{\text{ref}}}
+\]</span></p>
+<p>For this example using the historical data, <span class="math inline">\(I_{\text{cur}} =\)</span> 0.826, <span class="math inline">\(I_{\text{ref}} =\)</span> 0.947, so <span class="math inline">\(I_{\text{rat}} =\)</span> 0.872. <span class="math inline">\(I_{\text{rat}}\)</span> then determines which multiplier on the baseline catch level from the pre-specified bins applies (<a href="#tbl-mcc-steps" class="quarto-xref">Table&nbsp;<span>5.2</span></a>).</p>
+<div class="cell">
+<div id="tbl-mcc-steps" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure"><figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mcc-steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.2: The MCC step schedule showing the multipliers applied to the baseline TAC level based on the current index ratio.
+</figcaption><div aria-describedby="tbl-mcc-steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 73%">
+<col style="width: 26%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">Combined Index / Historical Base (<span class="math inline">\(I_{\text{rat}}\)</span>)</th>
+<th style="text-align: right;">TACbase multiplier</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">&lt; 0.65</td>
+<td style="text-align: right;">0.45</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.65 – 0.90</td>
+<td style="text-align: right;">0.80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.90 – 1.10</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1.10 – 1.30</td>
+<td style="text-align: right;">1.20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1.30 – 1.40</td>
+<td style="text-align: right;">1.30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1.40 – 1.50</td>
+<td style="text-align: right;">1.40</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1.50 – 1.60</td>
+<td style="text-align: right;">1.50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1.60 – 1.70</td>
+<td style="text-align: right;">1.60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&gt;= 1.70</td>
+<td style="text-align: right;">1.70</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The catch limit is then the baseline catch level (the last historical year’s total landings across all fleets, scaled by the tuning parameter) multiplied by that bin’s multiplier:</p>
+<p><span class="math display">\[
+\text{TAC}_{\text{base}} = C_{\text{LHY}} \times m
+\]</span> <span class="math display">\[
+\text{TAC} = \text{TAC}_{\text{base}} \times s(I_{\text{rat}})
+\]</span></p>
+<p>where <span class="math inline">\(C_{\text{LHY}}\)</span> is the total landings across all fleets in the last historical year, <span class="math inline">\(m\)</span> is the tuning parameter, and <span class="math inline">\(s(\cdot)\)</span> is the step function in <a href="#tbl-mcc-steps" class="quarto-xref">Table&nbsp;<span>5.2</span></a>. As noted above, there is no per-cycle change cap on top of this step (<a href="#tbl-cmp-summary" class="quarto-xref">Table&nbsp;<span>5.1</span></a>).</p>
+</section><section id="sec-cmps-ensemble" class="level3" data-number="5.1.3"><h3 data-number="5.1.3" class="anchored" data-anchor-id="sec-cmps-ensemble">
+<span class="header-section-number">5.1.3</span> Ensemble</h3>
+<p>The Ensemble CMP combines MCC and Index Rate by averaging their two independently-computed TAC recommendations. Each cycle, MCC and Index Rate independently compute their own TAC recommendation and the Ensemble’s catch limit is the tuning-parameter-scaled average of the two:</p>
+<p><span class="math display">\[
+C_{\text{limit}} = m \times \text{mean}\big(C_{\text{MCC}},\ C_{\text{IndexRate}}\big)
+\]</span></p>
+<p>where <span class="math inline">\(C_{\text{MCC}}\)</span> and <span class="math inline">\(C_{\text{IndexRate}}\)</span> are MCC’s and Index Rate’s own recommendations, each computed independently at its own individually-tuned setting for the blend (not necessarily the same setting as the standalone MCC/Index Rate variants in <a href="#tbl-cmp-summary" class="quarto-xref">Table&nbsp;<span>5.1</span></a>), and <span class="math inline">\(m\)</span> is the Ensemble’s own tuning parameter (<a href="#tbl-cmp-summary" class="quarto-xref">Table&nbsp;<span>5.1</span></a>), applied on top of the blend.</p>
+<p>Two variants are included:</p>
+<ol type="1">
+<li>
+<code>Ens</code> blends MCC with the uncapped Index Rate component;</li>
+<li>
+<code>Ens_20</code> blends MCC with the 20%-capped Index Rate component</li>
+</ol>
+<p>The internal MCC/Index Rate tunepars and the Index Rate caps are shown in <a href="#tbl-cmp-summary" class="quarto-xref">Table&nbsp;<span>5.1</span></a>.</p>
+</section></section><section id="sec-tuning-methodology" class="level2" data-number="5.2"><h2 data-number="5.2" class="anchored" data-anchor-id="sec-tuning-methodology">
+<span class="header-section-number">5.2</span> Tuning Methodology</h2>
+<p>Each CMP has a set of structural settings (which data it uses, how that data is combined or smoothed, the shape of its response, how much its recommendation can change between cycles) plus a single tuning parameter, <code>tunepar</code>, that scales how aggressively it converts that data into a TAC recommendation. A two stage process is used to determine the optimal values for both the structural settings and <code>tunepar</code>:</p>
+<ol type="1">
+<li>Each structural setting is explored first, trying a small number of candidate values for that setting (e.g.&nbsp;<code>CalibYears</code>: 1 vs.&nbsp;2 years; <code>Smooth</code>: on vs.&nbsp;off; <code>WeightMethod</code>: equal vs. inverse-CV vs.&nbsp;inverse-variance weighting). Once the optimal values for these settings are found, they are fixed and the process moves on to <code>tunepar</code>.</li>
+<li>
+<code>tunepar</code> is then found by grid search over the full pooled Reference OM grid (i.e.,the nine OMs spanning the Growth x Natural Mortality uncertainty grid to find the highest-yield value that still meets the Safety and Status objectives from Resolution 24-09 (<a href="performance-metrics.html" class="quarto-xref"><span>Chapter 4</span></a>), evaluated jointly across all nine OMs.</li>
+</ol>
+<p>The resulting <code>tunepar</code> (and, where applicable, per-cycle change cap) for each CMP is given in <a href="#tbl-cmp-summary" class="quarto-xref">Table&nbsp;<span>5.1</span></a>.</p>
+<section id="sec-tuning-indexrate" class="level3" data-number="5.2.1"><h3 data-number="5.2.1" class="anchored" data-anchor-id="sec-tuning-indexrate">
+<span class="header-section-number">5.2.1</span> Index Rate</h3>
+<p>For Index Rate (<a href="#sec-cmps-indexrate" class="quarto-xref"><span>Section 5.1.1</span></a>), step 1 fixed:</p>
+<ul>
+<li>which indices to use (all three currently-reporting indices, <code>WeightMethod = 'equal'</code>);</li>
+<li>the calibration window (<code>CalibYears</code> =1);</li>
+<li>whether to smooth the index before use (<code>Smooth = FALSE</code>; LOESS smoothing is available in the CMP but did not improve on the raw index);</li>
+<li>the trend-projection window and horizon (<code>TrendYears</code> = 5, <code>TrendHorizon</code> = 2);</li>
+<li>the shape of the ramped throttle (<code>RampType = 'linear'</code>, control points shown in <a href="#fig-hcr-indexrate" class="quarto-xref">Figure&nbsp;<span>5.2</span></a>); and</li>
+<li>the <code>Responsiveness</code> parameter (0.5, <a href="#sec-cmps-indexrate" class="quarto-xref"><span>Section 5.1.1</span></a>).</li>
+</ul>
+<p><code>tunepar</code> (the <code>IndexFactor</code> multiplier on the calibrated rate) was then set by the step-2 grid search, run separately for the uncapped and 20%-capped per-cycle change cap, giving the two variants in <a href="#tbl-cmp-summary" class="quarto-xref">Table&nbsp;<span>5.1</span></a>.</p>
+</section><section id="sec-tuning-mcc" class="level3" data-number="5.2.2"><h3 data-number="5.2.2" class="anchored" data-anchor-id="sec-tuning-mcc">
+<span class="header-section-number">5.2.2</span> MCC</h3>
+<p>For MCC (<a href="#sec-cmps-mcc" class="quarto-xref"><span>Section 5.1.2</span></a>), the historical reference window (<code>HistRefYears</code> = 2000–2024), the step schedule itself (<code>IratBreaks</code>/<code>TACmult</code>, <a href="#tbl-mcc-steps" class="quarto-xref">Table&nbsp;<span>5.2</span></a>), and how the three indices are combined into one series (<code>WeightMethod = 'equal'</code>) were fixed in step 1.</p>
+<p><code>tunepar</code> (the multiplier on the reference catch level) was then set by the step-2 grid search, giving the single MCC variant in <a href="#tbl-cmp-summary" class="quarto-xref">Table&nbsp;<span>5.1</span></a>.</p>
+</section><section id="sec-tuning-ensemble" class="level3" data-number="5.2.3"><h3 data-number="5.2.3" class="anchored" data-anchor-id="sec-tuning-ensemble">
+<span class="header-section-number">5.2.3</span> Ensemble</h3>
+<p>For Ensemble (<a href="#sec-cmps-ensemble" class="quarto-xref"><span>Section 5.1.3</span></a>), step 1 fixed how the two component CMPs (Index Rate and MCC) are combined (<code>Combiner = 'mean'</code>).</p>
+<p>The two components’ own tuning parameters (<code>MCC_tunepar</code>, <code>IR_tunepar</code>) were re-tuned jointly with the Ensemble’s own <code>tunepar</code> in step 2. The resulting values for both Ensemble variants are given in <a href="#tbl-cmp-summary" class="quarto-xref">Table&nbsp;<span>5.1</span></a>.</p>
+
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/iccatsalb\.bluematterscience\.com\/tsd\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./performance-metrics.html" class="pagination-link" aria-label="Performance Metrics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Performance Metrics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
