@@ -14,6 +14,17 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Add mirror notice to README
+        run: |
+          NOTICE='<!-- mirror-notice -->
+> **Note:** This repository is a read-only mirror, automatically synced from [Blue-Matter/iccatSALB](https://github.com/Blue-Matter/iccatSALB). Please do not edit files here directly — changes will be overwritten on the next sync.
+'
+          printf '%s\n\n%s' "$NOTICE" "$(cat README.md 2>/dev/null)" > README.md
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Add mirror notice to README" || true
+
       - name: Set up SSH deploy key
         run: |
           mkdir -p ~/.ssh
